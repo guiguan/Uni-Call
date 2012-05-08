@@ -9,6 +9,7 @@ Installation
 1. Make sure the [Alfred](http://www.alfredapp.com) with [Powerpack](http://www.alfredapp.com/powerpack) is installed
 2. Download the latest extension: [Skype-Call.alfredextension](https://raw.github.com/guiguan/Skype-Call/master/Skype-Call.alfredextension)
 3. Double click on the downloaded extension file to install
-4. 
+4. Select Skype-Call from drop-down menu in "Alfred Preferences > Address Book > General > Phone" as shown in following figure.
 
+![Integrate Skype-Call with Alfred's Address Book feature](https://github.com/guiguan/Skype-Call/raw/master/Alfred-Preferences.png)
 
