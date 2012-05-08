@@ -3,6 +3,8 @@ Skype-Call
 
 An [Alfred](http://www.alfredapp.com) extension to make Skype phone call to the phone number selected by Alfred's Address Book feature. If the Skype hasn't been opened yet, this extension will open it and ensure it is online before starting the phone call (The url scheme skype:{query}?call approach cannot handle this). When making a phone call, this extension won't change your Skype online status.
 
+This extension is compatible with David Ferguson's [Extension Updater for Alfred](http://jdfwarrior.tumblr.com/post/13826478125/extension-updater).
+
 Installation
 ----------------
 
