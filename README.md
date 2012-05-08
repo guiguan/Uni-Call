@@ -21,5 +21,5 @@ Usage
 	call 043333333
 
 ### search for a contact, select a phone number and hit return
-	![Search for A Contact](https://github.com/guiguan/Skype-Call/raw/master/Search-for-A-Contact.png)
-	![Select A Phone Number](https://github.com/guiguan/Skype-Call/raw/master/Select-A-Phone-Number.png)
+![Search for A Contact](https://github.com/guiguan/Skype-Call/raw/master/Search-for-A-Contact.png)
+![Select A Phone Number](https://github.com/guiguan/Skype-Call/raw/master/Select-A-Phone-Number.png)
