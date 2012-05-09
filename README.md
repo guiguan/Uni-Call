@@ -24,6 +24,9 @@ Usage
 	call +61 4 3333 3333
 	call 043333333
 
+### type "call SKYPE_USERNAME"
+	call guiguandotnet
+
 ### search for a contact, select a phone number and hit return
 ![Search for A Contact](https://github.com/guiguan/Skype-Call/raw/master/Search-for-A-Contact.png)
 ![Select A Phone Number](https://github.com/guiguan/Skype-Call/raw/master/Select-A-Phone-Number.png)
