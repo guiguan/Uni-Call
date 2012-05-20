@@ -33,4 +33,8 @@ Usage
 
 Support
 ----------------
-Please file any issue from [here](https://github.com/guiguan/Skype-Call/issues/new).
+Please file any issue from [here](https://github.com/guiguan/Skype-Call/issues/new). Alternatively, you can leave comment on [my blog page](http://www.guiguan.net/alfred-extension-skype-call-1-0/).
+
+Credit
+----------------
+[Guan Gui](http://www.guiguan.net)
