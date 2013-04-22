@@ -1,7 +1,7 @@
 [Skype Call](http://guiguan.github.com/Skype-Call/)
 ==========
 
-An [Alfred](http://www.alfredapp.com) workflow to make Skype phone call to the phone number selected by Alfred's Address Book feature. If the Skype hasn't been opened yet, this workflow will open it and ensure it is online before starting the phone call. When making a phone call, this workflow won't change your Skype online status, and no annoying confirmation dialog box will be popped up.
+An [Alfred](http://www.alfredapp.com) workflow to make Skype phone call to the phone number selected by Alfred's Contacts feature. If the Skype hasn't been opened yet, this workflow will open it and ensure it is online before starting the phone call. When making a phone call, this workflow won't change your Skype online status, and no annoying confirmation dialog box will be popped up.
 
 The alternative url scheme *skype:{query}?call* approach is not able make a phone call when Skype hasn't been opened in some system environment, such as Mac OS X 10.8.3, and the alternative approach will cause the annoying confirmation dialog to be popped up every time when you try to make a phone call.
 
