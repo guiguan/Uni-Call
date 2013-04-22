@@ -1,4 +1,4 @@
-[Skype-Call](http://guiguan.github.com/Skype-Call/)
+[Skype Call](http://guiguan.github.com/Skype-Call/)
 ==========
 
 An [Alfred](http://www.alfredapp.com) workflow to make Skype phone call to the phone number selected by Alfred's Address Book feature. If the Skype hasn't been opened yet, this workflow will open it and ensure it is online before starting the phone call. When making a phone call, this workflow won't change your Skype online status, and no annoying confirmation dialog box will be popped up.
