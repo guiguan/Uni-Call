@@ -28,7 +28,7 @@
         <div class="downloads">
           <span>Downloads:</span>
           <ul>
-            <li><a href="http://www.guiguan.net/downloads/Skype-Call.alfredextension" class="button">Skype-Call.alfredextension 1.0</a></li>
+            <li><a href="http://www.guiguan.net/downloads/Skype-Call.alfredworkflow" class="button">Skype-Call.alfredworkflow 2.0</a></li>
           </ul>
         </div>
       </div><!-- end banner -->
@@ -38,15 +38,27 @@
         <ul></ul>
       </nav>
       <section>
-        <h1>Skype-Call</h1>
+        <h1>Skype Call</h1>
 
-<p>An <a href="http://www.alfredapp.com">Alfred</a> extension to make Skype phone call to the phone number selected by Alfred's Address Book feature. If the Skype hasn't been opened yet, this extension will open it and ensure it is online before starting the phone call. When making a phone call, this extension won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</p>
+<p>An <a href="http://www.alfredapp.com">Alfred</a> workflow to make Skype phone call to the phone number selected by Alfred's Contacts feature. If the Skype hasn't been opened yet, this workflow will open it and ensure it is online before starting the phone call. When making a phone call, this workflow won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</p>
 
-<p>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn't been opened in some system environment, such as Mac OS X 10.8 Developer Preview 3, and the alternative approach will cause the annoying confirmation dialog to be popped up every time when you try to make a phone call.</p>
+<p>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn't been opened in some system environment, such as Mac OS X 10.8.3, and the alternative approach will cause the annoying confirmation dialog to be popped up every time when you try to make a phone call.</p>
 
-<p>This extension is compatible with David Ferguson's <a href="http://jdfwarrior.tumblr.com/post/13826478125/extension-updater">Extension Updater for Alfred</a>, and it has been tested on Skype 5.7.0.1037 and Alfred 1.2 (220).</p>
+<p>This workflow has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).</p>
 
 <h2>Installation</h2>
+
+<h3>For Alfred v2</h3>
+
+<ol>
+<li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> with <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
+<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Skype-Call.alfredworkflow">Skype-Call.alfredworkflow 2.0</a>
+</li>
+<li>Double click on the downloaded workflow file to install</li>
+<li>Under "Alfred Preferences > Features > Contacts", add two custom actions for both Phone and Skype as shown in the following figure.</li>
+</ol><p><img src="https://github.com/guiguan/Skype-Call/raw/master/Alfred-Preferences-v2.png" alt="Integrate Skype-Call with Alfred's Contacts feature"></p>
+
+<h3>For Alfred v1 (workflows were known as extensions back then)</h3>
 
 <ol>
 <li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> with <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
@@ -69,13 +81,21 @@ call 043333333
 <pre><code>call guiguandotnet
 </code></pre>
 
-<h3>search for a contact, select a phone number and hit return</h3>
+<h3>search for a contact, select a phone number or a Skype username and hit return</h3>
 
 <p><img src="https://github.com/guiguan/Skype-Call/raw/master/Search-for-A-Contact.png" alt="Search for A Contact"><img src="https://github.com/guiguan/Skype-Call/raw/master/Select-A-Phone-Number.png" alt="Select A Phone Number"></p>
 
+<h2>Troubleshooting</h2>
+
+<h3>If nothing happens</h3>
+
+<p>This is a known issue for Skype-Call.alfredextension 1.0 if you are using a non-english Skype (depends on your Mac OS X language). However, this should have already been fixed in Skype-Call.alfredworkflow 2.0. If by any change, you still encounter a similar problem, please remove the <em>AppleScript</em> entry from the "Skype main menu > Skype > Manage API Clients..." dialog (as shown in the following figure), and restart your Skype.</p>
+
+<p><img src="https://github.com/guiguan/Skype-Call/raw/master/Manage-API-Clients.png" alt="Manage API Clients"></p>
+
 <h2>Support</h2>
 
-<p>Please file any issue from <a href="https://github.com/guiguan/Skype-Call/issues/new">here</a>. Alternatively, you can leave comment on <a href="http://www.guiguan.net/alfred-extension-skype-call-1-0/">my blog page</a>.</p>
+<p>Please file any issue from <a href="https://github.com/guiguan/Skype-Call/issues/new">here</a>. Alternatively, you can leave comment on <a href="http://www.guiguan.net/alfred-workflow-skype-call-2-0/">my blog page</a>.</p>
 
 <h2>Credit</h2>
 
