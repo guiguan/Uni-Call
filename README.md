@@ -34,7 +34,7 @@ Usage
 	call 043333333
 
 ### type "call SKYPE_USERNAME"
-	call guiguandotnet
+	call echo123
 
 ### search for a contact, select a phone number or a Skype username and hit return
 ![Skype Username](https://github.com/guiguan/Skype-Call/raw/master/Skype-Username.png)
