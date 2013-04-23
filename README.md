@@ -35,9 +35,9 @@ Usage
 
 ### type "call SKYPE_USERNAME"
 	call echo123
+![Skype Username](https://github.com/guiguan/Skype-Call/raw/master/Skype-Username.png)
 
 ### search for a contact, select a phone number or a Skype username and hit return
-![Skype Username](https://github.com/guiguan/Skype-Call/raw/master/Skype-Username.png)
 ![Apple-Contacts](https://github.com/guiguan/Skype-Call/raw/master/Apple-Contacts.png)
 ![Search for A Contact](https://github.com/guiguan/Skype-Call/raw/master/Search-for-A-Contact.png)
 ![Select A Phone Number](https://github.com/guiguan/Skype-Call/raw/master/Select-A-Phone-Number.png)
@@ -52,7 +52,7 @@ This is a known issue for Skype-Call.alfredextension 1.0 if you are using a non-
 
 Support
 ----------------
-Please file any issue from [here](https://github.com/guiguan/Skype-Call/issues/new). Alternatively, you can leave comment on [my blog page](http://www.guiguan.net/alfred-workflow-skype-call-2-0/).
+Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Skype-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/alfred-workflow-skype-call-2-0/). Or, you can post on the [Skype Call 2.0 topic section of Alfred forum](http://www.alfredforum.com/topic/2142-skype-call-20/).
 
 Credit
 ----------------
