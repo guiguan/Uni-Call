@@ -37,6 +37,8 @@ Usage
 	call guiguandotnet
 
 ### search for a contact, select a phone number or a Skype username and hit return
+![Skype Username](https://github.com/guiguan/Skype-Call/raw/master/Skype-Username.png)
+![Apple-Contacts](https://github.com/guiguan/Skype-Call/raw/master/Apple-Contacts.png)
 ![Search for A Contact](https://github.com/guiguan/Skype-Call/raw/master/Search-for-A-Contact.png)
 ![Select A Phone Number](https://github.com/guiguan/Skype-Call/raw/master/Select-A-Phone-Number.png)
 
