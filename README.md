@@ -10,6 +10,7 @@ When you would like to make a Skype call, simply type:
 	call TARGET
 
 where TARGET could be:
+
 1. a Skype username (the icon of online users will be shown as green)
 2. a phone number
 3. combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations
