@@ -1,4 +1,4 @@
 {
     "version": 3.0,
-    "remote_json": "http://www.guiguan.net/downloads/Skype-Call.alfredworkflow"
+    "remote_json": "https://raw.github.com/guiguan/Skype-Call/master/src/skypecall.json"
 }
