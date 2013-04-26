@@ -6,7 +6,7 @@
 	<string>net.guiguan.skypecall</string>
 	<key>connections</key>
 	<dict>
-		<key>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</key>
+		<key>7016D8DA-6748-4E96-BDA2-FBF05F0BAD5B</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -32,7 +32,7 @@
 	<key>createdby</key>
 	<string>Guan Gui</string>
 	<key>description</key>
-	<string>Make Skype call using Contacts</string>
+	<string>The fastest way to make a Skype call on Mac OS X</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -42,13 +42,29 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>name</key>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>call</string>
+				<key>runningsubtext</key>
+				<string>Searching...</string>
+				<key>script</key>
+				<string>./bin/Skype\ Call {query}</string>
+				<key>subtext</key>
+				<string>Make a Skype call to your contact</string>
+				<key>title</key>
 				<string>Skype Call</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.contact</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>824B81E3-2C65-454B-86A7-033401A2223F</string>
+			<string>7016D8DA-6748-4E96-BDA2-FBF05F0BAD5B</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -56,7 +72,7 @@
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>script</key>
-				<string>osascript skype.scpt {query}</string>
+				<string>osascript skypecall.scpt {query}</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -68,44 +84,43 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>skype</string>
-				<key>subtext</key>
-				<string>skype PHONE_NUMBER or SKYPE_USERNAME</string>
-				<key>text</key>
+				<key>name</key>
 				<string>Skype Call</string>
-				<key>withspace</key>
-				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.trigger.contact</string>
 			<key>uid</key>
-			<string>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</string>
+			<string>824B81E3-2C65-454B-86A7-033401A2223F</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Welcome to Skype Call. The version number you are using is 3.0
+--------------------------------------------------------------
+
+When you would like to make a Skype call, simply type this in your Alfred:call TARGETwhere TARGET could be:1. Skype username2. phone number3. Contact details stored in your Apple Contacts: first/middle/last names or corresponding phonetic names, nicknames, organisationsor alternatively, you can make Skype call using Alfred's Contacts feature. 
+
+For more details, please visit http://guiguan.github.io/Skype-Call/
+
+Enjoy Skyping!</string>
 	<key>uidata</key>
 	<dict>
 		<key>16039760-F173-4AB8-9C73-DA7401D5DE23</key>
 		<dict>
 			<key>ypos</key>
-			<real>60</real>
+			<real>70</real>
 		</dict>
-		<key>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</key>
+		<key>7016D8DA-6748-4E96-BDA2-FBF05F0BAD5B</key>
 		<dict>
 			<key>ypos</key>
-			<real>150</real>
+			<real>70</real>
 		</dict>
 		<key>824B81E3-2C65-454B-86A7-033401A2223F</key>
 		<dict>
 			<key>ypos</key>
-			<real>20</real>
+			<real>150</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>http://www.guiguan.net</string>
+	<string>http://guiguan.github.io/Skype-Call/</string>
 </dict>
 </plist>
