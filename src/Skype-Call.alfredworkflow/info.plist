@@ -94,10 +94,20 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Welcome to Skype Call. The version number you are using is 3.0
---------------------------------------------------------------
+	<string>Skype Call v3.0
+The fastest way to make a Skype call on Mac OS X
+------------------------------------------------
 
-When you would like to make a Skype call, simply type this in your Alfred:call TARGETwhere TARGET could be:1. Skype username2. phone number3. Contact details stored in your Apple Contacts: first/middle/last names or corresponding phonetic names, nicknames, organisationsor alternatively, you can make Skype call using Alfred's Contacts feature. 
+When you would like to make a Skype call, simply type:
+
+	call TARGET
+
+where TARGET could be:
+1. a Skype username (the icon of online users will be shown as green)
+2. a phone number
+3. combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations
+
+or alternatively, you can make Skype call using Alfred's Contacts feature.
 
 For more details, please visit http://guiguan.github.io/Skype-Call/
 

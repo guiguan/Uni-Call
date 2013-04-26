@@ -38,6 +38,31 @@ NSString *runCommand(NSString *commandToRun)
     return output;
 }
 
+ABSearchElement *generateOrSearchingElementForQueryPart(NSString *queryPart)
+{
+    ABSearchElement *firstName = [ABPerson searchElementForProperty:kABFirstNameProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
+    ABSearchElement *firstNamePhonetic = [ABPerson searchElementForProperty:kABFirstNamePhoneticProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
+    ABSearchElement *lastName = [ABPerson searchElementForProperty:kABLastNameProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
+    ABSearchElement *lastNamePhonetic = [ABPerson searchElementForProperty:kABLastNamePhoneticProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
+    ABSearchElement *phoneNumber = [ABPerson searchElementForProperty:kABPhoneProperty label:nil key:nil value:queryPart comparison:kABContainsSubStringCaseInsensitive];
+    
+    return [ABSearchElement searchElementForConjunction:kABSearchOr children:@[firstName, firstNamePhonetic, lastName, lastNamePhonetic, phoneNumber]];
+}
+
+ABSearchElement *generateOrSearchingElementForQuery(NSString *query)
+{
+    ABSearchElement *organization = [ABPerson searchElementForProperty:kABOrganizationProperty label:nil key:nil value:query comparison:kABPrefixMatchCaseInsensitive];
+    ABSearchElement *firstName = [ABPerson searchElementForProperty:kABFirstNameProperty label:nil key:nil value:query comparison:kABPrefixMatchCaseInsensitive];
+    ABSearchElement *lastName = [ABPerson searchElementForProperty:kABLastNameProperty label:nil key:nil value:query comparison:kABPrefixMatchCaseInsensitive];
+    ABSearchElement *nickname = [ABPerson searchElementForProperty:kABNicknameProperty label:nil key:nil value:query comparison:kABPrefixMatchCaseInsensitive];
+    ABSearchElement *phoneNumber = [ABPerson searchElementForProperty:kABPhoneProperty label:nil key:nil value:query comparison:kABContainsSubStringCaseInsensitive];
+    ABSearchElement *skypeUsername = [ABPerson searchElementForProperty:kABInstantMessageProperty label:nil key:kABInstantMessageUsernameKey value:query comparison:kABPrefixMatchCaseInsensitive];
+    ABSearchElement *skypeService = [ABPerson searchElementForProperty:kABInstantMessageProperty label:nil key:kABInstantMessageServiceKey value:kABInstantMessageServiceSkype comparison:kABEqual];
+    ABSearchElement *skype = [ABSearchElement searchElementForConjunction:kABSearchAnd children:@[skypeUsername, skypeService]];
+    
+    return [ABSearchElement searchElementForConjunction:kABSearchOr children:@[firstName, lastName, nickname, organization, skype, phoneNumber]];
+}
+
 int main(int argc, const char * argv[])
 {
     
@@ -55,22 +80,10 @@ int main(int argc, const char * argv[])
         
         for (int i = 0; i < [queryMatches count]; i++) {
             NSString *queryPart = [query substringWithRange:((NSTextCheckingResult *)queryMatches[i]).range];
-            
-            ABSearchElement *organization = [ABPerson searchElementForProperty:kABOrganizationProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
-            ABSearchElement *firstName = [ABPerson searchElementForProperty:kABFirstNameProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
-            ABSearchElement *firstNamePhonetic = [ABPerson searchElementForProperty:kABFirstNamePhoneticProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
-            ABSearchElement *lastName = [ABPerson searchElementForProperty:kABLastNameProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
-            ABSearchElement *lastNamePhonetic = [ABPerson searchElementForProperty:kABLastNamePhoneticProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
-            ABSearchElement *nickname = [ABPerson searchElementForProperty:kABNicknameProperty label:nil key:nil value:queryPart comparison:kABPrefixMatchCaseInsensitive];
-            ABSearchElement *phoneNumber = [ABPerson searchElementForProperty:kABPhoneProperty label:nil key:nil value:queryPart comparison:kABContainsSubStringCaseInsensitive];
-            ABSearchElement *skypeUsername = [ABPerson searchElementForProperty:kABInstantMessageProperty label:nil key:kABInstantMessageUsernameKey value:queryPart comparison:kABPrefixMatchCaseInsensitive];
-            ABSearchElement *skypeService = [ABPerson searchElementForProperty:kABInstantMessageProperty label:nil key:kABInstantMessageServiceKey value:kABInstantMessageServiceSkype comparison:kABEqual];
-            ABSearchElement *skype = [ABSearchElement searchElementForConjunction:kABSearchAnd children:@[skypeUsername, skypeService]];
-            
-            [searchTerms addObject:[ABSearchElement searchElementForConjunction:kABSearchOr children:@[skype, phoneNumber, organization, firstName, firstNamePhonetic, lastName, lastNamePhonetic, nickname]]];
+            [searchTerms addObject:generateOrSearchingElementForQueryPart(queryPart)];
         }
         
-        ABSearchElement *searchEl = [ABSearchElement searchElementForConjunction:kABSearchAnd children:searchTerms];
+        ABSearchElement *searchEl = [ABSearchElement searchElementForConjunction:kABSearchOr children:@[generateOrSearchingElementForQuery(query), [ABSearchElement searchElementForConjunction:kABSearchAnd children:searchTerms]]];
 
         NSArray *peopleFound = [AB recordsMatchingSearchElement:searchEl];
         NSMutableString *results = [NSMutableString stringWithString:@"<?xml version=\"1.0\"?><items>"];
