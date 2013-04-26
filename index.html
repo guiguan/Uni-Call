@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Skype-call by guiguan</title>
+    <title>Skype Call</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -18,7 +18,7 @@
 
       <header>
         <h1>Skype Call</h1>
-        <p>An Alfred workflow to make Skype phone call to the phone number selected by Alfred's Contacts feature</p>
+        <p>An Alfred workflow providing the fastest way to make a Skype call on Mac OS X</p>
       </header>
 
       <div id="banner">
@@ -28,7 +28,7 @@
         <div class="downloads">
           <span>Downloads:</span>
           <ul>
-            <li><a href="http://www.guiguan.net/downloads/Skype-Call.alfredworkflow" class="button">Skype-Call.alfredworkflow 2.0</a></li>
+            <li><a href="http://www.guiguan.net/downloads/Skype-Call.alfredworkflow" class="button">Skype-Call.alfredworkflow 3.0</a></li>
           </ul>
         </div>
       </div><!-- end banner -->
@@ -40,11 +40,30 @@
       <section>
         <h1>Skype Call</h1>
 
-<p>An <a href="http://www.alfredapp.com">Alfred</a> workflow to make Skype phone call to the phone number selected by Alfred's Contacts feature. If the Skype hasn't been opened yet, this workflow will open it and ensure it is online before starting the phone call. When making a phone call, this workflow won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</p>
+<p>Skype Call is an <a href="http://www.alfredapp.com" target="_blank">Alfred</a> workflow providing the fastest way to make a Skype call on Mac OS X.</p>
 
-<p>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn't been opened in some system environment, such as Mac OS X 10.8.3, and the alternative approach will cause the annoying confirmation dialog to be popped up every time when you try to make a phone call.</p>
+<p><img src="https://github.com/guiguan/Skype-Call/raw/master/Skype-Call.png" alt="Skype Call"></p>
 
-<p>This workflow has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).</p>
+<p>When you would like to make a Skype call, simply type:</p>
+
+<pre><code>call TARGET
+</code></pre>
+
+<p>where TARGET could be:</p>
+
+<ol>
+<li>a Skype username (the icon of online users will be shown as green)</li>
+<li>a phone number</li>
+<li>combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations</li>
+</ol>
+
+<p>or alternatively, you can make Skype call using Alfred's Contacts feature.</p>
+
+<p>If the Skype hasn't been opened yet, this workflow will open it and ensure it is online before starting the phone call. When making a phone call, this workflow won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</p>
+
+<p>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a phone call.</p>
+
+<p>This workflow supports <a href="http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/" target="_blank">Alleyoop auto-updater</a>, and it has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).</p>
 
 <h2>Installation</h2>
 
@@ -52,7 +71,7 @@
 
 <ol>
 <li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> with <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
-<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Skype-Call.alfredworkflow">Skype-Call.alfredworkflow 2.0</a>
+<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Skype-Call.alfredworkflow">Skype-Call.alfredworkflow 3.0</a>
 </li>
 <li>Double click on the downloaded workflow file to install</li>
 <li>Under "Alfred Preferences > Features > Contacts", add two custom actions for both Phone and Skype as shown in the following figure.</li>
@@ -97,7 +116,7 @@ call 043333333
 
 <h2>Support</h2>
 
-<p>Please file any issue from <a href="https://github.com/guiguan/Skype-Call/issues/new">this GitHub issue tracker</a>. Alternatively, you can leave comments on <a href="http://www.guiguan.net/alfred-workflow-skype-call-2-0/">my blog page</a>. Or, you can post on the <a href="http://www.alfredforum.com/topic/2142-skype-call-20/">Skype Call 2.0 topic section of Alfred forum</a>.</p>
+<p>Please file any issue from <a href="https://github.com/guiguan/Skype-Call/issues/new">this GitHub issue tracker</a>. Alternatively, you can leave comments on <a href="http://www.guiguan.net/alfred-workflow-skype-call-2-0/">my blog page</a>. Or, you can post on the <a href="http://www.alfredforum.com/topic/2216-skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/">Skype Call topic section of Alfred forum</a>.</p>
 
 <h2>Credit</h2>
 
