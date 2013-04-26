@@ -1,9 +1,9 @@
 [Skype Call](http://guiguan.github.com/Skype-Call/)
 ==========
 
-![Skype Call](https://github.com/guiguan/Skype-Call/raw/master/Skype-Call.png)
-
 Skype Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make a Skype call on Mac OS X.
+
+![Skype Call](https://github.com/guiguan/Skype-Call/raw/master/Skype-Call.png)
 
 When you would like to make a Skype call, simply type:
 
