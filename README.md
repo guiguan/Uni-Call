@@ -68,7 +68,7 @@ This is a known issue for Skype-Call.alfredextension 1.0 if you are using a non-
 
 Support
 ----------------
-Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Skype-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/alfred-workflow-skype-call-2-0/). Or, you can post on the [Skype Call topic section of Alfred forum](http://www.alfredforum.com/topic/2216-skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/).
+Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Skype-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/). Or, you can post on the [Skype Call topic section of Alfred forum](http://www.alfredforum.com/topic/2216-skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/).
 
 Credit
 ----------------
