@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>net.guiguan.skypecall</string>
+	<key>connections</key>
+	<dict>
+		<key>7016D8DA-6748-4E96-BDA2-FBF05F0BAD5B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>824B81E3-2C65-454B-86A7-033401A2223F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Guan Gui</string>
+	<key>description</key>
+	<string>The fastest way to make a Skype call on Mac OS X</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Skype Call</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>call</string>
+				<key>runningsubtext</key>
+				<string>Searching...</string>
+				<key>script</key>
+				<string>./bin/Skype\ Call {query}</string>
+				<key>subtext</key>
+				<string>Make a Skype call to your contact</string>
+				<key>title</key>
+				<string>Skype Call</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>7016D8DA-6748-4E96-BDA2-FBF05F0BAD5B</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>osascript skypecall.scpt {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>name</key>
+				<string>Skype Call</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.contact</string>
+			<key>uid</key>
+			<string>824B81E3-2C65-454B-86A7-033401A2223F</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Skype Call v3.0
+The fastest way to make a Skype call on Mac OS X
+------------------------------------------------
+
+When you would like to make a Skype call, simply type:
+
+	call TARGET
+
+where TARGET could be:
+1. a Skype username (the icon of online users will be shown as green)
+2. a phone number
+3. combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations
+
+or alternatively, you can make Skype call using Alfred's Contacts feature.
+
+For more details, please visit http://guiguan.github.io/Skype-Call/
+
+Enjoy Skyping!</string>
+	<key>uidata</key>
+	<dict>
+		<key>16039760-F173-4AB8-9C73-DA7401D5DE23</key>
+		<dict>
+			<key>ypos</key>
+			<real>70</real>
+		</dict>
+		<key>7016D8DA-6748-4E96-BDA2-FBF05F0BAD5B</key>
+		<dict>
+			<key>ypos</key>
+			<real>70</real>
+		</dict>
+		<key>824B81E3-2C65-454B-86A7-033401A2223F</key>
+		<dict>
+			<key>ypos</key>
+			<real>150</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://guiguan.github.io/Skype-Call/</string>
+</dict>
+</plist>
