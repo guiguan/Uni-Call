@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A51AC7911729122600ADB097"
-               BuildableName = "Skype Call"
-               BlueprintName = "Skype Call"
-               ReferencedContainer = "container:Skype Call.xcodeproj">
+               BuildableName = "Uni Call"
+               BlueprintName = "Uni Call"
+               ReferencedContainer = "container:Uni Call.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A51AC7911729122600ADB097"
-            BuildableName = "Skype Call"
-            BlueprintName = "Skype Call"
-            ReferencedContainer = "container:Skype Call.xcodeproj">
+            BuildableName = "Uni Call"
+            BlueprintName = "Uni Call"
+            ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A51AC7911729122600ADB097"
-            BuildableName = "Skype Call"
-            BlueprintName = "Skype Call"
-            ReferencedContainer = "container:Skype Call.xcodeproj">
+            BuildableName = "Uni Call"
+            BlueprintName = "Uni Call"
+            ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A51AC7911729122600ADB097"
-            BuildableName = "Skype Call"
-            BlueprintName = "Skype Call"
-            ReferencedContainer = "container:Skype Call.xcodeproj">
+            BuildableName = "Uni Call"
+            BlueprintName = "Uni Call"
+            ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		A51AC7961729122600ADB097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7951729122600ADB097 /* Foundation.framework */; };
 		A51AC7991729122600ADB097 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AC7981729122600ADB097 /* main.m */; };
-		A51AC79D1729122600ADB097 /* Skype_Call.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC79C1729122600ADB097 /* Skype_Call.1 */; };
+		A51AC79D1729122600ADB097 /* Uni_Call.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC79C1729122600ADB097 /* Uni_Call.1 */; };
 		A51AC7A41729124000ADB097 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7A31729124000ADB097 /* AddressBook.framework */; };
-		A51AC7A6172928A600ADB097 /* Skype Call in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC7921729122600ADB097 /* Skype Call */; };
+		A51AC7A6172928A600ADB097 /* Uni Call in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC7921729122600ADB097 /* Uni Call */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,7 +21,7 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				A51AC79D1729122600ADB097 /* Skype_Call.1 in CopyFiles */,
+				A51AC79D1729122600ADB097 /* Uni_Call.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -31,18 +31,18 @@
 			dstPath = "/Users/guiguan/Dropbox/Alfred.alfredpreferences/workflows/user.workflow.F168FE25-2FD8-4954-9CAE-5D3852ED44C2/bin";
 			dstSubfolderSpec = 0;
 			files = (
-				A51AC7A6172928A600ADB097 /* Skype Call in CopyFiles */,
+				A51AC7A6172928A600ADB097 /* Uni Call in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A51AC7921729122600ADB097 /* Skype Call */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Skype Call"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A51AC7921729122600ADB097 /* Uni Call */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Uni Call"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51AC7951729122600ADB097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A51AC7981729122600ADB097 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A51AC79B1729122600ADB097 /* Skype Call-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Skype Call-Prefix.pch"; sourceTree = "<group>"; };
-		A51AC79C1729122600ADB097 /* Skype_Call.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Skype_Call.1; sourceTree = "<group>"; };
+		A51AC79B1729122600ADB097 /* Uni Call-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Uni Call-Prefix.pch"; sourceTree = "<group>"; };
+		A51AC79C1729122600ADB097 /* Uni_Call.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Uni_Call.1; sourceTree = "<group>"; };
 		A51AC7A31729124000ADB097 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -63,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				A51AC7A31729124000ADB097 /* AddressBook.framework */,
-				A51AC7971729122600ADB097 /* Skype Call */,
+				A51AC7971729122600ADB097 /* Uni Call */,
 				A51AC7941729122600ADB097 /* Frameworks */,
 				A51AC7931729122600ADB097 /* Products */,
 			);
@@ -72,7 +72,7 @@
 		A51AC7931729122600ADB097 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A51AC7921729122600ADB097 /* Skype Call */,
+				A51AC7921729122600ADB097 /* Uni Call */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,20 +85,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A51AC7971729122600ADB097 /* Skype Call */ = {
+		A51AC7971729122600ADB097 /* Uni Call */ = {
 			isa = PBXGroup;
 			children = (
 				A51AC7981729122600ADB097 /* main.m */,
-				A51AC79C1729122600ADB097 /* Skype_Call.1 */,
+				A51AC79C1729122600ADB097 /* Uni_Call.1 */,
 				A51AC79A1729122600ADB097 /* Supporting Files */,
 			);
-			path = "Skype Call";
+			path = "Uni Call";
 			sourceTree = "<group>";
 		};
 		A51AC79A1729122600ADB097 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A51AC79B1729122600ADB097 /* Skype Call-Prefix.pch */,
+				A51AC79B1729122600ADB097 /* Uni Call-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -106,9 +106,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A51AC7911729122600ADB097 /* Skype Call */ = {
+		A51AC7911729122600ADB097 /* Uni Call */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A51AC7A01729122600ADB097 /* Build configuration list for PBXNativeTarget "Skype Call" */;
+			buildConfigurationList = A51AC7A01729122600ADB097 /* Build configuration list for PBXNativeTarget "Uni Call" */;
 			buildPhases = (
 				A51AC78E1729122600ADB097 /* Sources */,
 				A51AC78F1729122600ADB097 /* Frameworks */,
@@ -119,9 +119,9 @@
 			);
 			dependencies = (
 			);
-			name = "Skype Call";
+			name = "Uni Call";
 			productName = "Skype Call";
-			productReference = A51AC7921729122600ADB097 /* Skype Call */;
+			productReference = A51AC7921729122600ADB097 /* Uni Call */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -133,7 +133,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Guan Gui";
 			};
-			buildConfigurationList = A51AC78D1729122600ADB097 /* Build configuration list for PBXProject "Skype Call" */;
+			buildConfigurationList = A51AC78D1729122600ADB097 /* Build configuration list for PBXProject "Uni Call" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -145,7 +145,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A51AC7911729122600ADB097 /* Skype Call */,
+				A51AC7911729122600ADB097 /* Uni Call */,
 			);
 		};
 /* End PBXProject section */
@@ -225,8 +225,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Skype Call/Skype Call-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Uni Call/Uni Call-Prefix.pch";
+				PRODUCT_NAME = "Uni Call";
 			};
 			name = Debug;
 		};
@@ -234,15 +234,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Skype Call/Skype Call-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Uni Call/Uni Call-Prefix.pch";
+				PRODUCT_NAME = "Uni Call";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A51AC78D1729122600ADB097 /* Build configuration list for PBXProject "Skype Call" */ = {
+		A51AC78D1729122600ADB097 /* Build configuration list for PBXProject "Uni Call" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A51AC79E1729122600ADB097 /* Debug */,
@@ -251,7 +251,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A51AC7A01729122600ADB097 /* Build configuration list for PBXNativeTarget "Skype Call" */ = {
+		A51AC7A01729122600ADB097 /* Build configuration list for PBXNativeTarget "Uni Call" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A51AC7A11729122600ADB097 /* Debug */,
