@@ -54,6 +54,8 @@ Alternatively, you can make calls using Alfred's Contacts Feature. There will be
 Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/).It has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).
 
 ### Skype Call
+--------------
+
 Among the search results for Skype Call, contact thumbnails will be shown in sky-blue border:
 
 ![Skype](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype.png)
@@ -67,6 +69,8 @@ If the Skype hasn't been opened yet, Skype Call will open it and ensure it is on
 The alternative url scheme *skype:{query}?call* approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.
 
 ### FaceTime Call
+-----------------
+
 Among the search results for FaceTime Call, contact thumbnails will be shown in pink border:
 
 ![FaceTime](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime.png)
@@ -91,6 +95,8 @@ FaceTime Call uses url scheme *facetime:{query}* to launch FaceTime and start a 
 ![Apple-Contacts](https://github.com/guiguan/Uni-Call/raw/master/Apple-Contacts.png)
 
 ### Phone Amego Call
+--------------------
+
 With the help of [Phone Amego](http://www.sustworks.com/pa_guide/), you can turn your Mac into a bluetooth headset and remotely control your real mobile phone to start and receive real phone calls. Sweet?!
 
 Among the search results for Phone Amego Call, contact thumbnails will be shown in yellow border:
