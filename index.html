@@ -1,146 +1,243 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Skype Call</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <title>Uni Call by guiguan</title>
   </head>
+
   <body>
+    <div id="container">
+      <div class="inner">
 
-      <header>
-        <h1>Skype Call</h1>
-        <p>An Alfred workflow providing the fastest way to make a Skype call on Mac OS X</p>
-      </header>
+        <header>
+          <h1>Uni Call</h1>
+          <h2>An Alfred workflow providing the fastest way to make Skype, FaceTime or bluetooth phone call on Mac OS X</h2>
+        </header>
 
-      <div id="banner">
-        <span id="logo"></span>
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/guiguan/Uni-Call/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/guiguan/Uni-Call/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/guiguan/Uni-Call" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
-        <a href="https://github.com/guiguan/Skype-Call" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="http://www.guiguan.net/downloads/Skype-Call.alfredworkflow" class="button">Skype-Call.alfredworkflow 3.0</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
+        <hr>
 
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <h1>Skype Call</h1>
+        <section id="main_content">
+          <h1><a href="http://guiguan.github.com/Uni-Call/">Uni Call</a></h1>
 
-<p>Skype Call is an <a href="http://www.alfredapp.com" target="_blank">Alfred</a> workflow providing the fastest way to make a Skype call on Mac OS X.</p>
+<p>Uni Call is an <a href="http://www.alfredapp.com">Alfred</a> workflow providing the fastest way to make Skype, FaceTime or bluetooth phone call (via <a href="http://www.sustworks.com/pa_guide/">Phone Amego</a>) on Mac OS X. It is renamed from previous Skype Call workflow. Right now, Uni Call comprises three call components: Skype Call, FaceTime Call and Phone Amego Call, but more could be added (Please let me know if you are interested in using a new way to call:)). </p>
 
-<p><img src="https://github.com/guiguan/Skype-Call/raw/master/Skype-Call.png" alt="Skype Call"></p>
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png" alt="Uni Call"></p>
 
-<p>When you would like to make a Skype call, simply type:</p>
+<p>When you would like to make a call, simply type:</p>
 
 <pre><code>call TARGET
 </code></pre>
 
-<p>where TARGET could be:</p>
+<p>where the TARGET could be:</p>
 
 <ol>
-<li>a Skype username (the icon of online users will be shown as green)</li>
-<li>a phone number</li>
-<li>combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations</li>
-</ol>
-
-<p>or alternatively, you can make Skype call using Alfred's Contacts feature.</p>
-
-<p>If the Skype hasn't been opened yet, this workflow will open it and ensure it is online before starting the phone call. When making a phone call, this workflow won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</p>
-
-<p>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a phone call.</p>
-
-<p>This workflow supports <a href="http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/" target="_blank">Alleyoop auto-updater</a>, and it has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).</p>
-
-<h2>Installation</h2>
-
-<h3>For Alfred v2</h3>
+<li>a phone number (Skype, FaceTime, Phone Amego)</li>
+<li>a Skype username (Skype)</li>
+<li>an email address (FaceTime)</li>
+<li>combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations (All)</li>
+</ol><p>When typing the TARGET, the top N closest fuzzy matching results drawn from Apple Contacts will be provided to you in a timely manner. You can choose one of the results to start the call immediately. Meanwhile, you can use the following options to control your search:</p>
 
 <ol>
-<li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> with <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
-<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Skype-Call.alfredworkflow">Skype-Call.alfredworkflow 3.0</a>
+<li>
+<p><strong>-a</strong>: lay out all possible call options for your contact (default)</p>
+
+<pre><code>call -a TARGET
+call TARGET
+</code></pre>
+</li>
+<li>
+<p><strong>-s</strong>: make a Skype call to your contact</p>
+
+<pre><code>call -s TARGET
+calls TARGET
+</code></pre>
+</li>
+<li>
+<p><strong>-f</strong>: make a FaceTime call to your contact</p>
+
+<pre><code>call -f TARGET
+callf TARGET
+</code></pre>
+</li>
+<li>
+<p><strong>-p</strong>: make a bluetooth phone call to your contact via Phone Amego</p>
+
+<pre><code>call -p TARGET
+callp TARGET
+</code></pre>
+</li>
+<li>
+<p><strong>-!</strong>: prohibit contact thumbnails caching</p>
+
+<pre><code>call -!a TARGET     # search for all without thumbnails
+call -s! TARGET     # search for Skype without thumbnails
+</code></pre>
+</li>
+<li>
+<p>Combination of the above options, the order of which will determine the order of results for each person in your Apple Contacts</p>
+
+<pre><code>call -sf TARGET     # search Skype and FaceTime
+call -p!f TARGET    # search Phone Amego and FaceTime without thumbnails
+call -sfp! TARGET   # equivalent to call -a! TARGET
+</code></pre>
+</li>
+</ol><p>Alternatively, you can make calls using Alfred's Contacts Feature. There will be three contact actions available for you to choose from in <strong><em>Alfred's Contacts Feature</em></strong>: Skype Call, FaceTime Call and Phone Amego Call.</p>
+
+<p>Uni Call workflow supports <a href="http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/">Alleyoop auto-updater</a>.It has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).</p>
+
+<h3>Skype Call</h3>
+
+<hr><p>Among the search results for Skype Call, contact thumbnails will be shown in sky-blue border:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype.png" alt="Skype"></p>
+
+<p>If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in sky-blue border with sky-blue inner shadow:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype-Online.png" alt="Skype Online"></p>
+
+<p>If the Skype hasn't been opened yet, Skype Call will open it and ensure it is online before starting the phone call. When making a phone call, Skype Call won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</p>
+
+<p>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</p>
+
+<h3>FaceTime Call</h3>
+
+<hr><p>Among the search results for FaceTime Call, contact thumbnails will be shown in pink border:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime.png" alt="FaceTime"></p>
+
+<p>You can nominate a particular phone or email field of a person in Apple Contacts to be FaceTime Call targets of your choice, which will opt out other phone numbers and emails to be shown in the searching results. To do so, simply put a customized label, either <strong><em>FaceTime</em></strong>, <strong><em>iPhone</em></strong> or <strong><em>iDevice</em></strong> in front of phone or email nominees:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/FaceTime-Nomination.png" alt="FaceTime Nomination"></p>
+
+<p>The thumbnail of a person who has nominated phone number or email will be shown in pink border with pink inner shadow:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime-Nominated.png" alt="FaceTime Nominated"></p>
+
+<p>FaceTime Call uses url scheme <em>facetime:{query}</em> to launch FaceTime and start a call.</p>
+
+<h4>The Correct Way to Store a Skype Username for Your Contact</h4>
+
+<ol>
+<li>Retrieve your contact's Skype username from Skype App</li>
+</ol><p><img src="https://github.com/guiguan/Uni-Call/raw/master/Skype-Username.png" alt="Skype Username"></p>
+
+<ol>
+<li>Store the Skype username in the IM (Instant Message) field, and select Skype as the IM type</li>
+</ol><p><img src="https://github.com/guiguan/Uni-Call/raw/master/Apple-Contacts.png" alt="Apple-Contacts"></p>
+
+<h3>Phone Amego Call</h3>
+
+<hr><p>With the help of <a href="http://www.sustworks.com/pa_guide/">Phone Amego</a>, you can turn your Mac into a bluetooth headset and remotely control your real mobile phone to start and receive real phone calls. Sweet?!</p>
+
+<p>Among the search results for Phone Amego Call, contact thumbnails will be shown in yellow border:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-PhoneAmego.png" alt="Phone Amego"></p>
+
+<p>Phone Amego Call uses url scheme <em>phoneAmego:{query};alert=no</em> to launch Phone Amego and start a call.</p>
+
+<h2>Installation &amp; Configuration</h2>
+
+<ol>
+<li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> (with version 2 and above) and <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
+<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow">Skype-Call.alfredworkflow 4.0</a>
 </li>
 <li>Double click on the downloaded workflow file to install</li>
-<li>Under "Alfred Preferences > Features > Contacts", add two custom actions for both Phone and Skype as shown in the following figure.</li>
-</ol><p><img src="https://github.com/guiguan/Skype-Call/raw/master/Alfred-Preferences-v2.png" alt="Integrate Skype-Call with Alfred's Contacts feature"></p>
+<li>(Optional) Under "Alfred Preferences &gt; Features &gt; Contacts":</li>
+</ol><p><img src="https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png" alt="Integrate Uni-Call with Alfred's Contacts Feature"></p>
 
-<h3>For Alfred v1 (workflows were known as extensions back then)</h3>
+<h3>Contact Thumbnail Cache</h3>
+
+<p>In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in /Users/guiguan/Library/Caches/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. Be default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:</p>
+
+<pre><code>call -# yes
+</code></pre>
+
+<p>to build a full thumbnail cache for all your contacts from Apple Contacts.</p>
+
+<p>If you decided not to show contact thumbnails, you can completely remove the cache using:</p>
+
+<pre><code>call -$ yes
+</code></pre>
+
+<p>and then use -! option along with other search options to prohibit the automatic thumbnail generation and caching. You can change script filters to adopt -! option too.</p>
+
+<h2>Support</h2>
+
+<p>Please file any issue from <a href="https://github.com/guiguan/Uni-Call/issues/new">this GitHub issue tracker</a>. Alternatively, you can leave comments on <a href="http://www.guiguan.net/skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/">my blog page</a>. Or, you can post on the <a href="http://www.alfredforum.com/topic/2216-skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/">Skype Call topic section of Alfred forum</a>.</p>
+
+<h2>Credit</h2>
+
+<p><a href="http://www.guiguan.net">Guan Gui</a></p>
+
+<h2>Legacy: Skype-Call.alfredextension 1.0 for Alfred v1</h2>
+
+<h3>Installation</h3>
 
 <ol>
 <li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> with <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
 <li>Download the latest extension: <a href="http://www.guiguan.net/downloads/Skype-Call.alfredextension">Skype-Call.alfredextension 1.0</a>
 </li>
 <li>Double click on the downloaded extension file to install</li>
-<li>Select Skype-Call from drop-down menu in "Alfred Preferences &gt; Address Book &gt; General &gt; Phone" as shown in following figure.</li>
-</ol><p><img src="https://github.com/guiguan/Skype-Call/raw/master/Alfred-Preferences.png" alt="Integrate Skype-Call with Alfred's Address Book feature"></p>
+<li>Select Skype-Call from drop-down menu in "Alfred Preferences &gt; Features &gt; Address Book &gt; General &gt; Phone" as shown in the following figure.</li>
+</ol><p><img src="https://github.com/guiguan/Uni-Call/raw/master/Alfred-Preferences.png" alt="Integrate Skype-Call with Alfred's Address Book Feature"></p>
 
-<h2>Usage</h2>
+<h3>Usage</h3>
 
-<h3>type "call PHONE_NUMBER"</h3>
+<h4>type "call PHONE_NUMBER"</h4>
 
 <pre><code>call +61 4 3333 3333
 call 043333333
 </code></pre>
 
-<h3>type "call SKYPE_USERNAME"</h3>
+<h4>type "call SKYPE_USERNAME"</h4>
 
 <pre><code>call echo123
 </code></pre>
 
-<p><img src="https://github.com/guiguan/Skype-Call/raw/master/Skype-Username.png" alt="Skype Username"></p>
+<h4>search for a contact, select a phone number or a Skype username and hit return</h4>
 
-<h3>search for a contact, select a phone number or a Skype username and hit return</h3>
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/Search-for-A-Contact.png" alt="Search for A Contact"><img src="https://github.com/guiguan/Uni-Call/raw/master/Select-A-Phone-Number.png" alt="Select A Phone Number"></p>
 
-<p><img src="https://github.com/guiguan/Skype-Call/raw/master/Apple-Contacts.png" alt="Apple Contacts"><img src="https://github.com/guiguan/Skype-Call/raw/master/Search-for-A-Contact.png" alt="Search for A Contact"><img src="https://github.com/guiguan/Skype-Call/raw/master/Select-A-Phone-Number.png" alt="Select A Phone Number"></p>
+<h3>Troubleshooting</h3>
 
-<h2>Troubleshooting</h2>
+<h4>If nothing happens</h4>
 
-<h3>If nothing happens</h3>
+<p>This is a known issue for Skype-Call.alfredextension 1.0 if you are using a non-english Skype (depends on your Mac OS X language). However, this should have already been fixed in Skype-Call.alfredworkflow 2.0. If by any change, you still encounter a similar problem, please remove the <em>AppleScript</em> entry from the "Skype main menu &gt; Skype &gt; Manage API Clients..." dialog (as shown in the following figure), and restart your Skype.</p>
 
-<p>This is a known issue for Skype-Call.alfredextension 1.0 if you are using a non-english Skype (depends on your Mac OS X language). However, this should have already been fixed in Skype-Call.alfredworkflow 2.0. If by any change, you still encounter a similar problem, please remove the <em>AppleScript</em> entry from the "Skype main menu > Skype > Manage API Clients..." dialog (as shown in the following figure), and restart your Skype.</p>
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/Manage-API-Clients.png" alt="Manage API Clients"></p>
+        </section>
 
-<p><img src="https://github.com/guiguan/Skype-Call/raw/master/Manage-API-Clients.png" alt="Manage API Clients"></p>
+        <footer>
+          Uni Call is maintained by <a href="https://github.com/guiguan">guiguan</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
 
-<h2>Support</h2>
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-31568815-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
-<p>Please file any issue from <a href="https://github.com/guiguan/Skype-Call/issues/new">this GitHub issue tracker</a>. Alternatively, you can leave comments on <a href="http://www.guiguan.net/skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/">my blog page</a>. Or, you can post on the <a href="http://www.alfredforum.com/topic/2216-skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/">Skype Call topic section of Alfred forum</a>.</p>
-
-<h2>Credit</h2>
-
-<p><a href="http://www.guiguan.net">Guan Gui</a></p>
-      </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/guiguan">guiguan</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
-      </footer>
+      </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-31568815-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
   </body>
 </html>
