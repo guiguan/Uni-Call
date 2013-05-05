@@ -51,7 +51,7 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 
 Alternatively, you can make calls using Alfred's Contacts Feature. There will be three contact actions available for you to choose from in **_Alfred's Contacts Feature_**: Skype Call, FaceTime Call and Phone Amego Call.
 
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/).It has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).
+Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).
 
 ### Skype Call
 --------------
@@ -130,7 +130,7 @@ and then use -! option along with other search options to prohibit the automatic
 
 Support
 ----------------
-Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Uni-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/). Or, you can post on the [Skype Call topic section of Alfred forum](http://www.alfredforum.com/topic/2216-skype-call-the-fastest-way-to-make-a-skype-call-on-mac-os-x/).
+Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Uni-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/uni-call). Or, you can post on the [Uni Call topic section of Alfred forum](http://www.guiguan.net/redirections/Alfred-Forum-Uni-Call).
 
 Credit
 ----------------
