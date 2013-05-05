@@ -12,6 +12,8 @@
 		A51AC79D1729122600ADB097 /* Uni_Call.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC79C1729122600ADB097 /* Uni_Call.1 */; };
 		A51AC7A41729124000ADB097 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7A31729124000ADB097 /* AddressBook.framework */; };
 		A51AC7A6172928A600ADB097 /* Uni Call in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC7921729122600ADB097 /* Uni Call */; };
+		A5E0E6E217327C3C002E8289 /* UniCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0E6E117327C3C002E8289 /* UniCall.m */; };
+		A5E0E6E6173296AC002E8289 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0E6E5173296AC002E8289 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +46,9 @@
 		A51AC79B1729122600ADB097 /* Uni Call-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Uni Call-Prefix.pch"; sourceTree = "<group>"; };
 		A51AC79C1729122600ADB097 /* Uni_Call.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Uni_Call.1; sourceTree = "<group>"; };
 		A51AC7A31729124000ADB097 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		A5E0E6E017327C3C002E8289 /* UniCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniCall.h; path = ../UniCall.h; sourceTree = "<group>"; };
+		A5E0E6E117327C3C002E8289 /* UniCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniCall.m; path = ../UniCall.m; sourceTree = "<group>"; };
+		A5E0E6E5173296AC002E8289 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5E0E6E6173296AC002E8289 /* AppKit.framework in Frameworks */,
 				A51AC7A41729124000ADB097 /* AddressBook.framework in Frameworks */,
 				A51AC7961729122600ADB097 /* Foundation.framework in Frameworks */,
 			);
@@ -62,6 +68,7 @@
 		A51AC7891729122600ADB097 = {
 			isa = PBXGroup;
 			children = (
+				A5E0E6E5173296AC002E8289 /* AppKit.framework */,
 				A51AC7A31729124000ADB097 /* AddressBook.framework */,
 				A51AC7971729122600ADB097 /* Uni Call */,
 				A51AC7941729122600ADB097 /* Frameworks */,
@@ -88,6 +95,8 @@
 		A51AC7971729122600ADB097 /* Uni Call */ = {
 			isa = PBXGroup;
 			children = (
+				A5E0E6E017327C3C002E8289 /* UniCall.h */,
+				A5E0E6E117327C3C002E8289 /* UniCall.m */,
 				A51AC7981729122600ADB097 /* main.m */,
 				A51AC79C1729122600ADB097 /* Uni_Call.1 */,
 				A51AC79A1729122600ADB097 /* Supporting Files */,
@@ -156,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A51AC7991729122600ADB097 /* main.m in Sources */,
+				A5E0E6E217327C3C002E8289 /* UniCall.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
