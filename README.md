@@ -19,8 +19,10 @@ where the TARGET could be:
 When typing the TARGET, the top N closest fuzzy matching results drawn from Apple Contacts will be provided to you in a timely manner. You can choose one of the results to start the call immediately. Meanwhile, you can use the following options to control your search:
 
 1. **-a**: lay out all possible call options for your contact (default)
+
 	call -a TARGET
 	call TARGET
+	
 2. **-s**: make a Skype call to your contact
 	call -s TARGET
 	calls TARGET
