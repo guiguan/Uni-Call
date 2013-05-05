@@ -116,7 +116,7 @@ Installation & Configuration
 ![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
 
 ### Contact Thumbnail Cache
-In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in /Users/guiguan/Library/Caches/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. Be default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:
+In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in /Users/guiguan/Library/Caches/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. By default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:
 
 	call -# yes
 
