@@ -14,6 +14,7 @@
 #define IDENTIFIER @"net.guiguan.Uni-Call"
 #define THUMBNAIL_CACHE_RELATIVE_PATH IDENTIFIER "/thumbnails"
 #define THUMBNAIL_CACHE_LIFESPAN 604800 // 1 week time
+#define RESULT_NUM_LIMIT 20
 
 typedef enum CallType_
 {
@@ -44,6 +45,7 @@ typedef enum CallType_
 static NSSize sThumbnailSize;
 CallType callType_;
 NSMutableArray *callTypes_;
+int resultCount_ = 0;
 
 + (void)initialize
 {
@@ -165,10 +167,9 @@ NSMutableArray *callTypes_;
     ABAddressBook *AB = [ABAddressBook sharedAddressBook];
     NSArray *peopleFound;
     int population;
-    if (callType_ & CTBuildFullThumbnailCache) {
+    if (callType_ & CTBuildFullThumbnailCache)
         peopleFound = [AB people];
-        population = (int)[peopleFound count];
-    } else {
+    else {
         NSMutableArray *searchTerms = [[NSMutableArray alloc] initWithCapacity:[queryMatches count]];
         NSMutableString *newQuery = [NSMutableString string];
         
@@ -183,7 +184,6 @@ NSMutableArray *callTypes_;
         ABSearchElement *searchEl = [ABSearchElement searchElementForConjunction:kABSearchOr children:@[[self generateOrSearchingElementForQuery:query], [ABSearchElement searchElementForConjunction:kABSearchAnd children:searchTerms]]];
         
         peopleFound = [AB recordsMatchingSearchElement:searchEl];
-        population = MIN((int)[peopleFound count], MIN((int)[query length]*2, 10));
         [results setString:@"<?xml version=\"1.0\"?><items>"];
         
         if (!(callType_ & CTNoThumbnailCache) && ![[NSFileManager defaultManager] fileExistsAtPath:[self thumbnailCachePath]]) {
@@ -191,6 +191,8 @@ NSMutableArray *callTypes_;
             [[NSFileManager defaultManager] createDirectoryAtPath:[self thumbnailCachePath] withIntermediateDirectories:YES attributes:nil error:NULL];
         }
     }
+    
+    population = (int)[peopleFound count];
 
     for (int j = 0; j < population; j++) {
         ABRecord *r = peopleFound[j];
@@ -237,7 +239,7 @@ NSMutableArray *callTypes_;
                     }
                     
                     if (!(callType_ & CTBuildFullThumbnailCache)) {
-                        NSMutableString *bufferedResults = [NSMutableString string];
+                        NSMutableArray *bufferedResults = [NSMutableArray array];
                         
                         // output Skype usernames
                         ABMultiValue *ims = [r valueForProperty:kABInstantMessageProperty];
@@ -247,9 +249,9 @@ NSMutableArray *callTypes_;
                                 NSString *username = entry[kABInstantMessageUsernameKey];
                                 BOOL isOnline = [[self runCommand:[NSString stringWithFormat:@"/usr/bin/osascript %@ [STATUS]%@", [self skypeScptPath], username]] hasPrefix:@"1"];
                                 if (isOnline)
-                                    [results appendFormat:@"<item uid=\"%@:Skype:Online\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@ (online)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeOnlineThumbnailPath];
+                                    [bufferedResults insertObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype:Online\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@ (online)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeOnlineThumbnailPath] atIndex:0];
                                 else
-                                    [bufferedResults appendFormat:@"<item uid=\"%@:Skype\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeThumbnailPath];
+                                    [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeThumbnailPath]];
                             }
                         }
                         
@@ -257,10 +259,11 @@ NSMutableArray *callTypes_;
                         ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
-                            [results appendFormat:@"<item uid=\"%@:Skype\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, skypeThumbnailPath];
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, skypeThumbnailPath]];
                         }
                         
-                        [results appendString:bufferedResults];
+                        if ([self fillResults:results withBufferedResults:bufferedResults])
+                            goto end_result_generation;
                     }
                     
                     break;
@@ -281,40 +284,38 @@ NSMutableArray *callTypes_;
                     }
                     
                     if (!(callType_ & CTBuildFullThumbnailCache)) {
+                        NSMutableArray *bufferedResults = [NSMutableArray array];
+                        
                         // output phone numbers
-                        NSMutableString *bufferedPhoneResults = [NSMutableString string];
-                        BOOL hasNominatedFaceTimePhone = NO;
+                        NSMutableIndexSet *nominatedResultsIndices = [NSMutableIndexSet indexSet];
                         ABMultiValue *ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
                             
                             if ([[ims labelAtIndex:i] caseInsensitiveCompare:@"FaceTime"] == NSOrderedSame || [[ims labelAtIndex:i] caseInsensitiveCompare:@"iPhone"] == NSOrderedSame || [[ims labelAtIndex:i] caseInsensitiveCompare:@"iDevice"] == NSOrderedSame) {
-                                hasNominatedFaceTimePhone = YES;
-                                
-                                [results appendFormat:@"<item uid=\"%@:FaceTime:Nominated\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to phone number: %@ (nominated)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, faceTimeNominatedThumbnailPath];
+                                [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:FaceTime:Nominated\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to phone number: %@ (nominated)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, faceTimeNominatedThumbnailPath]];
+                                [nominatedResultsIndices addIndex:i];
                             } else
-                                [bufferedPhoneResults appendFormat:@"<item uid=\"%@:FaceTime\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, faceTimeThumbnailPath];
+                                [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:FaceTime\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, faceTimeThumbnailPath]];
                         }
                         
                         // output emails
-                        NSMutableString *bufferedEmailResults = [NSMutableString string];
-                        BOOL hasNominatedFaceTimeEmail = NO;
                         ims = [r valueForProperty:kABEmailProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *email = [ims valueAtIndex:i];
                             
                             if ([[ims labelAtIndex:i] caseInsensitiveCompare:@"FaceTime"] == NSOrderedSame || [[ims labelAtIndex:i] caseInsensitiveCompare:@"iPhone"] == NSOrderedSame || [[ims labelAtIndex:i] caseInsensitiveCompare:@"iDevice"] == NSOrderedSame) {
-                                hasNominatedFaceTimeEmail = YES;
-                                
-                                [results appendFormat:@"<item uid=\"%@:FaceTime:Nominated\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to email address: %@ (nominated)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], email, email, outDisplayName, email, faceTimeNominatedThumbnailPath];
+                                [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:FaceTime:Nominated\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to email address: %@ (nominated)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], email, email, outDisplayName, email, faceTimeNominatedThumbnailPath]];
+                                [nominatedResultsIndices addIndex:[bufferedResults count] - 1];
                             } else
-                                [bufferedEmailResults appendFormat:@"<item uid=\"%@:FaceTime\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to email address: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], email, email, outDisplayName, email, faceTimeThumbnailPath];
+                                [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:FaceTime\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to email address: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], email, email, outDisplayName, email, faceTimeThumbnailPath]];
                         }
                         
-                        if (!hasNominatedFaceTimePhone && !hasNominatedFaceTimeEmail) {
-                            [results appendString:bufferedPhoneResults];
-                            [results appendString:bufferedEmailResults];
-                        }
+                        if ([nominatedResultsIndices count] > 0)
+                            [bufferedResults setArray:[bufferedResults objectsAtIndexes:nominatedResultsIndices]];
+                        
+                        if ([self fillResults:results withBufferedResults:bufferedResults])
+                            goto end_result_generation;
                     }
                     
                     break;
@@ -331,13 +332,18 @@ NSMutableArray *callTypes_;
                     }
                     
                     if (!(callType_ & CTBuildFullThumbnailCache)) {
+                        NSMutableArray *bufferedResults = [NSMutableArray array];
+                        
                         // output phone numbers
                         ABMultiValue *ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
                             
-                            [results appendFormat:@"<item uid=\"%@:PhoneAmego\" arg=\"[CTPhoneAmego]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Bluetooth phone call to phone number: %@ via Phone Amego</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, phoneAmegoThumbnailPath];
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:PhoneAmego\" arg=\"[CTPhoneAmego]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Bluetooth phone call to phone number: %@ via Phone Amego</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, phoneAmegoThumbnailPath]];
                         }
+                        
+                        if ([self fillResults:results withBufferedResults:bufferedResults])
+                            goto end_result_generation;
                     }
                     
                     break;
@@ -345,6 +351,7 @@ NSMutableArray *callTypes_;
             }
         }
     }
+end_result_generation:
     
     if (callType_ & CTBuildFullThumbnailCache) {
 //        [self releaseExecutionLock];
@@ -370,6 +377,23 @@ NSMutableArray *callTypes_;
         [results appendString:@"</items>"];
         return results;
     }
+}
+
+-(BOOL)fillResults:(NSMutableString *)results withBufferedResults:(NSMutableArray *)bufferedResults
+{
+    int quota = RESULT_NUM_LIMIT - resultCount_;
+    int numOfResultsToFillIn = (int)[bufferedResults count];
+    int numOfResultsToDiscard = numOfResultsToFillIn - quota;
+    
+    if (numOfResultsToDiscard > 0) {
+        // can't fill in all buffer
+        numOfResultsToFillIn -= numOfResultsToDiscard;
+        [bufferedResults removeObjectsInRange:NSMakeRange(numOfResultsToFillIn, numOfResultsToDiscard)];
+    }
+    
+    [results appendString:[bufferedResults componentsJoinedByString:@""]];
+    resultCount_ += numOfResultsToFillIn;
+    return resultCount_ >= RESULT_NUM_LIMIT;
 }
 
 #pragma mark -

@@ -17,7 +17,7 @@ int main(int argc, const char * argv[])
             [query appendFormat:@"%s ", argv[i]];
         }
         NSString *results = [[[UniCall alloc] init] process:query];
-//        NSString *results = [[[UniCall alloc] init] process:[NSString stringWithCString:"c" encoding:NSUTF8StringEncoding]];
+//        NSString *results = [[[UniCall alloc] init] process:[NSString stringWithCString:"guan" encoding:NSUTF8StringEncoding]];
         [(NSFileHandle *)[NSFileHandle fileHandleWithStandardOutput] writeData:[results dataUsingEncoding:NSUTF8StringEncoding]];
 //        NSLog(@"%@: %@", query, results);
     }
