@@ -138,8 +138,8 @@ Credit
 
 Changelog
 ----------------
-#### v4.1 7/05/13
-* Did some performance tweak. Now Uni Call runs even faster.
+#### v4.1 (7/05/13)
+* Did some performance tweak. Now Uni Call runs much faster.
 
 Legacy: Skype-Call.alfredextension 1.0 for Alfred v1
 ----------------
