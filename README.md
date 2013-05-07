@@ -51,7 +51,7 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 
 Alternatively, you can make calls using Alfred's Contacts Feature. There will be three contact actions available for you to choose from in **_Alfred's Contacts Feature_**: Skype Call, FaceTime Call and Phone Amego Call.
 
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).
+Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.3.0.602, FaceTime 2.0 (1080), Phone Amego 1.4_9 and Alfred 2.0.3 (187).
 
 ### Skype Call
 --------------
