@@ -106,7 +106,7 @@
 				<key>runningsubtext</key>
 				<string>Searching...</string>
 				<key>script</key>
-				<string>./bin/Uni\ Call {query}</string>
+				<string>./bin/Uni\ Call\ Basestation {query}</string>
 				<key>subtext</key>
 				<string>Lay out all possible call options for your contact</string>
 				<key>title</key>
@@ -131,7 +131,7 @@
 
 case "$query" in
 	"[CTSkype]"*)
-		osascript skypecall.scpt ${query#'[CTSkype]'};;
+		osascript bin/skypecall.scpt ${query#'[CTSkype]'};;
 	"[CTFaceTime]"*)
 		open "facetime:${query#'[CTFaceTime]'}";;
 	"[CTPhoneAmego]"*)
@@ -157,7 +157,7 @@ esac</string>
 				<key>runningsubtext</key>
 				<string>Searching...</string>
 				<key>script</key>
-				<string>./bin/Uni\ Call -s {query}</string>
+				<string>./bin/Uni\ Call\ Basestation -s {query}</string>
 				<key>subtext</key>
 				<string>Make a Skype call to your contact</string>
 				<key>title</key>
@@ -189,7 +189,7 @@ esac</string>
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>script</key>
-				<string>osascript skypecall.scpt {query}</string>
+				<string>osascript bin/skypecall.scpt {query}</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -210,7 +210,7 @@ esac</string>
 				<key>runningsubtext</key>
 				<string>Searching...</string>
 				<key>script</key>
-				<string>./bin/Uni\ Call -f {query}</string>
+				<string>./bin/Uni\ Call\ Basestation -f {query}</string>
 				<key>subtext</key>
 				<string>Make a FaceTime call to your contact</string>
 				<key>title</key>
@@ -263,7 +263,7 @@ esac</string>
 				<key>runningsubtext</key>
 				<string>Searching...</string>
 				<key>script</key>
-				<string>./bin/Uni\ Call -p {query}</string>
+				<string>./bin/Uni\ Call\ Basestation -p {query}</string>
 				<key>subtext</key>
 				<string>Make a bluetooth phone call to your contact via Phone Amego</string>
 				<key>title</key>
@@ -307,7 +307,7 @@ esac</string>
 	</array>
 	<key>readme</key>
 	<string>Uni Call
-v4.0
+v4.2
 
 The fastest way to make Skype, FaceTime or bluetooth phone call on Mac OS X
 ------------------------------------------------
@@ -358,7 +358,7 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 
 Alternatively, you can make calls using Alfred's Contacts Feature. There will be three contact actions available for you to choose from in **_Alfred's Contacts Feature_**: Skype Call, FaceTime Call and Phone Amego Call.
 
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/).It has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).
+Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.3.0.602, FaceTime 2.0 (1080), Phone Amego 1.4_9 and Alfred 2.0.3 (187).
 
 ------------------------------------------------
 For more details, please visit http://guiguan.github.io/Uni-Call/
