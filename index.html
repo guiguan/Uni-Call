@@ -23,7 +23,8 @@
         </header>
 
         <section id="downloads" class="clearfix">
-          <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow" id="download-alfredworkflow" class="button"><span>Download Uni-Call.alfredworkflow 4.1</span></a>
+          <a href="https://github.com/guiguan/Uni-Call/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/guiguan/Uni-Call/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
           <a href="https://github.com/guiguan/Uni-Call" id="view-on-github" class="button"><span>View on GitHub</span></a>
         </section>
 
@@ -152,7 +153,7 @@ call -sfp! TARGET   # equivalent to call -a! TARGET
 
 <ol>
 <li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> (with version 2 and above) and <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
-<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow">Uni-Call.alfredworkflow 4.1</a>
+<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow">Uni-Call.alfredworkflow 4.2</a>
 </li>
 <li>Double click on the downloaded workflow file to install</li>
 <li>(Optional) Under "Alfred Preferences &gt; Features &gt; Contacts":</li>
@@ -184,7 +185,15 @@ call -sfp! TARGET   # equivalent to call -a! TARGET
 
 <h2>Changelog</h2>
 
-<h4>v4.1 (7/05/13)</h4>
+<h4>v4.2 (12/05/13)</h4>
+
+<ul>
+<li>The original Uni Call executable is now divided into two separate parts: the Uni Call Basestation and the Uni Call. The Uni Call Basestation is the one invoked everytime by Alfred, while the Uni Call is in turn spawned by Uni Call Basestation, which will continue to run in the background unless idling for 5 min. Basically, the Uni Call will sit there and wait to serve requests come from Uni Call Basestation (via TCP port number 28642). In this way, the consecutive requests come from Alfred could be served more quickly by Uni Call. In fact, it does improve the response time by 50% (Refer to the following figure)!</li>
+</ul><p><img src="https://github.com/guiguan/Uni-Call/raw/master/Uni-Call-42-Performance.png" alt="Uni Call v4.2 Performance"></p>
+
+<ul>
+<li>Options can now be used everywhere among the query. So "call guan -s gui" is equivalent to "call -s guan gui" and "call guan gui -s".</li>
+</ul><h4>v4.1 (7/05/13)</h4>
 
 <ul>
 <li>Did some performance tweak. Now Uni Call runs much faster.</li>
