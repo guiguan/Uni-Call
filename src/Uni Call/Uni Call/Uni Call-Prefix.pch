@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'Skype Call' target in the 'Skype Call' project
+// Prefix header for all source files of the 'Uni Call' target in the 'Uni Call' project
 //
 
 #ifdef __OBJC__

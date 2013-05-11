@@ -109,7 +109,7 @@ Installation & Configuration
 ----------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 4.1](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 4.2](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
 3. Double click on the downloaded workflow file to install
 4. (Optional) Under "Alfred Preferences > Features > Contacts":
 
@@ -138,6 +138,13 @@ Credit
 
 Changelog
 ----------------
+#### v4.2 (12/05/13)
+* The original Uni Call executable is now divided into two separate parts: the Uni Call Basestation and the Uni Call. The Uni Call Basestation is the one invoked everytime by Alfred, while the Uni Call is in turn spawned by Uni Call Basestation, which will continue to run in the background unless idling for 5 min. Basically, the Uni Call will sit there and wait to serve requests come from Uni Call Basestation (via TCP port number 28642). In this way, the consecutive requests come from Alfred could be served more quickly by Uni Call. In fact, it does improve the response time by 50% (Refer to the following figure)!
+
+![Uni Call v4.2 Performance](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call-42-Performance.png)
+
+* Options can now be used everywhere among the query. So "call guan -s gui" is equivalent to "call -s guan gui" and "call guan gui -s".
+
 #### v4.1 (7/05/13)
 * Did some performance tweak. Now Uni Call runs much faster.
 

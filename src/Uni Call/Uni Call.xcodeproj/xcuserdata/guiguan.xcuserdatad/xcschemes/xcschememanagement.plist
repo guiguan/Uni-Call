@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Uni Call Basestation.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Uni Call.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>A51AC7911729122600ADB097</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A53A2720173BE23800D3496F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

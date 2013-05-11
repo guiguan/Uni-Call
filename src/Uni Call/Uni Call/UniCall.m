@@ -45,7 +45,7 @@ typedef enum CallType_
 static NSSize sThumbnailSize;
 CallType callType_;
 NSMutableArray *callTypes_;
-int resultCount_ = 0;
+int resultCount_;
 
 + (void)initialize
 {
@@ -58,12 +58,12 @@ int resultCount_ = 0;
 }
 
 // YES: should exit immediately
--(BOOL)processOptions:(NSString *)options withQuery:(NSString *)query andQueryMatches:(NSArray *)queryMatches andResults:(NSMutableString *)results
+-(BOOL)processOptions:(NSString *)options withNextQueryPart:(NSString *)nextQueryPart andResults:(NSMutableString *)results
 {
-    for (int i = 1; i < [options length]; i++) {
+    for (int i = 0; i < [options length]; i++) {
         switch ([options characterAtIndex:i]) {
             case 'a':
-                [self processOptions:@"-sfp" withQuery:query andQueryMatches:queryMatches andResults:results];
+                [self processOptions:@"-sfp" withNextQueryPart:nextQueryPart andResults:results];
                 break;
             case 's':
                 if (!(callType_ & CTSkype)) {
@@ -94,7 +94,7 @@ int resultCount_ = 0;
                 break;
             case '#':
                 callType_ |= CTBuildFullThumbnailCache;
-                if ([queryMatches count] == 2 && [[query substringWithRange:((NSTextCheckingResult *)queryMatches[1]).range] isEqualToString:@"yes"]) {
+                if (nextQueryPart && [nextQueryPart isEqualToString:@"yes"]) {
                     // carry out CTBuildFullThumbnailCache operation
 //                    [self pushNotificationWithTitle:@"Started" andMessage:@"building full thumbnail cache" andDetail:@"Please sit tight. You are using Uni Call option -#."];
                     return NO;
@@ -104,7 +104,7 @@ int resultCount_ = 0;
                 }
             case '$':
                 callType_ |= CTDestroyThumbnailCache;
-                if ([queryMatches count] == 2 && [[query substringWithRange:((NSTextCheckingResult *)queryMatches[1]).range] isEqualToString:@"yes"]) {
+                if (nextQueryPart && [nextQueryPart isEqualToString:@"yes"]) {
                     // carry out CTDestroyThumbnailCache operation
 //                    [self pushNotificationWithTitle:@"Started" andMessage:@"destroying thumbnail cache" andDetail:@"Please sit tight. You are using Uni Call option -$."];
                     return NO;
@@ -130,41 +130,55 @@ int resultCount_ = 0;
         return [self outputHelpOnOptions];
     
     NSMutableString *results = [NSMutableString stringWithString:@"<?xml version=\"1.0\"?><items>"];
-    NSString *options = [query substringWithRange:((NSTextCheckingResult *)queryMatches[0]).range];
+    callType_ = 0;
     callTypes_ = [NSMutableArray array];
-    int i = 0;
+    resultCount_ = 0;
     
-    if ([options hasPrefix:@"-"]) {
-        if ([self processOptions:options withQuery:query andQueryMatches:queryMatches andResults:results]) {
-            // option has asked to exit immediately
-            [results appendFormat:@"</items>"];
-            return results;
-        }
-        
-        if (callType_ & CTBuildFullThumbnailCache) {
-//            [self acquireExecutionLock];
-            callType_ = CTBuildFullThumbnailCache;
-            [self processOptions:@"-a" withQuery:query andQueryMatches:queryMatches andResults:results];
-        } else if (callType_ & CTDestroyThumbnailCache) {
-            [[NSFileManager defaultManager] removeItemAtPath:[self cachePath] error:nil];
-            return @"<?xml version=\"1.0\"?><items><item uid=\"\" arg=\"\" autocomplete=\"-\" valid=\"no\"><title>Uni Call Option -$</title><subtitle>Done. Contact thumbnail cache is now destroyed</subtitle><icon>destroyThumbnailCache.png</icon></item></items>";
-        } else if (callType_ <= (CTNoThumbnailCache | CTBuildFullThumbnailCache | CTDestroyThumbnailCache)) {
-            // no valid options provided
-            return [self outputHelpOnOptions];
+    NSMutableArray *queryParts = [NSMutableArray array];
+    for (int i = 0; i < [queryMatches count]; i++) {
+        NSString *queryPart = [query substringWithRange:((NSTextCheckingResult *)queryMatches[i]).range];
+        if ([queryPart hasPrefix:@"-"]) {
+            if ([self processOptions:[queryPart substringFromIndex:1] withNextQueryPart:(i+1 < [queryMatches count] ? [query substringWithRange:((NSTextCheckingResult *)queryMatches[i + 1]).range] : nil) andResults:results]) {
+                // option has asked to exit immediately
+                [results appendFormat:@"</items>"];
+                return results;
+            }
         } else {
-            i = 1;
-            
-            if ([queryMatches count] == 1) {
-                // only options, no query provided
+            [queryParts addObject:queryPart];
+        }
+    }
+    
+    static CallType nonSearchableOptions = CTNoThumbnailCache | CTBuildFullThumbnailCache | CTDestroyThumbnailCache;
+    
+    if (callType_ & CTBuildFullThumbnailCache) {
+        //            [self acquireExecutionLock];
+        callType_ = CTBuildFullThumbnailCache;
+        [self processOptions:@"-a" withNextQueryPart:nil andResults:results];
+    } else if (callType_ & CTDestroyThumbnailCache) {
+        [[self fileManager] removeItemAtPath:[self cachePath] error:nil];
+        return @"<?xml version=\"1.0\"?><items><item uid=\"\" arg=\"\" autocomplete=\"-\" valid=\"no\"><title>Uni Call Option -$</title><subtitle>Done. Contact thumbnail cache is now destroyed</subtitle><icon>destroyThumbnailCache.png</icon></item></items>";
+    } else if ([queryParts count] == [queryMatches count] || ([queryParts count] > 0 && callType_ <= nonSearchableOptions)) {
+        // default: no options, just query
+        [self processOptions:@"-a" withNextQueryPart:nil andResults:results];
+    } else {
+         if ([queryParts count] == 0) {
+            // no query
+            if (callType_ <= nonSearchableOptions) {
+                // no valid options provided
+                return [self outputHelpOnOptions];
+            } else {
+                // only options
                 [results appendFormat:@"</items>"];
                 return results;
             }
         }
-    } else {
-        [self processOptions:@"-a" withQuery:query andQueryMatches:queryMatches andResults:results];
     }
     
-    ABAddressBook *AB = [ABAddressBook sharedAddressBook];
+    static ABAddressBook *AB = nil;
+    
+    if (!AB)
+        AB = [[ABAddressBook alloc] init];
+    
     NSArray *peopleFound;
     int population;
     if (callType_ & CTBuildFullThumbnailCache)
@@ -173,10 +187,9 @@ int resultCount_ = 0;
         NSMutableArray *searchTerms = [[NSMutableArray alloc] initWithCapacity:[queryMatches count]];
         NSMutableString *newQuery = [NSMutableString string];
         
-        for (; i < [queryMatches count]; i++) {
-            NSString *queryPart = [query substringWithRange:((NSTextCheckingResult *)queryMatches[i]).range];
-            [searchTerms addObject:[self generateOrSearchingElementForQueryPart: queryPart]];
-            [newQuery appendFormat:@"%@ ", queryPart];
+        for (int i = 0; i < [queryParts count]; i++) {
+            [searchTerms addObject:[self generateOrSearchingElementForQueryPart: queryParts[i]]];
+            [newQuery appendFormat:@"%@ ", queryParts[i]];
         }
         
         query = [newQuery substringToIndex:[newQuery length] - 1];
@@ -185,11 +198,11 @@ int resultCount_ = 0;
         
         peopleFound = [AB recordsMatchingSearchElement:searchEl];
         [results setString:@"<?xml version=\"1.0\"?><items>"];
-        
-        if (!(callType_ & CTNoThumbnailCache) && ![[NSFileManager defaultManager] fileExistsAtPath:[self thumbnailCachePath]]) {
-            //create the folder if it doesn't exist
-            [[NSFileManager defaultManager] createDirectoryAtPath:[self thumbnailCachePath] withIntermediateDirectories:YES attributes:nil error:NULL];
-        }
+    }
+    
+    if (!(callType_ & CTNoThumbnailCache) && ![[self fileManager] fileExistsAtPath:[self thumbnailCachePath]]) {
+        //create the folder if it doesn't exist
+        [[self fileManager] createDirectoryAtPath:[self thumbnailCachePath] withIntermediateDirectories:YES attributes:nil error:NULL];
     }
     
     population = (int)[peopleFound count];
@@ -232,8 +245,8 @@ int resultCount_ = 0;
                     [self checkAndUpdateThumbnailIfNeededAtPath:skypeOnlineThumbnailPath forRecord:r withColor:color hasShadow:YES];
                     
                     if (!isThumbNailOkay) {
-                        skypeThumbnailPath = [[self workingPath] stringByAppendingString:@"/defaultContactThumbnail:Skype.tiff"];
-                        skypeOnlineThumbnailPath = [[self workingPath] stringByAppendingString:@"/defaultContactThumbnail:Skype:Online.tiff"];
+                        skypeThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:Skype.tiff"];
+                        skypeOnlineThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:Skype:Online.tiff"];
                         [self checkAndUpdateDefaultThumbnailIfNeededAtPath:skypeThumbnailPath withColor:color hasShadow:NO];
                         [self checkAndUpdateDefaultThumbnailIfNeededAtPath:skypeOnlineThumbnailPath withColor:color hasShadow:YES];
                     }
@@ -247,7 +260,7 @@ int resultCount_ = 0;
                             NSDictionary *entry = [ims valueAtIndex:i];
                             if ([entry[kABInstantMessageServiceKey] isEqualToString: kABInstantMessageServiceSkype]) {
                                 NSString *username = entry[kABInstantMessageUsernameKey];
-                                BOOL isOnline = [[self runCommand:[NSString stringWithFormat:@"/usr/bin/osascript %@ [STATUS]%@", [self skypeScptPath], username]] hasPrefix:@"1"];
+                                BOOL isOnline = [[UniCall runCommand:[NSString stringWithFormat:@"/usr/bin/osascript %@ [STATUS]%@", [self skypeScptPath], username]] hasPrefix:@"1"];
                                 if (isOnline)
                                     [bufferedResults insertObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype:Online\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@ (online)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeOnlineThumbnailPath] atIndex:0];
                                 else
@@ -277,8 +290,8 @@ int resultCount_ = 0;
                     [self checkAndUpdateThumbnailIfNeededAtPath:faceTimeNominatedThumbnailPath forRecord:r withColor:color hasShadow:YES];
                     
                     if (!isThumbNailOkay) {
-                        faceTimeThumbnailPath = [[self workingPath] stringByAppendingString:@"/defaultContactThumbnail:FaceTime.tiff"];
-                        faceTimeNominatedThumbnailPath = [[self workingPath] stringByAppendingString:@"/defaultContactThumbnail:FaceTime:Nominated.tiff"];
+                        faceTimeThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:FaceTime.tiff"];
+                        faceTimeNominatedThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:FaceTime:Nominated.tiff"];
                         [self checkAndUpdateDefaultThumbnailIfNeededAtPath:faceTimeThumbnailPath withColor:color hasShadow:NO];
                         [self checkAndUpdateDefaultThumbnailIfNeededAtPath:faceTimeNominatedThumbnailPath withColor:color hasShadow:YES];
                     }
@@ -327,7 +340,7 @@ int resultCount_ = 0;
                     isThumbNailOkay = [self checkAndUpdateThumbnailIfNeededAtPath:phoneAmegoThumbnailPath forRecord:r withColor:color hasShadow:NO];
                     
                     if (!isThumbNailOkay) {
-                        phoneAmegoThumbnailPath = [[self workingPath] stringByAppendingString:@"/defaultContactThumbnail:PhoneAmego.tiff"];
+                        phoneAmegoThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:PhoneAmego.tiff"];
                         [self checkAndUpdateDefaultThumbnailIfNeededAtPath:phoneAmegoThumbnailPath withColor:color hasShadow:NO];
                     }
                     
@@ -449,7 +462,7 @@ end_result_generation:
 #pragma mark -
 #pragma mark Handle Thumbnails
 
--(NSString *)runCommand:(NSString *)commandToRun
++(NSString *)runCommand:(NSString *)commandToRun
 {
     NSTask *task;
     task = [[NSTask alloc] init];
@@ -480,7 +493,7 @@ end_result_generation:
                               
 - (void)checkAndUpdateDefaultThumbnailIfNeededAtPath:(NSString *)path withColor:(NSColor *)color hasShadow:(BOOL)hasShadow
 {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path])
+    if (![[self fileManager] fileExistsAtPath:path])
         [[[self newThumbnailFrom:[self defaultContactThumbnail] withColor:color hasShadow:hasShadow] TIFFRepresentation] writeToFile:path atomically:NO];
 }
 
@@ -489,18 +502,11 @@ end_result_generation:
     if (callType_ & CTNoThumbnailCache)
         return NO;
     
-    static NSCalendar *gregorian = nil;
-    static NSFileManager *FM = nil;
-    if (!gregorian) {
-        gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        FM = [NSFileManager defaultManager];
-    }
-    
     NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];
-    NSTimeInterval timeSinceLastUpdated = [[[FM attributesOfItemAtPath:path error:nil] fileModificationDate] timeIntervalSince1970];
+    NSTimeInterval timeSinceLastUpdated = [[[[self fileManager] attributesOfItemAtPath:path error:nil] fileModificationDate] timeIntervalSince1970];
 
     // output the person's thumbnail if it hasn't been cached
-    if (![FM fileExistsAtPath:path] ||  (timeNow - timeSinceLastUpdated) > THUMBNAIL_CACHE_LIFESPAN) {
+    if (![[self fileManager] fileExistsAtPath:path] ||  (timeNow - timeSinceLastUpdated) > THUMBNAIL_CACHE_LIFESPAN) {
         NSImage *thumbnail = [self thumbnailForRecord:record];
         if (thumbnail)
             [[[self newThumbnailFrom:thumbnail withColor:color hasShadow:hasShadow] TIFFRepresentation] writeToFile:path atomically:NO];
@@ -509,6 +515,17 @@ end_result_generation:
     }
     
     return YES;
+}
+
+- (NSFileManager *)fileManager
+{
+    static NSFileManager *FM = nil;
+    
+    if (!FM) {
+        FM = [[NSFileManager alloc] init];
+    }
+    
+    return FM;
 }
 
 - (NSImage *)thumbnailForRecord:(ABRecord *)record
@@ -570,7 +587,7 @@ end_result_generation:
         //cache folder
         path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
         
-        path = [path stringByAppendingPathComponent:IDENTIFIER];
+        path = [[path stringByAppendingPathComponent:IDENTIFIER] copy];
     }
     return path;
 }
@@ -582,33 +599,33 @@ end_result_generation:
         //cache folder
         path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
         
-        path = [path stringByAppendingPathComponent:THUMBNAIL_CACHE_RELATIVE_PATH];
+        path = [[path stringByAppendingPathComponent:THUMBNAIL_CACHE_RELATIVE_PATH] copy];
     }
     return path;
 }
 
 - (BOOL)executionLockPresents
 {
-    return [[NSFileManager defaultManager] fileExistsAtPath:[self executionLockPath]];
+    return [[self fileManager] fileExistsAtPath:[self executionLockPath]];
 }
 
 - (void)releaseExecutionLock
 {
-    [[NSFileManager defaultManager] removeItemAtPath:[self executionLockPath] error:nil];
+    [[self fileManager] removeItemAtPath:[self executionLockPath] error:nil];
 }
 
 - (void)acquireExecutionLock
 {
     NSString* str = @"I belong to Uni Call (http://guiguan.github.io/Uni-Call/), and I serve as an execution lock for some of Uni Call's functionalities. I should be deleted automatically by Uni Call at some point. Please delete me if I am stuck here. Thanks!";
     NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
-    [[NSFileManager defaultManager] createFileAtPath:[self executionLockPath] contents:data attributes:nil];
+    [[self fileManager] createFileAtPath:[self executionLockPath] contents:data attributes:nil];
 }
 
 - (NSString *)executionLockPath
 {
     static NSString *path = nil;
     if (!path) {
-        path = [NSHomeDirectory() stringByAppendingString:@"/uniCallExecutionLock"];
+        path = [[NSHomeDirectory() stringByAppendingString:@"/uniCallExecutionLock"] copy];
     }
     return path;
 }
@@ -617,34 +634,43 @@ end_result_generation:
 {
     static NSImage *image = nil;
     if (!image) {
-        image = [[NSImage alloc] initWithContentsOfFile:[[self workingPath] stringByAppendingString:@"/defaultContactThumbnail.png"]];
+        image = [[NSImage alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail.png"]];
     }
     return image;
-}
-
-- (NSString *)skypeScptPath
-{
-    static NSString *path = nil;
-    if (!path) {
-        path = [[self workingPath] stringByAppendingString:@"/skypecall.scpt"];
-    }
-    return path;
 }
 
 - (void)pushNotificationWithTitle:(NSString *)title andMessage:(NSString *)message andDetail:(NSString *)detail
 {
     static NSString *qNotifierHelperPath = nil;
     if (!qNotifierHelperPath) {
-        qNotifierHelperPath = [[self workingPath] stringByAppendingString:@"/bin/q_notifier.helper"];
+        qNotifierHelperPath = [[[UniCall workingPath] stringByAppendingString:@"/q_notifier.helper"] copy];
     }
-    [self runCommand:[NSString stringWithFormat:@"%@ com.runningwithcrayons.Alfred-2 \"%@\" \"%@\" \"%@\"", qNotifierHelperPath, title, message, detail]];
+    [UniCall runCommand:[NSString stringWithFormat:@"%@ com.runningwithcrayons.Alfred-2 \"%@\" \"%@\" \"%@\"", qNotifierHelperPath, title, message, detail]];
 }
 
-- (NSString *)workingPath
+- (NSString *)skypeScptPath
 {
     static NSString *path = nil;
     if (!path) {
-        path = [[NSFileManager defaultManager] currentDirectoryPath];
+        path = [[[UniCall workingPath] stringByAppendingString:@"/skypecall.scpt"] copy];
+    }
+    return path;
+}
+
+- (NSString *)workflowPath
+{
+    static NSString *path = nil;
+    if (!path) {
+        path = [[[UniCall workingPath] stringByDeletingLastPathComponent] copy];
+    }
+    return path;
+}
+
++ (NSString *)workingPath
+{
+    static NSString *path = nil;
+    if (!path) {
+        path = [[[NSBundle mainBundle] bundlePath] copy];
     }
     return path;
 }

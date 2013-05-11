@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Uni Call Basestation' target in the 'Uni Call Basestation' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
