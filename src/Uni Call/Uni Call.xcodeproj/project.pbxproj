@@ -39,7 +39,7 @@
 		A51AC7A51729285B00ADB097 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "/Users/guiguan/Dropbox/Alfred.alfredpreferences/workflows/user.workflow.F168FE25-2FD8-4954-9CAE-5D3852ED44C2/bin";
+			dstPath = "/Users/guiguan/Dropbox/Alfred.alfredpreferences/workflows/user.workflow.D1A87876-B4E1-4FB9-9028-2562B0B52AEA/bin";
 			dstSubfolderSpec = 0;
 			files = (
 				A51AC7A6172928A600ADB097 /* Uni Call in CopyFiles */,
@@ -59,7 +59,7 @@
 		A58CC66D173E3145002AA820 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "/Users/guiguan/Dropbox/Alfred.alfredpreferences/workflows/user.workflow.F168FE25-2FD8-4954-9CAE-5D3852ED44C2/bin";
+			dstPath = "/Users/guiguan/Dropbox/Alfred.alfredpreferences/workflows/user.workflow.D1A87876-B4E1-4FB9-9028-2562B0B52AEA/bin";
 			dstSubfolderSpec = 0;
 			files = (
 				A58CC66E173E314D002AA820 /* Uni Call Basestation in CopyFiles */,

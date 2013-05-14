@@ -260,7 +260,7 @@ int resultCount_;
                             NSDictionary *entry = [ims valueAtIndex:i];
                             if ([entry[kABInstantMessageServiceKey] isEqualToString: kABInstantMessageServiceSkype]) {
                                 NSString *username = entry[kABInstantMessageUsernameKey];
-                                BOOL isOnline = [[UniCall runCommand:[NSString stringWithFormat:@"/usr/bin/osascript %@ [STATUS]%@", [self skypeScptPath], username]] hasPrefix:@"1"];
+                                BOOL isOnline = [[UniCall runCommand:[NSString stringWithFormat:@"/usr/bin/osascript \"%@\" [STATUS]%@", [self skypeScptPath], username]] hasPrefix:@"1"];
                                 if (isOnline)
                                     [bufferedResults insertObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype:Online\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@ (online)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeOnlineThumbnailPath] atIndex:0];
                                 else
@@ -645,7 +645,7 @@ end_result_generation:
     if (!qNotifierHelperPath) {
         qNotifierHelperPath = [[[UniCall workingPath] stringByAppendingString:@"/q_notifier.helper"] copy];
     }
-    [UniCall runCommand:[NSString stringWithFormat:@"%@ com.runningwithcrayons.Alfred-2 \"%@\" \"%@\" \"%@\"", qNotifierHelperPath, title, message, detail]];
+    [UniCall runCommand:[NSString stringWithFormat:@"\"%@\" com.runningwithcrayons.Alfred-2 \"%@\" \"%@\" \"%@\"", qNotifierHelperPath, title, message, detail]];
 }
 
 - (NSString *)skypeScptPath
