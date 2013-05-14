@@ -2,7 +2,7 @@
 //  main.m
 //  Uni Call
 //
-//  Created by Guan Gui on 10/05/13.
+//  Created by Guan Gui on 14/05/13.
 //  Copyright (c) 2013 Guan Gui. All rights reserved.
 //
 
@@ -105,7 +105,7 @@ int main(int argc, const char * argv[])
 //        NSTimeInterval endTime;
 //        NSString *results;
 //
-//        results = [uc process:@"-# yes"];
+//        results = [uc process:@"g g"];
 //        endTime = [[NSDate date] timeIntervalSince1970];
 //        NSLog(@"Comp time: %lf", endTime - startTime);
 //        NSLog(@"%@", results);

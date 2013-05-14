@@ -2,7 +2,7 @@
 //  main.m
 //  Uni Call Basestation
 //
-//  Created by Guan Gui on 9/05/13.
+//  Created by Guan Gui on 14/05/13.
 //  Copyright (c) 2013 Guan Gui. All rights reserved.
 //
 
@@ -27,7 +27,7 @@ NSString *query_;
     
     if(system("killall -s \"Uni Call\" > /dev/null 2>&1")) {
         // if Uni Call is not yet launched
-        if(system([[[Main workingPath] stringByAppendingString:@"/Uni\\ Call > /dev/null 2>&1 &"] UTF8String])) {
+        if(system([[NSString stringWithFormat:@"\"%@/Uni Call\" > /dev/null 2>&1 &", [Main workingPath]] UTF8String])) {
             NSLog(@"Error: cannot launch Uni Call!");
             return;
         }
@@ -67,7 +67,7 @@ NSString *query_;
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
 {
-//    NSLog(@"Time taken: %f", [[NSDate date] timeIntervalSince1970] -  [connectionStartTime_ timeIntervalSince1970]);
+//    NSLog(@"Time taken to connect Uni Call: %f", [[NSDate date] timeIntervalSince1970] -  [connectionStartTime_ timeIntervalSince1970]);
     
     NSData *messageBody = [query_ dataUsingEncoding:NSUTF8StringEncoding];
     NSUInteger messageLen = [messageBody length];

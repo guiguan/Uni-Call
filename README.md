@@ -138,6 +138,10 @@ Credit
 
 Changelog
 ----------------
+#### v4.21 (14/05/13)
+* Minor bug fixes: now handles spaces in POSIX path to the workflow. Before, those spaces could cause problem for Uni Call Basestation to launch Uni Call.
+* Minor bug fixes: Skype Call can now correctly generate notifications in Mac OS X Notification Centre.
+
 #### v4.2 (12/05/13)
 * The original Uni Call executable is now divided into two separate parts: the Uni Call Basestation and the Uni Call. The Uni Call Basestation is the one invoked everytime by Alfred, while the Uni Call is in turn spawned by Uni Call Basestation, which will continue to run in the background unless idling for 5 min. Basically, the Uni Call will sit there and wait to serve requests come from Uni Call Basestation (via TCP port number 28642). In this way, the consecutive requests come from Alfred could be served more quickly by Uni Call. In fact, it does improve the response time by 50% (Refer to the following figure)!
 
