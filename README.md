@@ -5,6 +5,21 @@ Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest
 
 ![Uni Call](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png)
 
+Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.3.0.602, FaceTime 2.0 (1080), Phone Amego 1.4_9 and Alfred 2.0.3 (187).
+
+Installation
+--------------
+
+1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
+2. Download the latest workflow: [Uni-Call.alfredworkflow 4.21](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+3. Double click on the downloaded workflow file to install
+4. (Optional) Under "Alfred Preferences > Features > Contacts":
+
+![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
+
+Detailed Usage
+--------------
+
 When you would like to make a call, simply type:
 
 	call TARGET
@@ -50,21 +65,6 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 		call -sfp! TARGET	# equivalent to call -a! TARGET
 
 Alternatively, you can make calls using Alfred's Contacts Feature. There will be three contact actions available for you to choose from in **_Alfred's Contacts Feature_**: Skype Call, FaceTime Call and Phone Amego Call.
-
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.3.0.602, FaceTime 2.0 (1080), Phone Amego 1.4_9 and Alfred 2.0.3 (187).
-
-Installation
---------------
-
-1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 4.21](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
-3. Double click on the downloaded workflow file to install
-4. (Optional) Under "Alfred Preferences > Features > Contacts":
-
-![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
-
-Detailed Usage
---------------
 
 ### Contact Thumbnail Cache
 In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in /Users/guiguan/Library/Caches/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. By default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:
