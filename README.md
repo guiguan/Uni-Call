@@ -53,6 +53,32 @@ Alternatively, you can make calls using Alfred's Contacts Feature. There will be
 
 Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.3.0.602, FaceTime 2.0 (1080), Phone Amego 1.4_9 and Alfred 2.0.3 (187).
 
+Installation
+--------------
+
+1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
+2. Download the latest workflow: [Uni-Call.alfredworkflow 4.21](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+3. Double click on the downloaded workflow file to install
+4. (Optional) Under "Alfred Preferences > Features > Contacts":
+
+![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
+
+Detailed Usage
+--------------
+
+### Contact Thumbnail Cache
+In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in /Users/guiguan/Library/Caches/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. By default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:
+
+	call -# yes
+
+to build a full thumbnail cache for all your contacts from Apple Contacts.
+
+If you decided not to show contact thumbnails, you can completely remove the cache using:
+
+	call -$ yes
+
+and then use -! option along with other search options to prohibit the automatic thumbnail generation and caching. You can change script filters to adopt -! option too.
+
 ### Skype Call
 --------------
 
@@ -105,29 +131,6 @@ Among the search results for Phone Amego Call, contact thumbnails will be shown 
 
 Phone Amego Call uses url scheme *phoneAmego:{query};alert=no* to launch Phone Amego and start a call.
 
-Installation & Configuration
-----------------
-
-1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 4.21](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
-3. Double click on the downloaded workflow file to install
-4. (Optional) Under "Alfred Preferences > Features > Contacts":
-
-![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
-
-### Contact Thumbnail Cache
-In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in /Users/guiguan/Library/Caches/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. By default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:
-
-	call -# yes
-
-to build a full thumbnail cache for all your contacts from Apple Contacts.
-
-If you decided not to show contact thumbnails, you can completely remove the cache using:
-
-	call -$ yes
-
-and then use -! option along with other search options to prohibit the automatic thumbnail generation and caching. You can change script filters to adopt -! option too.
-
 Support
 ----------------
 Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Uni-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/uni-call). Or, you can post on the [Uni Call topic section of Alfred forum](http://www.guiguan.net/redirections/Alfred-Forum-Uni-Call).
@@ -138,6 +141,16 @@ Credit
 
 Changelog
 ----------------
+#### v5.0 (19/05/13)
+* Added SIP Call component
+* Added PushDialer Call component
+* Added GrowlVoice Call component
+* Update for Phone Amego Call: the user can select which bluetooth device to use ("callp TARGET /DEVICE_ALIAS_OR_DEVICE_LABEL") for making a phone call. The user can also assign an easy to remember alias to a complicated device label.
+* Now the user can completely enable/disable call components through "call --enable"/"call --disable". When a call component is disabled, its corresponding Alfred Preferences will be automatically removed; later when it is enabled again, its Alfred Preferences will then be automatically restored.
+* The thumbnail cache folder is now moved from ~/Library/Caches/net.guiguan.Uni-Call/thumbnails to ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/thumbnails, which ensures that Uni Call will be uninstalled with Alfred 2.
+* Added a persistent configuration file config.plist in ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call. The reason why this config.plist is not placed inside Uni Call workflow folder but in Workflow Data folder is to make sure that the user's configurations will stay unchanged after future workflow upgrades.
+
+
 #### v4.21 (14/05/13)
 * Minor bug fixes: now handles spaces in POSIX path to the workflow. Before, those spaces could cause problem for Uni Call Basestation to launch Uni Call.
 * Minor bug fixes: Skype Call can now correctly generate notifications in Mac OS X Notification Centre.
