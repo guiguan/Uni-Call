@@ -1,7 +1,7 @@
 [Uni Call](http://guiguan.github.com/Uni-Call/)
 ==========
 
-Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make [Skype](http://www.skype.com/en/download-skype/skype-for-mac/), [FaceTime](http://www.apple.com/au/mac/facetime/), bluetooth (via [Phone Amego](http://www.sustworks.com/pa_guide/)), [SIP](http://voip.about.com/od/sipandh323/a/What-Is-Sip-And-What-Is-It-Good-For.htm) (via [Telephone](http://www.tlphn.com)), [PushDialer](http://pushdialer.com) and [Google Voice](https://www.google.com/voice) (via [GrowlVoice](http://www.growlvoice.com)) phone call. However, more call methods could be added. Please let me know if you are interested!
+Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make [Skype](#skype-call), [FaceTime](#facetime-call), [bluetooth](#phone-amego-call) (via Phone Amego), [SIP](#sip-call) (via Telephone), [PushDialer](#pushdialer-call) and [Google Voice](#growlvoice-call) (via GrowlVoice) phone call. However, more call methods could be added. Please let me know if you are interested!
 
 ![Uni Call](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png)
 
@@ -69,6 +69,7 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 
 		call -p TARGET
 		callp TARGET
+		callp TARGET /DEVICE_ALIAS_OR_DEVICE_LABEL  # select a device to use. Please refer to [Manage Aliases for Device Labels](#manage-aliases-for-device-labels)
 		
 7. **-i**: make a SIP call to your contact via Telephone
 
@@ -107,6 +108,8 @@ and then use -! option along with other search options to prohibit the automatic
 ### Skype Call
 --------------
 
+Skype Call requires the newest version of [Skype](http://www.skype.com/en/download-skype/skype-for-mac/).
+
 Among the search results for Skype Call, contact thumbnails will be shown in sky-blue border:
 
 ![Skype](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype.png)
@@ -119,8 +122,19 @@ If the Skype hasn't been opened yet, Skype Call will open it and ensure it is on
 
 The alternative url scheme *skype:{query}?call* approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.
 
+#### The Correct Way to Store a Skype Username for Your Contact
+1. Retrieve your contact's Skype username from Skype App
+
+![Skype Username](https://github.com/guiguan/Uni-Call/raw/master/Skype-Username.png)
+
+2. Store the Skype username in the IM (Instant Message) field, and select Skype as the IM type
+
+![Apple-Contacts](https://github.com/guiguan/Uni-Call/raw/master/Apple-Contacts.png)
+
 ### FaceTime Call
 -----------------
+
+FaceTime Call requires the newest version of [FaceTime](http://www.apple.com/au/mac/facetime/).
 
 Among the search results for FaceTime Call, contact thumbnails will be shown in pink border:
 
@@ -136,25 +150,35 @@ The thumbnail of a person who has nominated phone number or email will be shown 
 
 FaceTime Call uses url scheme *facetime:{query}* to launch FaceTime and start a call.
 
-#### The Correct Way to Store a Skype Username for Your Contact
-1. Retrieve your contact's Skype username from Skype App
-
-![Skype Username](https://github.com/guiguan/Uni-Call/raw/master/Skype-Username.png)
-
-2. Store the Skype username in the IM (Instant Message) field, and select Skype as the IM type
-
-![Apple-Contacts](https://github.com/guiguan/Uni-Call/raw/master/Apple-Contacts.png)
-
 ### Phone Amego Call
 --------------------
 
 With the help of [Phone Amego](http://www.sustworks.com/pa_guide/), you can turn your Mac into a bluetooth headset and remotely control your real mobile phone to start and receive real phone calls. Sweet?!
+
+Phone Amego Call requires the newest version of [Phone Amego](http://www.sustworks.com/pa_guide/).
 
 Among the search results for Phone Amego Call, contact thumbnails will be shown in yellow border:
 
 ![Phone Amego](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-PhoneAmego.png)
 
 Phone Amego Call uses url scheme *phoneAmego:{query};alert=no* to launch Phone Amego and start a call.
+
+#### Manage Aliases for Device Labels
+
+### SIP Call
+------------
+
+SIP Call requires the newest version of [SIP](http://voip.about.com/od/sipandh323/a/What-Is-Sip-And-What-Is-It-Good-For.htm) client [Telephone](http://www.tlphn.com/).
+
+### PushDialer Call
+-------------------
+
+PushDialer Call requires the newest version of [PushDialer](http://pushdialer.com/).
+
+### GrowlVoice Call
+-------------------
+
+GrowlVoice Call requires the newest version of [GrowlVoice](http://www.growlvoice.com/).
 
 Support
 ----------------
