@@ -28,9 +28,9 @@ When you would like to make a call, simply type:
 
 where the TARGET could be:
 
-1. a phone number (Skype, FaceTime, Phone Amego, SIP, PushDialer, GrowlVoice)
-2. a Skype username (Skype)
-3. an email address (FaceTime)
+1. a phone number ([Skype](#skype-call), [FaceTime](#facetime-call), [Phone Amego](#phone-amego-call), [SIP](#sip-call), [PushDialer](#pushdialer-call), [GrowlVoice](#growlvoice-call))
+2. a Skype username ([Skype](#skype-call))
+3. an email address ([FaceTime](#facetime-call))
 4. a SIP address
 5. combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations (All)
 
@@ -55,38 +55,40 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 		call -a TARGET
 		call TARGET
 	
-4. **-s**: make a Skype call to your contact
+4. **-s**: make a [Skype call](#skype-call) to your contact
 
 		call -s TARGET
 		calls TARGET
 		
-5. **-f**: make a FaceTime call to your contact
+5. **-f**: make a [FaceTime call](#facetime-call) to your contact
 
 		call -f TARGET
 		callf TARGET
 		
-6. **-p**: make a bluetooth phone call to your contact via Phone Amego
+6. **-p**: make a [bluetooth phone call](#phone-amego-call) to your contact via Phone Amego
 
 		call -p TARGET
 		callp TARGET
-		callp TARGET /DEVICE_ALIAS_OR_DEVICE_LABEL  # select a device to use. Please refer to [Manage Aliases for Device Labels](#manage-aliases-for-device-labels)
+		callp TARGET /DEVICE_ALIAS_OR_DEVICE_LABEL  # select a device to use [*].
+
+	[*] Please refer to [Manage Aliases for Device Labels](#manage-aliases-for-device-labels)
 		
-7. **-i**: make a SIP call to your contact via Telephone
+7. **-i**: make a [SIP call](#sip-call) to your contact via Telephone
 
 		call -i TARGET
 		calli TARGET
 
-8. **-d**: make a PushDialer call to your contact
+8. **-d**: make a [PushDialer call](#pushdialer-call) to your contact
 
 		call -d TARGET
 		calld TARGET
 
-9. **-g**: make a Google Voice call to your contact via GrowlVoice
+9. **-g**: make a [Google Voice call](#growlvoice-call) to your contact via GrowlVoice
 
 		call -g TARGET
 		callg TARGET
 
-Alternatively, you can make calls using Alfred's Contacts Feature. There will be six contact actions available for you to choose from in **_Alfred's Contacts Feature_** (under Alfred Preferences > Features > Contacts): Skype Call, FaceTime Call, Phone Amego Call, SIP Call, PushDialer Call and GrowlVoice Call.
+Alternatively, you can make calls using Alfred's Contacts Feature. There will be six contact actions available for you to choose from in **_Alfred's Contacts Feature_** (under Alfred Preferences > Features > Contacts): [Skype Call](#skype-call), [FaceTime Call](#facetime-call), [Phone Amego Call](#phone-amego-call), [SIP Call](#sip-call), [PushDialer Call](#pushdialer-call) and [GrowlVoice Call](#growlvoice-call).
 
 ![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
 
