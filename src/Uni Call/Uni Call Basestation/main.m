@@ -121,6 +121,7 @@ int main(int argc, const char * argv[])
             return 0;
         
 //        NSString *query = @"guan";
+//        NSLog(@"%lu:%@", (unsigned long)[query length], query);
         
         Main *m = [[Main alloc] init];
         [m execute: query];

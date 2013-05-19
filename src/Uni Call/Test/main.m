@@ -12,10 +12,7 @@ int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-        
-        // insert code here...
-        NSLog(@"Hello, World!");
-        
+        NSLog(@"%@", CFXMLCreateStringByEscapingEntities(NULL, (CFStringRef)@"<item uid=\"\"\" arg=\"[CTSkype]\"\" autocomplete=\"\"\"><title>\"</title><subtitle>Skype call to: \" (unidentified in Apple Contacts)</subtitle><icon>7016D8DA-6748-4E96-BDA2-FBF05F0BAD5B.png</icon></item>", NULL));
     }
     return 0;
 }

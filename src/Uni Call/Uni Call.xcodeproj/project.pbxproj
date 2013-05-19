@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A51AC7961729122600ADB097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7951729122600ADB097 /* Foundation.framework */; };
-		A51AC7991729122600ADB097 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AC7981729122600ADB097 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A51AC7991729122600ADB097 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AC7981729122600ADB097 /* main.m */; settings = {COMPILER_FLAGS = ""; }; };
 		A51AC79D1729122600ADB097 /* Uni_Call.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC79C1729122600ADB097 /* Uni_Call.1 */; };
 		A51AC7A41729124000ADB097 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7A31729124000ADB097 /* AddressBook.framework */; };
 		A51AC7A6172928A600ADB097 /* Uni Call in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC7921729122600ADB097 /* Uni Call */; };
@@ -21,7 +21,10 @@
 		A58CC66B173DDC82002AA820 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A58CC66A173DDC82002AA820 /* GCDAsyncSocket.m */; };
 		A58CC66C173DDC82002AA820 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A58CC66A173DDC82002AA820 /* GCDAsyncSocket.m */; };
 		A58CC66E173E314D002AA820 /* Uni Call Basestation in CopyFiles */ = {isa = PBXBuildFile; fileRef = A53A2721173BE23800D3496F /* Uni Call Basestation */; };
-		A5E0E6E217327C3C002E8289 /* UniCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0E6E117327C3C002E8289 /* UniCall.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A5D57C681744A36D00571334 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7951729122600ADB097 /* Foundation.framework */; };
+		A5D57C6B1744A36D00571334 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D57C6A1744A36D00571334 /* main.m */; };
+		A5D57C6F1744A36D00571334 /* Test.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5D57C6E1744A36D00571334 /* Test.1 */; };
+		A5E0E6E217327C3C002E8289 /* UniCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0E6E117327C3C002E8289 /* UniCall.m */; settings = {COMPILER_FLAGS = ""; }; };
 		A5E0E6E6173296AC002E8289 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0E6E5173296AC002E8289 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +69,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5D57C651744A36D00571334 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				A5D57C6F1744A36D00571334 /* Test.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +96,10 @@
 		A53A275E173CBEA700D3496F /* NetworkSharedParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkSharedParameters.h; sourceTree = "<group>"; };
 		A58CC669173DDC82002AA820 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		A58CC66A173DDC82002AA820 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		A5D57C671744A36D00571334 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5D57C6A1744A36D00571334 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A5D57C6D1744A36D00571334 /* Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Prefix.pch"; sourceTree = "<group>"; };
+		A5D57C6E1744A36D00571334 /* Test.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Test.1; sourceTree = "<group>"; };
 		A5E0E6E017327C3C002E8289 /* UniCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniCall.h; sourceTree = "<group>"; };
 		A5E0E6E117327C3C002E8289 /* UniCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniCall.m; sourceTree = "<group>"; };
 		A5E0E6E5173296AC002E8289 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -110,6 +127,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5D57C641744A36D00571334 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5D57C681744A36D00571334 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -120,6 +145,7 @@
 				A58CC668173DDC82002AA820 /* GCD */,
 				A51AC7971729122600ADB097 /* Uni Call */,
 				A53A2723173BE23800D3496F /* Uni Call Basestation */,
+				A5D57C691744A36D00571334 /* Test */,
 				A51AC7941729122600ADB097 /* Frameworks */,
 				A51AC7931729122600ADB097 /* Products */,
 			);
@@ -130,6 +156,7 @@
 			children = (
 				A51AC7921729122600ADB097 /* Uni Call */,
 				A53A2721173BE23800D3496F /* Uni Call Basestation */,
+				A5D57C671744A36D00571334 /* Test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,6 +219,24 @@
 			path = GCD;
 			sourceTree = "<group>";
 		};
+		A5D57C691744A36D00571334 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				A5D57C6A1744A36D00571334 /* main.m */,
+				A5D57C6E1744A36D00571334 /* Test.1 */,
+				A5D57C6C1744A36D00571334 /* Supporting Files */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		A5D57C6C1744A36D00571334 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A5D57C6D1744A36D00571334 /* Test-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -231,6 +276,23 @@
 			productReference = A53A2721173BE23800D3496F /* Uni Call Basestation */;
 			productType = "com.apple.product-type.tool";
 		};
+		A5D57C661744A36D00571334 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5D57C721744A36D00571334 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				A5D57C631744A36D00571334 /* Sources */,
+				A5D57C641744A36D00571334 /* Frameworks */,
+				A5D57C651744A36D00571334 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Test;
+			productName = Test;
+			productReference = A5D57C671744A36D00571334 /* Test */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -254,6 +316,7 @@
 			targets = (
 				A51AC7911729122600ADB097 /* Uni Call */,
 				A53A2720173BE23800D3496F /* Uni Call Basestation */,
+				A5D57C661744A36D00571334 /* Test */,
 			);
 		};
 /* End PBXProject section */
@@ -275,6 +338,14 @@
 			files = (
 				A53A2725173BE23800D3496F /* main.m in Sources */,
 				A58CC66C173DDC82002AA820 /* GCDAsyncSocket.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5D57C631744A36D00571334 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5D57C6B1744A36D00571334 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +449,24 @@
 			};
 			name = Release;
 		};
+		A5D57C701744A36D00571334 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Test/Test-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A5D57C711744A36D00571334 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Test/Test-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -404,6 +493,15 @@
 			buildConfigurations = (
 				A53A272B173BE23900D3496F /* Debug */,
 				A53A272C173BE23900D3496F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5D57C721744A36D00571334 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5D57C701744A36D00571334 /* Debug */,
+				A5D57C711744A36D00571334 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Test.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>Uni Call Basestation.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>A53A2720173BE23800D3496F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A5D57C661744A36D00571334</key>
 		<dict>
 			<key>primary</key>
 			<true/>

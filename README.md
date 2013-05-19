@@ -1,21 +1,22 @@
 [Uni Call](http://guiguan.github.com/Uni-Call/)
 ==========
 
-Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make Skype, FaceTime or bluetooth phone call (via [Phone Amego](http://www.sustworks.com/pa_guide/)) on Mac OS X. It is renamed from previous Skype Call workflow. Right now, Uni Call comprises three call components: Skype Call, FaceTime Call and Phone Amego Call, but more could be added (Please let me know if you are interested in using a new way to call:)). 
+Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make [Skype](http://www.skype.com/en/download-skype/skype-for-mac/), [FaceTime](http://www.apple.com/au/mac/facetime/), bluetooth (via [Phone Amego](http://www.sustworks.com/pa_guide/)), [SIP](http://voip.about.com/od/sipandh323/a/What-Is-Sip-And-What-Is-It-Good-For.htm) (via [Telephone](http://www.tlphn.com)), [PushDialer](http://pushdialer.com) and [Google Voice](https://www.google.com/voice) (via [GrowlVoice](http://www.growlvoice.com)) phone call. However, more call methods could be added. Please let me know if you are interested!
 
 ![Uni Call](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png)
 
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.3.0.602, FaceTime 2.0 (1080), Phone Amego 1.4_9 and Alfred 2.0.3 (187).
+Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.4.0.833, FaceTime 2.0 (1080), Phone Amego 1.4_9, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30) and Alfred 2.0.3 (187).
 
-Installation
+Installation & Upgrade
 --------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 4.21](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 5.0](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
 3. Double click on the downloaded workflow file to install
-4. (Optional) Under "Alfred Preferences > Features > Contacts":
+4. Type the following command in your Alfred:
 
-![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
+	call --updatealfredpreferences yes
+5. (optional) If you have used previous version of Uni Call, new components introduced in new version are disabled by default. To enable them please refer to [Enable/disable Call Components](#enable/disable-call-components). 
 
 Detailed Usage
 --------------
@@ -26,45 +27,68 @@ When you would like to make a call, simply type:
 
 where the TARGET could be:
 
-1. a phone number (Skype, FaceTime, Phone Amego)
+1. a phone number (Skype, FaceTime, Phone Amego, SIP, PushDialer, GrowlVoice)
 2. a Skype username (Skype)
 3. an email address (FaceTime)
-4. combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations (All)
+4. a SIP address
+5. combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations (All)
 
 When typing the TARGET, the top N closest fuzzy matching results drawn from Apple Contacts will be provided to you in a timely manner. You can choose one of the results to start the call immediately. Meanwhile, you can use the following options to control your search:
 
-1. **-a**: lay out all possible call options for your contact (default)
+
+1. Any combination of the following options, the order of which will determine the order of results for each person in your Apple Contacts. Also, you can use options anywhere in your call query.
+
+		call -sf TARGET		# search Skype and FaceTime
+		call TARGET -p!f	# search Phone Amego and FaceTime without thumbnails
+		call -sfp! TARGET	# equivalent to call -a! TARGET
+		callp TARGET -f     # search Phone Amego and FaceTime
+		calli TAR -s GET    # search SIP and Skype
+
+2. **-!**: prohibit contact thumbnails caching
+
+		call -!a TARGET		# search for all without thumbnails
+		call -s! TARGET		# search for Skype without thumbnails
+
+3. **-a**: lay out all possible call options for your contact (default)
 
 		call -a TARGET
 		call TARGET
 	
-2. **-s**: make a Skype call to your contact
+4. **-s**: make a Skype call to your contact
 
 		call -s TARGET
 		calls TARGET
 		
-3. **-f**: make a FaceTime call to your contact
+5. **-f**: make a FaceTime call to your contact
 
 		call -f TARGET
 		callf TARGET
 		
-4. **-p**: make a bluetooth phone call to your contact via Phone Amego
+6. **-p**: make a bluetooth phone call to your contact via Phone Amego
 
 		call -p TARGET
 		callp TARGET
 		
-5. **-!**: prohibit contact thumbnails caching
+7. **-i**: make a SIP call to your contact via Telephone
 
-		call -!a TARGET		# search for all without thumbnails
-		call -s! TARGET		# search for Skype without thumbnails
-		
-6. Combination of the above options, the order of which will determine the order of results for each person in your Apple Contacts
+		call -i TARGET
+		calli TARGET
 
-		call -sf TARGET		# search Skype and FaceTime
-		call -p!f TARGET	# search Phone Amego and FaceTime without thumbnails
-		call -sfp! TARGET	# equivalent to call -a! TARGET
+8. **-d**: make a PushDialer call to your contact
 
-Alternatively, you can make calls using Alfred's Contacts Feature. There will be three contact actions available for you to choose from in **_Alfred's Contacts Feature_**: Skype Call, FaceTime Call and Phone Amego Call.
+		call -d TARGET
+		calld TARGET
+
+9. **-g**: make a Google Voice call to your contact via GrowlVoice
+
+		call -g TARGET
+		callg TARGET
+
+Alternatively, you can make calls using Alfred's Contacts Feature. There will be six contact actions available for you to choose from in **_Alfred's Contacts Feature_** (under Alfred Preferences > Features > Contacts): Skype Call, FaceTime Call, Phone Amego Call, SIP Call, PushDialer Call and GrowlVoice Call.
+
+![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
+
+### Enable/disable Call Components
 
 ### Contact Thumbnail Cache
 In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in /Users/guiguan/Library/Caches/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. By default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:
@@ -164,6 +188,9 @@ Changelog
 
 #### v4.1 (7/05/13)
 * Did some performance tweak. Now Uni Call runs much faster.
+
+#### v4.0 (4/05/13)
+* Big changes to original Skype Call workflow and renamed it to Uni Call. FaceTime and Phone Amego Call components are introduced.
 
 Legacy: Skype-Call.alfredextension 1.0 for Alfred v1
 ----------------
