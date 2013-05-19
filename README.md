@@ -94,16 +94,31 @@ Alternatively, you can make calls using Alfred's Contacts Feature. There will be
 
 ### Enable/disable Call Components
 
-### Contact Thumbnail Cache
-In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in /Users/guiguan/Library/Caches/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. By default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:
+If you only make use of several call components in your daily life, you can completely disable others. Then your Uni Call will act as if it only has those call components working internally. In reality, this will also speedup your Uni Call.
 
-	call -# yes
+To disable call components:
+
+	call --disable
+
+To re-enable disabled call components:
+
+	call --enable
+
+When a call component is disabled, its corresponding Alfred Preferences will be automatically removed; later when it is enabled again, its Alfred Preferences will then be automatically restored.
+
+Your decision about which call components to enable will be stored persistently in ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/config.plist. The meaning of "persistently" is that your decision will be kept even after you upgrade to future Uni Call versions.
+
+### Contact Thumbnail Cache
+
+In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. By default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:
+
+	call --buildfullthumbnailcache yes
 
 to build a full thumbnail cache for all your contacts from Apple Contacts.
 
 If you decided not to show contact thumbnails, you can completely remove the cache using:
 
-	call -$ yes
+	call --destroythumbnailcache yes
 
 and then use -! option along with other search options to prohibit the automatic thumbnail generation and caching. You can change script filters to adopt -! option too.
 
@@ -112,11 +127,11 @@ and then use -! option along with other search options to prohibit the automatic
 
 Skype Call requires the newest version of [Skype](http://www.skype.com/en/download-skype/skype-for-mac/).
 
-Among the search results for Skype Call, contact thumbnails will be shown in sky-blue border:
+Among the search results for Skype Call, contact thumbnails will be shown in color:#47baec border:
 
 ![Skype](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype.png)
 
-If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in sky-blue border with sky-blue inner shadow:
+If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in color:#47baec border with color:#47baec inner shadow:
 
 ![Skype Online](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype-Online.png)
 
@@ -138,7 +153,7 @@ The alternative url scheme *skype:{query}?call* approach is not able make a phon
 
 FaceTime Call requires the newest version of [FaceTime](http://www.apple.com/au/mac/facetime/).
 
-Among the search results for FaceTime Call, contact thumbnails will be shown in pink border:
+Among the search results for FaceTime Call, contact thumbnails will be shown in color:#f74598 border:
 
 ![FaceTime](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime.png)
 
@@ -146,7 +161,7 @@ You can nominate a particular phone or email field of a person in Apple Contacts
 
 ![FaceTime Nomination](https://github.com/guiguan/Uni-Call/raw/master/FaceTime-Nomination.png)
 
-The thumbnail of a person who has nominated phone number or email will be shown in pink border with pink inner shadow:
+The thumbnail of a person who has nominated phone number or email will be shown in color:#f74598 border with color:#f74598 inner shadow:
 
 ![FaceTime Nominated](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime-Nominated.png)
 
@@ -159,7 +174,7 @@ With the help of [Phone Amego](http://www.sustworks.com/pa_guide/), you can turn
 
 Phone Amego Call requires the newest version of [Phone Amego](http://www.sustworks.com/pa_guide/).
 
-Among the search results for Phone Amego Call, contact thumbnails will be shown in yellow border:
+Among the search results for Phone Amego Call, contact thumbnails will be shown in color:#fcbd5a border:
 
 ![Phone Amego](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-PhoneAmego.png)
 
@@ -167,20 +182,58 @@ Phone Amego Call uses url scheme *phoneAmego:{query};alert=no* to launch Phone A
 
 #### Manage Aliases for Device Labels
 
+You can assign an easy to remember alias to a complicated device label. For example:
+
+	callp --map ip to "Guan's iPhone" yes
+
+Then in the future you can make a bluetooth phone call through device "Guan's iPhone" as follows:
+
+	callp TARGET /ip
+
+To remove the assigned alias:
+
+	callp --unmap ip yes
+
 ### SIP Call
 ------------
 
 SIP Call requires the newest version of [SIP](http://voip.about.com/od/sipandh323/a/What-Is-Sip-And-What-Is-It-Good-For.htm) client [Telephone](http://www.tlphn.com/).
+
+Among the search results for SIP Call, contact thumbnails will be shown in color:#fcbd5a border:
+
+![SIP](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-SIP.png)
+
+If you store a SIP address in a contact's Url field with custom label "sip", such as follows:
+
+![SIP Record](https://github.com/guiguan/Uni-Call/raw/master/SIP-Record.png)
+
+then the corresponding thumbnail for that person will be shown in color:#fcbd5a border with color:#fcbd5a inner shadow:
+
+![SIP Recorded](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-SIP-Recorded.png)
+
+SIP Call uses url scheme *tel:{query}* for phone numbers and url scheme *sip:{query}* for SIP addresses to launch Telephone and start a call.
 
 ### PushDialer Call
 -------------------
 
 PushDialer Call requires the newest version of [PushDialer](http://pushdialer.com/).
 
+Among the search results for PushDialer Call, contact thumbnails will be shown in color:#9e5132 border:
+
+![PushDialer](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-PushDialer.png)
+
+PushDialer Call uses url scheme *pushdialer://{query}* to launch PushDialer and start a call.
+
 ### GrowlVoice Call
 -------------------
 
 GrowlVoice Call requires the newest version of [GrowlVoice](http://www.growlvoice.com/).
+
+Among the search results for GrowlVoice Call, contact thumbnails will be shown in color:#37a940 border:
+
+![GrowlVoice](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-GrowlVoice.png)
+
+GrowlVoice Call uses url scheme *growlvoice:{query}* to launch GrowlVoice and start a call.
 
 Support
 ----------------
