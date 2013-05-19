@@ -1,3 +1,5 @@
+![Uni Call Logo](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call-Logo.png)
+
 [Uni Call](http://guiguan.github.com/Uni-Call/)
 ==========
 
@@ -17,7 +19,7 @@ Installation & Upgrade
 
 		call --updatealfredpreferences yes
 
-5. (optional) If you have used previous version of Uni Call, new components introduced in new version are disabled by default. To enable them please refer to [Enable/disable Call Components](#enabledisable-call-components). 
+5. (Optional) If you have used previous version of Uni Call, new components introduced in a new version are disabled by default. To enable them please refer to [Enable/disable Call Components](#enabledisable-call-components). 
 
 Detailed Usage
 --------------
@@ -31,7 +33,7 @@ where the TARGET could be:
 1. a phone number ([Skype](#skype-call), [FaceTime](#facetime-call), [Phone Amego](#phone-amego-call), [SIP](#sip-call), [PushDialer](#pushdialer-call), [GrowlVoice](#growlvoice-call))
 2. a Skype username ([Skype](#skype-call))
 3. an email address ([FaceTime](#facetime-call))
-4. a SIP address
+4. a SIP address ([SIP](#sip-call))
 5. combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations (All)
 
 When typing the TARGET, the top N closest fuzzy matching results drawn from Apple Contacts will be provided to you in a timely manner. You can choose one of the results to start the call immediately. Meanwhile, you can use the following options to control your search:

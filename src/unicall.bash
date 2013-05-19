@@ -1,4 +1,4 @@
-query="$1"
+query={query}
 
 case "$query" in
 	"[CTSkype]"*)
@@ -9,5 +9,9 @@ case "$query" in
 		open "phoneAmego:${query#'[CTPhoneAmego]'};alert=no";;
 	"[CTSIP]"*)
 		query="${query#'[CTSIP]'}"
-		echo "${query//[ -()]/}";;
+		open "${query//[ -()]/}";;
+	"[CTPushDialer]"*)
+		open "pushdialer://${query#'[CTPushDialer]'}";;
+	"[CTGrowlVoice]"*)
+		open "growlvoice:${query#'[CTGrowlVoice]'}?call";;
 esac
