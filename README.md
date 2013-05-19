@@ -16,7 +16,7 @@ Installation & Upgrade
 4. Type the following command in your Alfred:
 
 	call --updatealfredpreferences yes
-5. (optional) If you have used previous version of Uni Call, new components introduced in new version are disabled by default. To enable them please refer to [Enable/disable Call Components](#enable/disable-call-components). 
+5. (optional) If you have used previous version of Uni Call, new components introduced in new version are disabled by default. To enable them please refer to [Enable/disable Call Components](#enabledisable-call-components). 
 
 Detailed Usage
 --------------
