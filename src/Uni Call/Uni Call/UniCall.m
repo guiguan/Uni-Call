@@ -1,4 +1,4 @@
-#define VERSION @"v5.0"
+#define VERSION @"v5.01"
 //
 //  UniCall.m
 //  Uni Call
@@ -464,10 +464,10 @@ end_result_generation:
             for (int i = 0; i < [callTypes_ count]; i++) {
                 switch ([callTypes_[i] integerValue]) {
                     case CTSkype:
-                        [results appendFormat:@"<item uid=\"%@\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to: %@ (unidentified in Apple Contacts)</subtitle><icon>7016D8DA-6748-4E96-BDA2-FBF05F0BAD5B.png</icon></item>", query, query, query, query, query];
+                        [results appendFormat:@"<item uid=\"%@:Skype\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to: %@ (unidentified in Apple Contacts)</subtitle><icon>7016D8DA-6748-4E96-BDA2-FBF05F0BAD5B.png</icon></item>", query, query, query, query, query];
                         break;
                     case CTFaceTime:
-                        [results appendFormat:@"<item uid=\"%@\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to: %@ (unidentified in Apple Contacts)</subtitle><icon>674DE779-72F5-4632-932B-FD1404CBE0FA.png</icon></item>", query, query, query, query, query];
+                        [results appendFormat:@"<item uid=\"%@:FaceTime\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to: %@ (unidentified in Apple Contacts)</subtitle><icon>674DE779-72F5-4632-932B-FD1404CBE0FA.png</icon></item>", query, query, query, query, query];
                         break;
                     case CTPhoneAmego: {
                         NSString *deviceLabel = nil;
@@ -475,7 +475,7 @@ end_result_generation:
                             deviceLabel = config_[@"phoneAmegoDeviceAliases"][extraParameter_];
                         }
                         
-                        [results appendFormat:@"<item uid=\"%@\" arg=\"[CTPhoneAmego]%@%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Bluetooth phone call to: %@ via Phone Amego (unidentified in Apple Contacts)</subtitle><icon>54C2F3DC-1B4B-476D-9E47-214A16D51F39.png</icon></item>", query, query, deviceLabel ? [NSString stringWithFormat:@";device=%@", deviceLabel] : @"", query, query, query];
+                        [results appendFormat:@"<item uid=\"%@:PhoneAmego\" arg=\"[CTPhoneAmego]%@%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Bluetooth phone call to: %@ via Phone Amego (unidentified in Apple Contacts)</subtitle><icon>54C2F3DC-1B4B-476D-9E47-214A16D51F39.png</icon></item>", query, query, deviceLabel ? [NSString stringWithFormat:@";device=%@", deviceLabel] : @"", query, query, query];
                         break;
                     }
                     case CTSIP: {
@@ -499,10 +499,10 @@ end_result_generation:
                         break;
                     }
                     case CTPushDialer:
-                        [results appendFormat:@"<item uid=\"%@\" arg=\"[CTPushDialer]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>PushDialer call to: %@ (unidentified in Apple Contacts)</subtitle><icon>4E251686-06AC-44A9-8C74-C6A03158E9DC.png</icon></item>", query, query, query, query, query];
+                        [results appendFormat:@"<item uid=\"%@:PushDialer\" arg=\"[CTPushDialer]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>PushDialer call to: %@ (unidentified in Apple Contacts)</subtitle><icon>4E251686-06AC-44A9-8C74-C6A03158E9DC.png</icon></item>", query, query, query, query, query];
                         break;
                     case CTGrowlVoice:
-                        [results appendFormat:@"<item uid=\"%@\" arg=\"[CTGrowlVoice]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Google Voice call to: %@ via GrowlVoice (unidentified in Apple Contacts)</subtitle><icon>07913B02-FCA2-4435-B010-A160ECC14BDF.png</icon></item>", query, query, query, query, query];
+                        [results appendFormat:@"<item uid=\"%@:GrowlVoice\" arg=\"[CTGrowlVoice]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Google Voice call to: %@ via GrowlVoice (unidentified in Apple Contacts)</subtitle><icon>07913B02-FCA2-4435-B010-A160ECC14BDF.png</icon></item>", query, query, query, query, query];
                         break;
                 }
             }
