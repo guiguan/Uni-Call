@@ -19,7 +19,7 @@
 
         <header>
           <h1>Uni Call</h1>
-          <h2>An Alfred workflow providing the fastest way to make Skype, FaceTime or bluetooth phone call on Mac OS X</h2>
+          <h2>The missing universal phone call workflow for Alfred</h2>
         </header>
 
         <section id="downloads" class="clearfix">
@@ -30,11 +30,31 @@
         <hr>
 
         <section id="main_content">
-          <h1><a href="http://guiguan.github.com/Uni-Call/">Uni Call</a></h1>
+          <p><img src="https://github.com/guiguan/Uni-Call/raw/master/Uni-Call-Logo.png" alt="Uni Call Logo"></p>
 
-<p>Uni Call is an <a href="http://www.alfredapp.com">Alfred</a> workflow providing the fastest way to make Skype, FaceTime or bluetooth phone call (via <a href="http://www.sustworks.com/pa_guide/">Phone Amego</a>) on Mac OS X. It is renamed from previous Skype Call workflow. Right now, Uni Call comprises three call components: Skype Call, FaceTime Call and Phone Amego Call, but more could be added (Please let me know if you are interested in using a new way to call:)). </p>
+<h1><a href="http://guiguan.github.com/Uni-Call/">Uni Call</a></h1>
+
+<p>Uni Call is an <a href="http://www.alfredapp.com">Alfred</a> workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make <a href="#skype-call">Skype</a>, <a href="#facetime-call">FaceTime</a>, <a href="#phone-amego-call">bluetooth</a> (via Phone Amego), <a href="#sip-call">SIP</a> (via Telephone), <a href="#pushdialer-call">PushDialer</a> and <a href="#growlvoice-call">Google Voice</a> (via GrowlVoice) phone call. However, more call methods could be added. Please let me know if you are interested!</p>
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png" alt="Uni Call"></p>
+
+<p>Uni Call workflow supports <a href="http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/">Alleyoop auto-updater</a>. It has been tested on Skype 6.4.0.833, FaceTime 2.0 (1080), Phone Amego 1.4_9, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30) and Alfred 2.0.3 (187).</p>
+
+<h2>Installation &amp; Upgrade</h2>
+
+<ol>
+<li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> (with version 2 and above) and <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
+<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow">Uni-Call.alfredworkflow 5.01</a>
+</li>
+<li>Double click on the downloaded workflow file to install</li>
+<li>
+<p>Type the following command in your Alfred:</p>
+
+<pre><code>call --updatealfredpreferences yes
+</code></pre>
+</li>
+<li><p>(Optional) If you have used previous version of Uni Call, new components introduced in a new version are disabled by default. To enable them please refer to <a href="#enabledisable-call-components">Enable/disable Call Components</a>. </p></li>
+</ol><h2>Detailed Usage</h2>
 
 <p>When you would like to make a call, simply type:</p>
 
@@ -44,39 +64,22 @@
 <p>where the TARGET could be:</p>
 
 <ol>
-<li>a phone number (Skype, FaceTime, Phone Amego)</li>
-<li>a Skype username (Skype)</li>
-<li>an email address (FaceTime)</li>
+<li>a phone number (<a href="#skype-call">Skype</a>, <a href="#facetime-call">FaceTime</a>, <a href="#phone-amego-call">Phone Amego</a>, <a href="#sip-call">SIP</a>, <a href="#pushdialer-call">PushDialer</a>, <a href="#growlvoice-call">GrowlVoice</a>)</li>
+<li>a Skype username (<a href="#skype-call">Skype</a>)</li>
+<li>an email address (<a href="#facetime-call">FaceTime</a>)</li>
+<li>a SIP address (<a href="#sip-call">SIP</a>)</li>
 <li>combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations (All)</li>
 </ol><p>When typing the TARGET, the top N closest fuzzy matching results drawn from Apple Contacts will be provided to you in a timely manner. You can choose one of the results to start the call immediately. Meanwhile, you can use the following options to control your search:</p>
 
 <ol>
 <li>
-<p><strong>-a</strong>: lay out all possible call options for your contact (default)</p>
+<p>Any combination of the following options, the order of which will determine the order of results for each person in your Apple Contacts. Also, you can use options anywhere in your call query.</p>
 
-<pre><code>call -a TARGET
-call TARGET
-</code></pre>
-</li>
-<li>
-<p><strong>-s</strong>: make a Skype call to your contact</p>
-
-<pre><code>call -s TARGET
-calls TARGET
-</code></pre>
-</li>
-<li>
-<p><strong>-f</strong>: make a FaceTime call to your contact</p>
-
-<pre><code>call -f TARGET
-callf TARGET
-</code></pre>
-</li>
-<li>
-<p><strong>-p</strong>: make a bluetooth phone call to your contact via Phone Amego</p>
-
-<pre><code>call -p TARGET
-callp TARGET
+<pre><code>call -sf TARGET     # search Skype and FaceTime
+call TARGET -p!f    # search Phone Amego and FaceTime without thumbnails
+call -sfp! TARGET   # equivalent to call -a! TARGET
+callp TARGET -f     # search Phone Amego and FaceTime
+calli TAR -s GET    # search SIP and Skype
 </code></pre>
 </li>
 <li>
@@ -87,46 +90,110 @@ call -s! TARGET     # search for Skype without thumbnails
 </code></pre>
 </li>
 <li>
-<p>Combination of the above options, the order of which will determine the order of results for each person in your Apple Contacts</p>
+<p><strong>-a</strong>: lay out all possible call options for your contact (default)</p>
 
-<pre><code>call -sf TARGET     # search Skype and FaceTime
-call -p!f TARGET    # search Phone Amego and FaceTime without thumbnails
-call -sfp! TARGET   # equivalent to call -a! TARGET
+<pre><code>call -a TARGET
+call TARGET
 </code></pre>
 </li>
-</ol><p>Alternatively, you can make calls using Alfred's Contacts Feature. There will be three contact actions available for you to choose from in <strong><em>Alfred's Contacts Feature</em></strong>: Skype Call, FaceTime Call and Phone Amego Call.</p>
+<li>
+<p><strong>-s</strong>: make a <a href="#skype-call">Skype call</a> to your contact</p>
 
-<p>Uni Call workflow supports <a href="http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/">Alleyoop auto-updater</a>. It has been tested on Skype 6.3.0.602 and Alfred 2.0.3 (187).</p>
+<pre><code>call -s TARGET
+calls TARGET
+</code></pre>
+</li>
+<li>
+<p><strong>-f</strong>: make a <a href="#facetime-call">FaceTime call</a> to your contact</p>
+
+<pre><code>call -f TARGET
+callf TARGET
+</code></pre>
+</li>
+<li>
+<p><strong>-p</strong>: make a <a href="#phone-amego-call">bluetooth phone call</a> to your contact via Phone Amego</p>
+
+<pre><code>call -p TARGET
+callp TARGET
+callp TARGET /DEVICE_ALIAS_OR_DEVICE_LABEL  # select a device to use [*].
+</code></pre>
+
+<p>[*] Please refer to <a href="#manage-aliases-for-device-labels">Manage Aliases for Device Labels</a></p>
+</li>
+<li>
+<p><strong>-i</strong>: make a <a href="#sip-call">SIP call</a> to your contact via Telephone</p>
+
+<pre><code>call -i TARGET
+calli TARGET
+</code></pre>
+</li>
+<li>
+<p><strong>-d</strong>: make a <a href="#pushdialer-call">PushDialer call</a> to your contact</p>
+
+<pre><code>call -d TARGET
+calld TARGET
+</code></pre>
+</li>
+<li>
+<p><strong>-g</strong>: make a <a href="#growlvoice-call">Google Voice call</a> to your contact via GrowlVoice</p>
+
+<pre><code>call -g TARGET
+callg TARGET
+</code></pre>
+</li>
+</ol><p>Alternatively, you can make calls using Alfred's Contacts Feature. There will be six contact actions available for you to choose from in <strong><em>Alfred's Contacts Feature</em></strong> (under Alfred Preferences &gt; Features &gt; Contacts): <a href="#skype-call">Skype Call</a>, <a href="#facetime-call">FaceTime Call</a>, <a href="#phone-amego-call">Phone Amego Call</a>, <a href="#sip-call">SIP Call</a>, <a href="#pushdialer-call">PushDialer Call</a> and <a href="#growlvoice-call">GrowlVoice Call</a>.</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png" alt="Integrate Uni-Call with Alfred's Contacts Feature"></p>
+
+<h3>Enable/disable Call Components</h3>
+
+<p>If you only make use of several call components in your daily life, you can completely disable others. Then your Uni Call will act as if it only has those call components working internally. In reality, this will also speedup your Uni Call.</p>
+
+<p>To disable call components:</p>
+
+<pre><code>call --disable
+</code></pre>
+
+<p>To re-enable disabled call components:</p>
+
+<pre><code>call --enable
+</code></pre>
+
+<p>When a call component is disabled, its corresponding Alfred Preferences will be automatically removed; later when it is enabled again, its Alfred Preferences will then be automatically restored.</p>
+
+<p>Your decision about which call components to enable will be stored persistently in ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/config.plist. The meaning of "persistently" is that your decision will be kept even after you upgrade to future Uni Call versions.</p>
+
+<h3>Contact Thumbnail Cache</h3>
+
+<p>In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. By default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:</p>
+
+<pre><code>call --buildfullthumbnailcache yes
+</code></pre>
+
+<p>to build a full thumbnail cache for all your contacts from Apple Contacts.</p>
+
+<p>If you decided not to show contact thumbnails, you can completely remove the cache using:</p>
+
+<pre><code>call --destroythumbnailcache yes
+</code></pre>
+
+<p>and then use -! option along with other search options to prohibit the automatic thumbnail generation and caching. You can change script filters to adopt -! option too.</p>
 
 <h3>Skype Call</h3>
 
-<hr><p>Among the search results for Skype Call, contact thumbnails will be shown in sky-blue border:</p>
+<hr><p>Skype Call requires the newest version of <a href="http://www.skype.com/en/download-skype/skype-for-mac/">Skype</a>.</p>
+
+<p>Among the search results for Skype Call, contact thumbnails will be shown in color:#47baec border:</p>
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype.png" alt="Skype"></p>
 
-<p>If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in sky-blue border with sky-blue inner shadow:</p>
+<p>If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in color:#47baec border with color:#47baec inner shadow:</p>
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype-Online.png" alt="Skype Online"></p>
 
 <p>If the Skype hasn't been opened yet, Skype Call will open it and ensure it is online before starting the phone call. When making a phone call, Skype Call won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</p>
 
 <p>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</p>
-
-<h3>FaceTime Call</h3>
-
-<hr><p>Among the search results for FaceTime Call, contact thumbnails will be shown in pink border:</p>
-
-<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime.png" alt="FaceTime"></p>
-
-<p>You can nominate a particular phone or email field of a person in Apple Contacts to be FaceTime Call targets of your choice, which will opt out other phone numbers and emails to be shown in the searching results. To do so, simply put a customized label, either <strong><em>FaceTime</em></strong>, <strong><em>iPhone</em></strong> or <strong><em>iDevice</em></strong> in front of phone or email nominees:</p>
-
-<p><img src="https://github.com/guiguan/Uni-Call/raw/master/FaceTime-Nomination.png" alt="FaceTime Nomination"></p>
-
-<p>The thumbnail of a person who has nominated phone number or email will be shown in pink border with pink inner shadow:</p>
-
-<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime-Nominated.png" alt="FaceTime Nominated"></p>
-
-<p>FaceTime Call uses url scheme <em>facetime:{query}</em> to launch FaceTime and start a call.</p>
 
 <h4>The Correct Way to Store a Skype Username for Your Contact</h4>
 
@@ -138,41 +205,90 @@ call -sfp! TARGET   # equivalent to call -a! TARGET
 <li>Store the Skype username in the IM (Instant Message) field, and select Skype as the IM type</li>
 </ol><p><img src="https://github.com/guiguan/Uni-Call/raw/master/Apple-Contacts.png" alt="Apple-Contacts"></p>
 
+<h3>FaceTime Call</h3>
+
+<hr><p>FaceTime Call requires the newest version of <a href="http://www.apple.com/au/mac/facetime/">FaceTime</a>.</p>
+
+<p>Among the search results for FaceTime Call, contact thumbnails will be shown in color:#f74598 border:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime.png" alt="FaceTime"></p>
+
+<p>You can nominate a particular phone or email field of a person in Apple Contacts to be FaceTime Call targets of your choice, which will opt out other phone numbers and emails to be shown in the searching results. To do so, simply put a customized label, either <strong><em>FaceTime</em></strong>, <strong><em>iPhone</em></strong> or <strong><em>iDevice</em></strong> in front of phone or email nominees:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/FaceTime-Nomination.png" alt="FaceTime Nomination"></p>
+
+<p>The thumbnail of a person who has nominated phone number or email will be shown in color:#f74598 border with color:#f74598 inner shadow:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime-Nominated.png" alt="FaceTime Nominated"></p>
+
+<p>FaceTime Call uses url scheme <em>facetime:{query}</em> to launch FaceTime and start a call.</p>
+
 <h3>Phone Amego Call</h3>
 
 <hr><p>With the help of <a href="http://www.sustworks.com/pa_guide/">Phone Amego</a>, you can turn your Mac into a bluetooth headset and remotely control your real mobile phone to start and receive real phone calls. Sweet?!</p>
 
-<p>Among the search results for Phone Amego Call, contact thumbnails will be shown in yellow border:</p>
+<p>Phone Amego Call requires the newest version of <a href="http://www.sustworks.com/pa_guide/">Phone Amego</a>.</p>
+
+<p>Among the search results for Phone Amego Call, contact thumbnails will be shown in color:#fcbd5a border:</p>
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-PhoneAmego.png" alt="Phone Amego"></p>
 
 <p>Phone Amego Call uses url scheme <em>phoneAmego:{query};alert=no</em> to launch Phone Amego and start a call.</p>
 
-<h2>Installation &amp; Configuration</h2>
+<h4>Manage Aliases for Device Labels</h4>
 
-<ol>
-<li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> (with version 2 and above) and <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
-<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow">Uni-Call.alfredworkflow 4.0</a>
-</li>
-<li>Double click on the downloaded workflow file to install</li>
-<li>(Optional) Under "Alfred Preferences &gt; Features &gt; Contacts":</li>
-</ol><p><img src="https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png" alt="Integrate Uni-Call with Alfred's Contacts Feature"></p>
+<p>You can assign an easy to remember alias to a complicated device label. For example:</p>
 
-<h3>Contact Thumbnail Cache</h3>
-
-<p>In order to present you your contact thumbnails in search results, Uni Call will cache thumbnails (32x32 pixels for each, don't know how retina display users feel about this, let me know) in /Users/guiguan/Library/Caches/net.guiguan.Uni-Call/thumbnails/. Their lifespans will be one week. Be default, only those contacts have been searched for will have their thumbnails cached, so the next time, when you search for the same contacts, they will load faster. However, you can use:</p>
-
-<pre><code>call -# yes
+<pre><code>callp --map ip to "Guan's iPhone" yes
 </code></pre>
 
-<p>to build a full thumbnail cache for all your contacts from Apple Contacts.</p>
+<p>Then in the future you can make a bluetooth phone call through device "Guan's iPhone" as follows:</p>
 
-<p>If you decided not to show contact thumbnails, you can completely remove the cache using:</p>
-
-<pre><code>call -$ yes
+<pre><code>callp TARGET /ip
 </code></pre>
 
-<p>and then use -! option along with other search options to prohibit the automatic thumbnail generation and caching. You can change script filters to adopt -! option too.</p>
+<p>To remove the assigned alias:</p>
+
+<pre><code>callp --unmap ip yes
+</code></pre>
+
+<h3>SIP Call</h3>
+
+<hr><p>SIP Call requires the newest version of <a href="http://voip.about.com/od/sipandh323/a/What-Is-Sip-And-What-Is-It-Good-For.htm">SIP</a> client <a href="http://www.tlphn.com/">Telephone</a>.</p>
+
+<p>Among the search results for SIP Call, contact thumbnails will be shown in color:#fcbd5a border:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-SIP.png" alt="SIP"></p>
+
+<p>If you store a SIP address in a contact's Url field with custom label "sip", such as follows:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/SIP-Record.png" alt="SIP Record"></p>
+
+<p>then the corresponding thumbnail for that person will be shown in color:#fcbd5a border with color:#fcbd5a inner shadow:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-SIP-Recorded.png" alt="SIP Recorded"></p>
+
+<p>SIP Call uses url scheme <em>tel:{query}</em> for phone numbers and url scheme <em>sip:{query}</em> for SIP addresses to launch Telephone and start a call.</p>
+
+<h3>PushDialer Call</h3>
+
+<hr><p>PushDialer Call requires the newest version of <a href="http://pushdialer.com/">PushDialer</a>.</p>
+
+<p>Among the search results for PushDialer Call, contact thumbnails will be shown in color:#9e5132 border:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-PushDialer.png" alt="PushDialer"></p>
+
+<p>PushDialer Call uses url scheme <em>pushdialer://{query}</em> to launch PushDialer and start a call.</p>
+
+<h3>GrowlVoice Call</h3>
+
+<hr><p>GrowlVoice Call requires the newest version of <a href="http://www.growlvoice.com/">GrowlVoice</a>.</p>
+
+<p>Among the search results for GrowlVoice Call, contact thumbnails will be shown in color:#37a940 border:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-GrowlVoice.png" alt="GrowlVoice"></p>
+
+<p>GrowlVoice Call uses url scheme <em>growlvoice:{query}</em> to launch GrowlVoice and start a call.</p>
 
 <h2>Support</h2>
 
@@ -182,7 +298,44 @@ call -sfp! TARGET   # equivalent to call -a! TARGET
 
 <p><a href="http://www.guiguan.net">Guan Gui</a></p>
 
-<h2>Legacy: Skype-Call.alfredextension 1.0 for Alfred v1</h2>
+<h2>Changelog</h2>
+
+<h4>v5.01 (20/05/13)</h4>
+
+<ul>
+<li>Minor bug fixes: now even if a TARGET is not identified in Apple Contacts, user's preferences of the TARGET's call options will be learnt as well</li>
+</ul><h4>v5.0 (19/05/13)</h4>
+
+<ul>
+<li>Added SIP Call component</li>
+<li>Added PushDialer Call component</li>
+<li>Added GrowlVoice Call component</li>
+<li>Update for Phone Amego Call: the user can select which bluetooth device to use ("callp TARGET /DEVICE_ALIAS_OR_DEVICE_LABEL") for making a phone call. The user can also assign an easy to remember alias to a complicated device label.</li>
+<li>Now the user can completely enable/disable call components through "call --enable"/"call --disable". When a call component is disabled, its corresponding Alfred Preferences will be automatically removed; later when it is enabled again, its Alfred Preferences will then be automatically restored.</li>
+<li>The thumbnail cache folder is now moved from ~/Library/Caches/net.guiguan.Uni-Call/thumbnails to ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/thumbnails, which ensures that Uni Call will be uninstalled with Alfred 2.</li>
+<li>Added a persistent configuration file config.plist in ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call. The reason why this config.plist is not placed inside Uni Call workflow folder but in Workflow Data folder is to make sure that the user's configurations will stay unchanged after future workflow upgrades.</li>
+</ul><h4>v4.21 (14/05/13)</h4>
+
+<ul>
+<li>Minor bug fixes: now handles spaces in POSIX path to the workflow. Before, those spaces could cause problem for Uni Call Basestation to launch Uni Call.</li>
+<li>Minor bug fixes: Skype Call can now correctly generate notifications in Mac OS X Notification Centre.</li>
+</ul><h4>v4.2 (12/05/13)</h4>
+
+<ul>
+<li>The original Uni Call executable is now divided into two separate parts: the Uni Call Basestation and the Uni Call. The Uni Call Basestation is the one invoked everytime by Alfred, while the Uni Call is in turn spawned by Uni Call Basestation, which will continue to run in the background unless idling for 5 min. Basically, the Uni Call will sit there and wait to serve requests come from Uni Call Basestation (via TCP port number 28642). In this way, the consecutive requests come from Alfred could be served more quickly by Uni Call. In fact, it does improve the response time by 50% (Refer to the following figure)!</li>
+</ul><p><img src="https://github.com/guiguan/Uni-Call/raw/master/Uni-Call-42-Performance.png" alt="Uni Call v4.2 Performance"></p>
+
+<ul>
+<li>Options can now be used everywhere among the query. So "call guan -s gui" is equivalent to "call -s guan gui" and "call guan gui -s".</li>
+</ul><h4>v4.1 (7/05/13)</h4>
+
+<ul>
+<li>Did some performance tweak. Now Uni Call runs much faster.</li>
+</ul><h4>v4.0 (4/05/13)</h4>
+
+<ul>
+<li>Big changes to original Skype Call workflow and renamed it to Uni Call. FaceTime and Phone Amego Call components are introduced.</li>
+</ul><h2>Legacy: Skype-Call.alfredextension 1.0 for Alfred v1</h2>
 
 <h3>Installation</h3>
 
