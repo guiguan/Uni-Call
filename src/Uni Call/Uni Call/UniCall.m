@@ -1,4 +1,4 @@
-#define VERSION @"v5.01"
+#define VERSION @"v5.02"
 //
 //  UniCall.m
 //  Uni Call
@@ -56,6 +56,7 @@ CallType callType_;
 NSMutableArray *callTypes_;
 int resultCount_;
 NSString *extraParameter_;
+BOOL hasGeneratedOutputsForFirstContact_;
 
 + (void)initialize
 {
@@ -169,6 +170,7 @@ NSString *extraParameter_;
         
         peopleFound = [AB recordsMatchingSearchElement:searchEl];
         [results setString:@"\n<?xml version=\"1.0\"?>\n\n<items>"];
+        hasGeneratedOutputsForFirstContact_ = NO;
     }
     
     if (!(callType_ & CTNoThumbnailCache) && ![[self fileManager] fileExistsAtPath:[self thumbnailCachePath]]) {
@@ -183,6 +185,8 @@ NSString *extraParameter_;
         NSMutableString *outDisplayName = [NSMutableString string];
         
         if (!(callType_ & CTBuildFullThumbnailCache)) {
+            hasGeneratedOutputsForFirstContact_ = j >= 1;
+            
             NSString *lastName = [r valueForProperty:kABLastNameProperty];
             NSString *firstName = [r valueForProperty:kABFirstNameProperty];
             NSString *middleName = [r valueForProperty:kABMiddleNameProperty];
@@ -380,7 +384,7 @@ NSString *extraParameter_;
                         ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
-                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:SIP:Recorded\" arg=\"[CTSIP]tel:%@\" autocomplete=\"%@\"><title>%@</title><subtitle>SIP call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, sipThumbnailPath]];
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:SIP\" arg=\"[CTSIP]tel:%@\" autocomplete=\"%@\"><title>%@</title><subtitle>SIP call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, sipThumbnailPath]];
                         }
                         
                         if ([self fillResults:results withBufferedResults:bufferedResults])
@@ -515,19 +519,22 @@ end_result_generation:
 
 -(BOOL)fillResults:(NSMutableString *)results withBufferedResults:(NSMutableArray *)bufferedResults
 {
-    int quota = RESULT_NUM_LIMIT - resultCount_;
     int numOfResultsToFillIn = (int)[bufferedResults count];
-    int numOfResultsToDiscard = numOfResultsToFillIn - quota;
     
-    if (numOfResultsToDiscard > 0) {
-        // can't fill in all buffer
-        numOfResultsToFillIn -= numOfResultsToDiscard;
-        [bufferedResults removeObjectsInRange:NSMakeRange(numOfResultsToFillIn, numOfResultsToDiscard)];
+    if (hasGeneratedOutputsForFirstContact_) {
+        int quota = MAX(RESULT_NUM_LIMIT - resultCount_, 0);
+        int numOfResultsToDiscard = numOfResultsToFillIn - quota;
+        
+        if (numOfResultsToDiscard > 0) {
+            // can't fill in all buffer
+            numOfResultsToFillIn -= numOfResultsToDiscard;
+            [bufferedResults removeObjectsInRange:NSMakeRange(numOfResultsToFillIn, numOfResultsToDiscard)];
+        }
     }
     
     [results appendString:[bufferedResults componentsJoinedByString:@""]];
     resultCount_ += numOfResultsToFillIn;
-    return resultCount_ >= RESULT_NUM_LIMIT;
+    return hasGeneratedOutputsForFirstContact_ ? resultCount_ >= RESULT_NUM_LIMIT : NO;
 }
 
 #pragma mark -

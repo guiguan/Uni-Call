@@ -13,7 +13,7 @@ Installation & Upgrade
 --------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 5.01](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 5.02](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
 3. Double click on the downloaded workflow file to install
 4. Type the following command in your Alfred:
 
@@ -224,7 +224,7 @@ Among the search results for PushDialer Call, contact thumbnails will be shown i
 
 ![PushDialer](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-PushDialer.png)
 
-PushDialer Call uses url scheme *pushdialer://{query}* to launch PushDialer and start a call.
+PushDialer Call uses url scheme *pushdialer://{query}* to launch PushDialer and start a call. By default, PushDialer will send out a Growl notification to confirm a dialling out.
 
 ### GrowlVoice Call
 -------------------
@@ -247,6 +247,9 @@ Credit
 
 Changelog
 ----------------
+#### v5.02 (21/05/13)
+* Minor bug fixes: now Uni Call will at least fully output results for one matched contact before enforcing result number limit to improve the responsiveness.
+
 #### v5.01 (20/05/13)
 * Minor bug fixes: now even if a TARGET is not identified in Apple Contacts, user's preferences of the TARGET's call options will be learnt as well
 
