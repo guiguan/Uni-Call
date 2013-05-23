@@ -23,7 +23,8 @@
         </header>
 
         <section id="downloads" class="clearfix">
-          <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow" id="download-alfredworkflow" class="button"><span>Download Uni-Call.alfredworkflow 5.02</span></a>
+          <a href="https://github.com/guiguan/Uni-Call/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/guiguan/Uni-Call/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
           <a href="https://github.com/guiguan/Uni-Call" id="view-on-github" class="button"><span>View on GitHub</span></a>
         </section>
 
@@ -44,7 +45,7 @@
 
 <ol>
 <li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> (with version 2 and above) and <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
-<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow">Uni-Call.alfredworkflow 5.02</a>
+<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow">Uni-Call.alfredworkflow 5.03</a>
 </li>
 <li>Double click on the downloaded workflow file to install</li>
 <li>
@@ -213,9 +214,11 @@ callg TARGET
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime.png" alt="FaceTime"></p>
 
-<p>You can nominate a particular phone or email field of a person in Apple Contacts to be FaceTime Call targets of your choice, which will opt out other phone numbers and emails to be shown in the searching results. To do so, simply put a customized label, either <strong><em>FaceTime</em></strong>, <strong><em>iPhone</em></strong> or <strong><em>iDevice</em></strong> in front of phone or email nominees:</p>
+<p>You can nominate a particular phone or email field of a person in Apple Contacts to be FaceTime Call targets of your choice, which will opt out other phone numbers and emails to be shown in the searching results. To do so, simply put a customized label, either <strong><em>FaceTime</em></strong>, <strong><em>iPhone</em></strong>, <strong><em>iPad</em></strong> or <strong><em>iDevice</em></strong> in front of phone or email nominees:</p>
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/FaceTime-Nomination.png" alt="FaceTime Nomination"></p>
+
+<p>You can also use comma to separate multiple labels. For example, using label "iPhone, home" in front of a phone number will nominate that phone number as well as labelling that number as "home" in the Uni Call search results. Note that the label "iPhone" is only used for target nomination, but not used to label Uni Call search results.</p>
 
 <p>The thumbnail of a person who has nominated phone number or email will be shown in color:#f74598 border with color:#f74598 inner shadow:</p>
 
@@ -300,7 +303,11 @@ callg TARGET
 
 <h2>Changelog</h2>
 
-<h4>v5.02 (21/05/13)</h4>
+<h4>v5.03 (23/05/13)</h4>
+
+<ul>
+<li>Now those labels for phone number fields in Apple Contacts are shown in front of phone numbers in Uni Call, which can allow you to quickly recognise right phone number target for business, for home etc. Multiple labels can also be used, which are separated by commas. Therefore, you can use FaceTime target nomination along with traditional contact labels, such as using label "iPhone, home".</li>
+</ul><h4>v5.02 (21/05/13)</h4>
 
 <ul>
 <li>Minor bug fixes: now Uni Call will at least fully output results for one matched contact before enforcing result number limit to improve the responsiveness.</li>
