@@ -159,9 +159,11 @@ Among the search results for FaceTime Call, contact thumbnails will be shown in 
 
 ![FaceTime](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FaceTime.png)
 
-You can nominate a particular phone or email field of a person in Apple Contacts to be FaceTime Call targets of your choice, which will opt out other phone numbers and emails to be shown in the searching results. To do so, simply put a customized label, either **_FaceTime_**, **_iPhone_** or **_iDevice_** in front of phone or email nominees:
+You can nominate a particular phone or email field of a person in Apple Contacts to be FaceTime Call targets of your choice, which will opt out other phone numbers and emails to be shown in the searching results. To do so, simply put a customized label, either **_FaceTime_**, **_iPhone_**, **_iPad_** or **_iDevice_** in front of phone or email nominees:
 
 ![FaceTime Nomination](https://github.com/guiguan/Uni-Call/raw/master/FaceTime-Nomination.png)
+
+You can also use comma to separate multiple labels. For example, using label "iPhone, home" in front of a phone number will nominate that phone number as well as labelling that number as "home" in the Uni Call search results. Note that the label "iPhone" is only used for target nomination, but not used to label Uni Call search results.
 
 The thumbnail of a person who has nominated phone number or email will be shown in color:#f74598 border with color:#f74598 inner shadow:
 
@@ -247,6 +249,9 @@ Credit
 
 Changelog
 ----------------
+#### v5.03 (23/05/13)
+* Now those labels for phone number fields in Apple Contacts are shown in front of phone numbers in Uni Call, which can allow you to quickly recognise right phone number target for business, for home etc. Multiple labels can also be used, which are separated by commas. Therefore, you can use FaceTime target nomination along with traditional contact labels, such as using label "iPhone, home".
+
 #### v5.02 (21/05/13)
 * Minor bug fixes: now Uni Call will at least fully output results for one matched contact before enforcing result number limit to improve the responsiveness.
 

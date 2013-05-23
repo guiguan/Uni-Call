@@ -1,4 +1,4 @@
-#define VERSION @"v5.02"
+#define VERSION @"v5.03"
 //
 //  UniCall.m
 //  Uni Call
@@ -49,9 +49,11 @@ typedef NS_OPTIONS(NSInteger, CallType)
 static CallType sNonSearchableOptions = CTNoThumbnailCache | CTBuildFullThumbnailCache;
 static CallType sAllCallTypes = CTSkype | CTFaceTime | CTPhoneAmego | CTSIP | CTPushDialer | CTGrowlVoice;
 static NSSize sThumbnailSize;
-static CallType enabledCallType_;
-static NSMutableDictionary *config_; // don't assume config.plist has necessary components
+static NSSet *sFaceTimeNominatedPhoneLabels;
+static NSMutableSet *sReservedPhoneLabels;
 
+NSMutableDictionary *config_; // don't assume config.plist has necessary components
+CallType enabledCallType_;
 CallType callType_;
 NSMutableArray *callTypes_;
 int resultCount_;
@@ -61,6 +63,9 @@ BOOL hasGeneratedOutputsForFirstContact_;
 + (void)initialize
 {
     sThumbnailSize = NSMakeSize(32, 32);
+    sFaceTimeNominatedPhoneLabels = [NSSet setWithArray:@[@"facetime", @"iphone", @"ipad", @"mac", @"idevice"]];
+    sReservedPhoneLabels = [NSMutableSet set];
+    [sReservedPhoneLabels unionSet:sFaceTimeNominatedPhoneLabels];
 }
 
 - (id)init
@@ -88,6 +93,31 @@ BOOL hasGeneratedOutputsForFirstContact_;
         return [queryMatch rangeAtIndex:1];
     else
         return [queryMatch range];
+}
+
+- (NSDictionary *)processPhoneLabel:(NSString *)phoneLabel
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    NSMutableArray *labelsToDisplay = [NSMutableArray array];
+    [dict setObject:[NSMutableSet set] forKey:@"toConsume"];
+    
+    static NSCharacterSet *spaceCS = nil;
+    
+    if (!spaceCS)
+        spaceCS = [NSCharacterSet characterSetWithCharactersInString:@" \n_$!<>"];
+    
+    for (NSString *l in [phoneLabel componentsSeparatedByString:@","]) {
+        NSString *cl = [[l stringByTrimmingCharactersInSet:spaceCS] lowercaseString];
+        if ([sReservedPhoneLabels containsObject:cl]) {
+            [dict[@"toConsume"] addObject:cl];
+        } else {
+            [labelsToDisplay addObject:cl];
+        }
+    }
+    
+    [dict setObject:[labelsToDisplay componentsJoinedByString:@", "] forKey:@"toDisplay"];
+    
+    return dict;
 }
 
 -(NSString *)process:(NSString *)query
@@ -248,7 +278,9 @@ BOOL hasGeneratedOutputsForFirstContact_;
                         ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
-                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, skypeThumbnailPath]];
+                            NSDictionary *processedPhoneLabels = [self processPhoneLabel:[ims labelAtIndex:i]];
+                            
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to phone number: %@ %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, processedPhoneLabels[@"toDisplay"], phoneNum, skypeThumbnailPath]];
                         }
                         
                         if ([self fillResults:results withBufferedResults:bufferedResults])
@@ -281,12 +313,13 @@ BOOL hasGeneratedOutputsForFirstContact_;
                         ABMultiValue *ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
+                            NSDictionary *processedPhoneLabels = [self processPhoneLabel:[ims labelAtIndex:i]];
                             
-                            if ([[ims labelAtIndex:i] caseInsensitiveCompare:@"FaceTime"] == NSOrderedSame || [[ims labelAtIndex:i] caseInsensitiveCompare:@"iPhone"] == NSOrderedSame || [[ims labelAtIndex:i] caseInsensitiveCompare:@"iDevice"] == NSOrderedSame) {
-                                [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:FaceTime:Nominated\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to phone number: %@ (nominated)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, faceTimeNominatedThumbnailPath]];
+                            if ([sFaceTimeNominatedPhoneLabels intersectsSet:processedPhoneLabels[@"toConsume"]]) {
+                                [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:FaceTime:Nominated\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to phone number: %@ %@ (nominated)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, processedPhoneLabels[@"toDisplay"], phoneNum, faceTimeNominatedThumbnailPath]];
                                 [nominatedResultsIndices addIndex:i];
                             } else
-                                [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:FaceTime\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, faceTimeThumbnailPath]];
+                                [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:FaceTime\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to phone number: %@ %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName,  processedPhoneLabels[@"toDisplay"], phoneNum, faceTimeThumbnailPath]];
                         }
                         
                         // output emails
@@ -294,7 +327,7 @@ BOOL hasGeneratedOutputsForFirstContact_;
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *email = [ims valueAtIndex:i];
                             
-                            if ([[ims labelAtIndex:i] caseInsensitiveCompare:@"FaceTime"] == NSOrderedSame || [[ims labelAtIndex:i] caseInsensitiveCompare:@"iPhone"] == NSOrderedSame || [[ims labelAtIndex:i] caseInsensitiveCompare:@"iDevice"] == NSOrderedSame) {
+                            if ([sFaceTimeNominatedPhoneLabels containsObject:[[ims labelAtIndex:i] lowercaseString]]) {
                                 [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:FaceTime:Nominated\" arg=\"[CTFaceTime]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>FaceTime call to email address: %@ (nominated)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], email, email, outDisplayName, email, faceTimeNominatedThumbnailPath]];
                                 [nominatedResultsIndices addIndex:[bufferedResults count] - 1];
                             } else
@@ -329,13 +362,14 @@ BOOL hasGeneratedOutputsForFirstContact_;
                         ABMultiValue *ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
+                            NSDictionary *processedPhoneLabels = [self processPhoneLabel:[ims labelAtIndex:i]];
                             
                             NSString *deviceLabel = nil;
                             if (extraParameter_) {
                                 deviceLabel = config_[@"phoneAmegoDeviceAliases"][extraParameter_];
                             }
                             
-                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:PhoneAmego\" arg=\"[CTPhoneAmego]%@%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Bluetooth phone call to phone number: %@ via Phone Amego</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, deviceLabel ? [NSString stringWithFormat:@";device=%@", deviceLabel] : @"", phoneNum, outDisplayName, phoneNum, phoneAmegoThumbnailPath]];
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:PhoneAmego\" arg=\"[CTPhoneAmego]%@%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Bluetooth phone call to phone number: %@ %@ via Phone Amego</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, deviceLabel ? [NSString stringWithFormat:@";device=%@", deviceLabel] : @"", phoneNum, outDisplayName, processedPhoneLabels[@"toDisplay"], phoneNum, phoneAmegoThumbnailPath]];
                         }
                         
                         if ([self fillResults:results withBufferedResults:bufferedResults])
@@ -384,7 +418,9 @@ BOOL hasGeneratedOutputsForFirstContact_;
                         ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
-                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:SIP\" arg=\"[CTSIP]tel:%@\" autocomplete=\"%@\"><title>%@</title><subtitle>SIP call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, sipThumbnailPath]];
+                            NSDictionary *processedPhoneLabels = [self processPhoneLabel:[ims labelAtIndex:i]];
+                            
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:SIP\" arg=\"[CTSIP]tel:%@\" autocomplete=\"%@\"><title>%@</title><subtitle>SIP call to phone number: %@ %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, processedPhoneLabels[@"toDisplay"], phoneNum, sipThumbnailPath]];
                         }
                         
                         if ([self fillResults:results withBufferedResults:bufferedResults])
@@ -412,8 +448,9 @@ BOOL hasGeneratedOutputsForFirstContact_;
                         ABMultiValue *ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
+                            NSDictionary *processedPhoneLabels = [self processPhoneLabel:[ims labelAtIndex:i]];
                             
-                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:PushDialer\" arg=\"[CTPushDialer]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>PushDialer call to phone number: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, pushDialerThumbnailPath]];
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:PushDialer\" arg=\"[CTPushDialer]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>PushDialer call to phone number: %@ %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, processedPhoneLabels[@"toDisplay"], phoneNum, pushDialerThumbnailPath]];
                         }
                         
                         if ([self fillResults:results withBufferedResults:bufferedResults])
@@ -441,8 +478,9 @@ BOOL hasGeneratedOutputsForFirstContact_;
                         ABMultiValue *ims = [r valueForProperty:kABPhoneProperty];
                         for (int i = 0; i < [ims count]; i++) {
                             NSString *phoneNum = [ims valueAtIndex:i];
+                            NSDictionary *processedPhoneLabels = [self processPhoneLabel:[ims labelAtIndex:i]];
                             
-                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:GrowlVoice\" arg=\"[CTGrowlVoice]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Google Voice call to phone number: %@ via GrowlVoice</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, phoneNum, growlVoiceThumbnailPath]];
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:GrowlVoice\" arg=\"[CTGrowlVoice]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Google Voice call to phone number: %@ %@ via GrowlVoice</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, processedPhoneLabels[@"toDisplay"], phoneNum, growlVoiceThumbnailPath]];
                         }
                         
                         if ([self fillResults:results withBufferedResults:bufferedResults])
