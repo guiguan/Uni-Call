@@ -17,7 +17,7 @@ Installation & Upgrade
 --------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 5.03](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 5.1](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
 3. Double click on the downloaded workflow file to install
 4. Type the following command in your Alfred:
 
@@ -243,6 +243,12 @@ Among the search results for GrowlVoice Call, contact thumbnails will be shown i
 
 GrowlVoice Call uses url scheme *growlvoice:{query}* to launch GrowlVoice and start a call.
 
+### CallTrunk Call
+------------------
+
+### Fritz!Box Call
+------------------
+
 Support
 ----------------
 Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Uni-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/uni-call). Or, you can post on the [Uni Call topic section of Alfred forum](http://www.guiguan.net/redirections/Alfred-Forum-Uni-Call).
@@ -253,6 +259,11 @@ Credit
 
 Changelog
 ----------------
+#### v5.1 (07/06/13)
+* Fixed a minor bug of Skype Call that could prevent non-English platform from working properly
+* Added CallTrunk Call component. The user can use --setdefaultcountry long option to set a default country specific Call Trunk to use. Also, the user can provide an extra parameter to overwrite the default country, for example, using "callk guan gui /au" to call Guan Gui via AU version of Call Trunk.
+* Added Fritz!Box Call component
+
 #### v5.03 (23/05/13)
 * Now those labels for phone number fields in Apple Contacts are shown in front of phone numbers in Uni Call, which can allow you to quickly recognise right phone number target for business, for home etc. Multiple labels can also be used, which are separated by commas. Therefore, you can use FaceTime target nomination along with traditional contact labels, such as using label "iPhone, home".
 
@@ -270,7 +281,6 @@ Changelog
 * Now the user can completely enable/disable call components through "call --enable"/"call --disable". When a call component is disabled, its corresponding Alfred Preferences will be automatically removed; later when it is enabled again, its Alfred Preferences will then be automatically restored.
 * The thumbnail cache folder is now moved from ~/Library/Caches/net.guiguan.Uni-Call/thumbnails to ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/thumbnails, which ensures that Uni Call will be uninstalled with Alfred 2.
 * Added a persistent configuration file config.plist in ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call. The reason why this config.plist is not placed inside Uni Call workflow folder but in Workflow Data folder is to make sure that the user's configurations will stay unchanged after future workflow upgrades.
-
 
 #### v4.21 (14/05/13)
 * Minor bug fixes: now handles spaces in POSIX path to the workflow. Before, those spaces could cause problem for Uni Call Basestation to launch Uni Call.
