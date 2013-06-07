@@ -3,13 +3,13 @@
 [Uni Call](http://guiguan.github.com/Uni-Call/)
 ==========
 
-Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make [Skype](#skype-call), [FaceTime](#facetime-call), [bluetooth](#phone-amego-call) (via Phone Amego), [SIP](#sip-call) (via Telephone), [PushDialer](#pushdialer-call) and [Google Voice](#growlvoice-call) (via GrowlVoice) phone call. However, more call methods could be added. Please let me know if you are interested!
+Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make [Skype](#skype-call), [FaceTime](#facetime-call), [bluetooth](#phone-amego-call) (via Phone Amego), [SIP](#sip-call) (via Telephone), [PushDialer](#pushdialer-call), [Google Voice](#growlvoice-call) (via GrowlVoice), [CallTrunk](#calltrunk-call) and [Fritz!Box](#fritzbox-call) phone call. However, more call methods could be added. Please let me know if you are interested!
 
 ![Uni Call](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png)
 
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.4.0.833, FaceTime 2.0 (1080), Phone Amego 1.4_9, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30) and Alfred 2.0.3 (187).
+Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.4.0.833, FaceTime 2.0 (1080), Phone Amego 1.4_9, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Alfred 2.0.4 (199) and Mac OS X 10.8.4. Please note that the Mac OS X below 10.8 is not supported.
 
-If you like Uni Call, you can make a small donation to [me](http://www.guiguan.net) via PayPal as to show your thanks and support for my work :)
+If you like Uni Call, please consider making a small donation to [me](http://www.guiguan.net) via PayPal as to show your thanks and support for my work :)
 
 [![Donate](http://www.paypalobjects.com/en_AU/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=2QBXQLYQNF552&lc=AU&item_name=Uni%20Call&item_number=Uni%20Call&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
@@ -25,6 +25,10 @@ Installation & Upgrade
 
 5. (Optional) If you have used previous version of Uni Call, new components introduced in a new version are disabled by default. To enable them please refer to [Enable/disable Call Components](#enabledisable-call-components). 
 
+Support
+----------------
+Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Uni-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/uni-call). Or, you can post on the [Uni Call topic section of Alfred forum](http://www.guiguan.net/redirections/Alfred-Forum-Uni-Call).
+
 Detailed Usage
 --------------
 
@@ -34,7 +38,7 @@ When you would like to make a call, simply type:
 
 where the TARGET could be:
 
-1. a phone number ([Skype](#skype-call), [FaceTime](#facetime-call), [Phone Amego](#phone-amego-call), [SIP](#sip-call), [PushDialer](#pushdialer-call), [GrowlVoice](#growlvoice-call))
+1. a phone number ([Skype](#skype-call), [FaceTime](#facetime-call), [Phone Amego](#phone-amego-call), [SIP](#sip-call), [PushDialer](#pushdialer-call), [GrowlVoice](#growlvoice-call), [CallTrunk](#calltrunk-call), [Fritz!Box](#fritzbox-call))
 2. a Skype username ([Skype](#skype-call))
 3. an email address ([FaceTime](#facetime-call))
 4. a SIP address ([SIP](#sip-call))
@@ -94,7 +98,20 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 		call -g TARGET
 		callg TARGET
 
-Alternatively, you can make calls using Alfred's Contacts Feature. There will be six contact actions available for you to choose from in **_Alfred's Contacts Feature_** (under Alfred Preferences > Features > Contacts): [Skype Call](#skype-call), [FaceTime Call](#facetime-call), [Phone Amego Call](#phone-amego-call), [SIP Call](#sip-call), [PushDialer Call](#pushdialer-call) and [GrowlVoice Call](#growlvoice-call).
+10. **-k**: make a [CallTrunk](#calltrunk-call) to your contact
+
+		call -k TARGET
+		callk TARGET
+		callk TARGET /COUNTRY_CODE # select a country specific Call Trunk app to use, which will overwrite the default country setting
+
+	[*] Please refer to [Set Call Trunk Country](#set-call-trunk-country)
+
+11. **-z**: make a [Fritz!Box](#fritzbox-call) to your contact via Frizzix
+
+		call -z TARGET
+		callz TARGET
+
+Alternatively, you can make calls using Alfred's Contacts Feature. There will be eight contact actions available for you to choose from in **_Alfred's Contacts Feature_** (under Alfred Preferences > Features > Contacts): [Skype Call](#skype-call), [FaceTime Call](#facetime-call), [Phone Amego Call](#phone-amego-call), [SIP Call](#sip-call), [PushDialer Call](#pushdialer-call), [GrowlVoice Call](#growlvoice-call), [CallTrunk Call](#calltrunk-call) and [Fritz!Box Call](#fritzbox-call).
 
 ![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
 
@@ -194,7 +211,7 @@ You can assign an easy to remember alias to a complicated device label. For exam
 
 	callp --map ip to "Guan's iPhone" yes
 
-Then in the future you can make a bluetooth phone call through device "Guan's iPhone" as follows:
+Then in the future you can make a bluetooth phone call through device "Guan's iPhone" using "/" extra parameter syntax as follows:
 
 	callp TARGET /ip
 
@@ -246,12 +263,36 @@ GrowlVoice Call uses url scheme *growlvoice:{query}* to launch GrowlVoice and st
 ### CallTrunk Call
 ------------------
 
+You can record your phone calls and have the conversations automatically recognised for fast searching and analysis with the help of [CallTrunk](https://www.calltrunk.com/au/en/).
+
+CallTrunk Call requires the newest version of a country specific Call Trunk app for Mac OS X, such as [Call Trunk AU](https://www.calltrunk.com/au/en/extras/mac-osx-apps.html).
+
+Among the search results for CallTrunk Call, contact thumbnails will be shown in color:#1f3a33 border:
+
+![CallTrunk](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-CallTrunk.png)
+
+#### Set Call Trunk Country
+
+When you have multiple country specific Call Trunk apps installed, you can use --setdefaultcountry long option of CallTrunk Call to set a default one to use. For example:
+
+	callk --setdefaultcountry au yes
+
+will set Australia (AU) as the default country for Call Trunk. Therefore, when you dial out a CallTrunk call in Uni Call, the Call Trunk AU app will be used to serve the purpose.
+
+Apart from setting the default country, you can also temporarily overwrite the setting for a particular dialling out by providing an extra parameter using "/" syntax. For example:
+
+	callk TARGET /us
+
+will set Unite States (US) as the country for Call Trunk. Therefore, the Call Trunk US app will be used to dial out the call.
+
 ### Fritz!Box Call
 ------------------
 
-Support
-----------------
-Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Uni-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/uni-call). Or, you can post on the [Uni Call topic section of Alfred forum](http://www.guiguan.net/redirections/Alfred-Forum-Uni-Call).
+Fritz!Box Call requires the newest version of [Frizzix](http://mac.frizzix.de/en/).
+
+Among the search results for Fritz!Box Call, contact thumbnails will be shown in color:#9b3130 border:
+
+![Fritz!Box](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FritzBox.png)
 
 Credit
 ----------------
