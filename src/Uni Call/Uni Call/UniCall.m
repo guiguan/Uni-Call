@@ -1,4 +1,4 @@
-#define VERSION @"v5.03"
+#define VERSION @"v5.1"
 //
 //  UniCall.m
 //  Uni Call
@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AddressBook/AddressBook.h>
 #import <AppKit/AppKit.h>
+#import <ApplicationServices/ApplicationServices.h>
 
 #import "UniCall.h"
 
@@ -27,7 +28,9 @@ typedef NS_OPTIONS(NSInteger, CallType)
     CTPhoneAmego                    = 1 << 4,
     CTSIP                           = 1 << 5,
     CTPushDialer                    = 1 << 6,
-    CTGrowlVoice                    = 1 << 7
+    CTGrowlVoice                    = 1 << 7,
+    CTCallTrunk                     = 1 << 8,
+    CTFritzBox                      = 1 << 9
 };
 
 //@implementation NSImage(saveAsJpegWithName)
@@ -47,7 +50,7 @@ typedef NS_OPTIONS(NSInteger, CallType)
 @implementation UniCall
 
 static CallType sNonSearchableOptions = CTNoThumbnailCache | CTBuildFullThumbnailCache;
-static CallType sAllCallTypes = CTSkype | CTFaceTime | CTPhoneAmego | CTSIP | CTPushDialer | CTGrowlVoice;
+static CallType sAllCallTypes = CTSkype | CTFaceTime | CTPhoneAmego | CTSIP | CTPushDialer | CTGrowlVoice | CTCallTrunk | CTFritzBox;
 static NSSize sThumbnailSize;
 static NSSet *sFaceTimeNominatedPhoneLabels;
 static NSMutableSet *sReservedPhoneLabels;
@@ -489,6 +492,84 @@ BOOL hasGeneratedOutputsForFirstContact_;
                     
                     break;
                 }
+                case CTCallTrunk: {
+                    BOOL isThumbNailOkay = NO;
+                    NSColor *color = [NSColor colorWithCalibratedRed:0.082353f green:0.278431f blue:0.235294f alpha:1.0f];
+                    NSString *callTrunkThumbnailPath = [[self thumbnailCachePath] stringByAppendingFormat:@"/%@:CallTrunk.tiff", [r uniqueId]];
+                    isThumbNailOkay = [self checkAndUpdateThumbnailIfNeededAtPath:callTrunkThumbnailPath forRecord:r withColor:color hasShadow:NO];
+                    
+                    if (!isThumbNailOkay) {
+                        callTrunkThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:CallTrunk.tiff"];
+                        // generate default thumbnails
+//                        [self checkAndUpdateDefaultThumbnailIfNeededAtPath:callTrunkThumbnailPath withColor:color hasShadow:NO];
+                    }
+                    
+                    if (!(callType_ & CTBuildFullThumbnailCache)) {
+                        NSMutableArray *bufferedResults = [NSMutableArray array];
+                        
+                        NSString *country = nil;
+                        if (extraParameter_) {
+                            country = [extraParameter_ uppercaseString];
+                        }
+                        if (!country) {
+                            country = config_[@"callTrunkDefaultCountry"];
+                            if (!country) {
+                                NSDictionary *candidate = [self checkAvailableCallTrunkCountries];
+                                if ([candidate count] > 0) {
+                                    country = [candidate allValues][0]; // randomly pick an available one
+                                    [config_ setObject:country forKey:@"callTrunkDefaultCountry"];
+                                    [config_ writeToFile:[self configPlistPath] atomically:YES];
+                                } else {
+                                    country = @"US";
+                                }
+                            }
+                        }
+                        
+                        // output phone numbers
+                        ABMultiValue *ims = [r valueForProperty:kABPhoneProperty];
+                        for (int i = 0; i < [ims count]; i++) {
+                            NSString *phoneNum = [ims valueAtIndex:i];
+                            NSDictionary *processedPhoneLabels = [self processPhoneLabel:[ims labelAtIndex:i]];
+                            
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:CallTrunk\" arg=\"[CTCallTrunk]%@/%@\" autocomplete=\"%@\"><title>%@</title><subtitle>CallTrunk call to phone number: %@ %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, country, phoneNum, outDisplayName, processedPhoneLabels[@"toDisplay"], phoneNum, callTrunkThumbnailPath]];
+                        }
+                        
+                        if ([self fillResults:results withBufferedResults:bufferedResults])
+                            goto end_result_generation;
+                    }
+                    
+                    break;
+                }
+                case CTFritzBox: {
+                    BOOL isThumbNailOkay = NO;
+                    NSColor *color = [NSColor colorWithCalibratedRed:0.81961f green:0.25490f blue:0.21569f alpha:1.0f];
+                    NSString *fritzBoxThumbnailPath = [[self thumbnailCachePath] stringByAppendingFormat:@"/%@:Fritz!Box.tiff", [r uniqueId]];
+                    isThumbNailOkay = [self checkAndUpdateThumbnailIfNeededAtPath:fritzBoxThumbnailPath forRecord:r withColor:color hasShadow:NO];
+                    
+                    if (!isThumbNailOkay) {
+                        fritzBoxThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:Fritz!Box.tiff"];
+                        // generate default thumbnails
+//                        [self checkAndUpdateDefaultThumbnailIfNeededAtPath:fritzBoxThumbnailPath withColor:color hasShadow:NO];
+                    }
+                    
+                    if (!(callType_ & CTBuildFullThumbnailCache)) {
+                        NSMutableArray *bufferedResults = [NSMutableArray array];
+                        
+                        // output phone numbers
+                        ABMultiValue *ims = [r valueForProperty:kABPhoneProperty];
+                        for (int i = 0; i < [ims count]; i++) {
+                            NSString *phoneNum = [ims valueAtIndex:i];
+                            NSDictionary *processedPhoneLabels = [self processPhoneLabel:[ims labelAtIndex:i]];
+                            
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:Fritz!Box\" arg=\"[CTFritzBox]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Fritz!Box call to phone number: %@ %@ via Frizzix</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, processedPhoneLabels[@"toDisplay"], phoneNum, fritzBoxThumbnailPath]];
+                        }
+                        
+                        if ([self fillResults:results withBufferedResults:bufferedResults])
+                            goto end_result_generation;
+                    }
+                    
+                    break;
+                }
             }
         }
     }
@@ -545,6 +626,31 @@ end_result_generation:
                         break;
                     case CTGrowlVoice:
                         [results appendFormat:@"<item uid=\"%@:GrowlVoice\" arg=\"[CTGrowlVoice]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Google Voice call to: %@ via GrowlVoice (unidentified in Apple Contacts)</subtitle><icon>07913B02-FCA2-4435-B010-A160ECC14BDF.png</icon></item>", query, query, query, query, query];
+                        break;
+                    case CTCallTrunk: {
+                        NSString *country = nil;
+                        if (extraParameter_) {
+                            country = [extraParameter_ uppercaseString];
+                        }
+                        if (!country) {
+                            country = config_[@"callTrunkDefaultCountry"];
+                            if (!country) {
+                                NSDictionary *candidate = [self checkAvailableCallTrunkCountries];
+                                if ([candidate count] > 0) {
+                                    country = [candidate allValues][0]; // randomly pick an available one
+                                    [config_ setObject:country forKey:@"callTrunkDefaultCountry"];
+                                    [config_ writeToFile:[self configPlistPath] atomically:YES];
+                                } else {
+                                    country = @"US";
+                                }
+                            }
+                        }
+                        
+                        [results appendFormat:@"<item uid=\"%@:CallTrunk\" arg=\"[CTCallTrunk]%@/%@\" autocomplete=\"%@\"><title>%@</title><subtitle>CallTrunk call to: %@ (unidentified in Apple Contacts)</subtitle><icon>40A993D6-613C-4D0B-9083-E73ADD85C9B5.png</icon></item>", query, query, country, query, query, query];
+                        break;
+                    }
+                    case CTFritzBox:
+                        [results appendFormat:@"<item uid=\"%@:Fritz!Box\" arg=\"[CTFritzBox]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Fritz!Box call to: %@ via Frizzix (unidentified in Apple Contacts)</subtitle><icon>05088DC0-D882-4E8B-B130-F087F7C04FC2.png</icon></item>", query, query, query, query, query];
                         break;
                 }
             }
@@ -646,6 +752,38 @@ end_result_generation:
     return help;
 }
 
+- (NSString *)callTrunkCallOptionHelp
+{
+    static NSString *help = @"<item uid=\"\" arg=\"\" autocomplete=\"-k\" valid=\"no\"><title>Uni Call Option -k</title><subtitle>Make a CallTrunk call to your contact</subtitle><icon>40A993D6-613C-4D0B-9083-E73ADD85C9B5.png</icon></item>";
+    
+    return help;
+}
+
+- (NSString *)callTrunkSetDefaultCountryOptionHelp
+{
+    static NSString *help = @"<item uid=\"\" arg=\"\" autocomplete=\"-k-setdefaultcountry\" valid=\"no\"><title>CallTrunk Call Option --setdefaultcountry</title><subtitle>Use \"callk --setdefaultcountry COUNTRY_CODE yes\" to set the default country</subtitle><icon>40A993D6-613C-4D0B-9083-E73ADD85C9B5.png</icon></item>";
+    
+    return help;
+}
+
+- (NSString *)callTrunkLongOptionHelp
+{
+    static NSString *help = nil;
+    
+    if (!help) {
+        help = [self callTrunkSetDefaultCountryOptionHelp];
+    }
+    
+    return help;
+}
+
+- (NSString *)fritzBoxCallOptionHelp
+{
+    static NSString *help = @"<item uid=\"\" arg=\"\" autocomplete=\"-z\" valid=\"no\"><title>Uni Call Option -z</title><subtitle>Make a Fritz!Box call to your contact via Frizzix</subtitle><icon>05088DC0-D882-4E8B-B130-F087F7C04FC2.png</icon></item>";
+    
+    return help;
+}
+
 - (NSString *)noThumbnailCacheOptionHelp
 {
     static NSString *help = @"<item uid=\"\" arg=\"\" valid=\"no\"><title>Uni Call Option -!</title><subtitle>Prohibit contact thumbnails caching</subtitle><icon>shouldNotCacheThumbnail.png</icon></item>";
@@ -694,10 +832,10 @@ end_result_generation:
     
     if (!help) {
         help = [@[[self enableOptionHelp],
-                   [self disableOptionHelp],
-                   [self updateAlfredPreferencesOptionHelp],
-                   [self buildFullThumbnailCacheOptionHelp],
-                   [self destroyThumbnailCacheOptionHelp]] componentsJoinedByString:@""];
+                  [self disableOptionHelp],
+                  [self updateAlfredPreferencesOptionHelp],
+                  [self buildFullThumbnailCacheOptionHelp],
+                  [self destroyThumbnailCacheOptionHelp]] componentsJoinedByString:@""];
     }
     
     return help;
@@ -712,6 +850,8 @@ end_result_generation:
                     enabledCallType_ & CTSIP ? [self sIPCallOptionHelp] : @"",
                     enabledCallType_ & CTPushDialer ? [self pushDialerCallOptionHelp] : @"",
                     enabledCallType_ & CTGrowlVoice ? [self growlVoiceCallOptionHelp] : @"",
+                    enabledCallType_ & CTCallTrunk ? [self callTrunkCallOptionHelp] : @"",
+                    enabledCallType_ & CTFritzBox ? [self fritzBoxCallOptionHelp] : @"",
                    [self longOptionHelp],
                     @"</items>\n"] componentsJoinedByString:@""];
 }
@@ -731,6 +871,10 @@ end_result_generation:
         [results appendString:@"d"];
     if (callType & CTGrowlVoice)
         [results appendString:@"g"];
+    if (callType & CTCallTrunk)
+        [results appendFormat:@"k"];
+    if (callType & CTFritzBox)
+        [results appendFormat:@"z"];
     return results;
 }
 
@@ -756,6 +900,12 @@ end_result_generation:
                 break;
             case 'g':
                 tmp |= CTGrowlVoice;
+                break;
+            case 'k':
+                tmp |= CTCallTrunk;
+                break;
+            case 'z':
+                tmp |= CTFritzBox;
                 break;
         }
     }
@@ -929,6 +1079,54 @@ end_result_generation:
                     }
                     
                     return YES;
+                } else if (callType_ & CTCallTrunk) {
+                    [results setString:@"\n<?xml version=\"1.0\"?>\n\n<items>"];
+                    if (i + 1 < [options length]) {
+                        NSString *longOption = [options substringFromIndex:i + 1];
+                        
+                        if ([@"setdefaultcountry" hasPrefix:longOption]) {
+                            if ([longOption isEqualToString:@"setdefaultcountry"]) {
+                                NSDictionary *availableCountries = [self checkAvailableCallTrunkCountries];
+                                
+                                if (restQueryMatches && [restQueryMatches count] == 2 && [[query substringWithRange:[self getRangeFromQueryMatch:restQueryMatches[1]]] isEqualToString:@"yes"]) {
+                                    NSString *chosenCountry = [[query substringWithRange:[self getRangeFromQueryMatch:restQueryMatches[0]]] uppercaseString];
+                                    if (availableCountries[chosenCountry]) {
+                                        [config_ setObject:chosenCountry forKey:@"callTrunkDefaultCountry"];
+                                        [config_ writeToFile:[self configPlistPath] atomically:YES];
+                                        
+                                        [results setString:@"\n<?xml version=\"1.0\"?>\n\n<items><item uid=\"done\" arg=\"\" autocomplete=\"-\" valid=\"no\"><title>CallTrunk Call Option --setdefaultcountry</title><subtitle>Done. The default country for CallTrunk has now been set.</subtitle><icon>40A993D6-613C-4D0B-9083-E73ADD85C9B5.png</icon></item>"];
+                                    } else {
+                                        [results setString:@"\n<?xml version=\"1.0\"?>\n\n<items><item uid=\"error\" arg=\"\" valid=\"no\"><title>CallTrunk Call Option --setdefaultcountry</title><subtitle>Error: the country code is invalid! Please make sure you have installed the country specific Call Trunck app</subtitle><icon>40A993D6-613C-4D0B-9083-E73ADD85C9B5.png</icon></item>"];
+                                    }
+                                } else {
+                                    [results setString:@"\n<?xml version=\"1.0\"?>\n\n<items>"];
+                                    [results appendString:[self callTrunkSetDefaultCountryOptionHelp]];
+                                    
+                                    NSString *callTrunkDefaultCountry = config_[@"callTrunkDefaultCountry"];
+                                    NSString *previewCountry = nil;
+                                    
+                                    if (restQueryMatches && [restQueryMatches count] > 0) {
+                                        previewCountry = [[query substringWithRange:[self getRangeFromQueryMatch:restQueryMatches[0]]] uppercaseString];
+                                    }
+                                    
+                                    for (NSString *c in availableCountries) {
+                                        [results appendFormat:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Country Code %@</title><subtitle>%@</subtitle><icon>country%@.png</icon></item>", c, [c isEqualToString:callTrunkDefaultCountry] ? [NSString stringWithFormat:@"%@ (current default)", availableCountries[c]] : availableCountries[c], [c isEqualToString:previewCountry] || (!previewCountry && [c isEqualToString:callTrunkDefaultCountry]) ? [NSString stringWithFormat:@"%@-chosen", c] : c];
+                                    }
+                                }
+                                
+                                return YES;
+                            } else {
+                                [results appendString:[self callTrunkSetDefaultCountryOptionHelp]];
+                            }
+                        }
+                        
+                        if ([results isEqualToString:@"\n<?xml version=\"1.0\"?>\n\n<items>"])
+                            [results appendString:[self callTrunkLongOptionHelp]];
+                    } else {
+                        [results appendString:[self callTrunkLongOptionHelp]];
+                    }
+                    
+                    return YES;
                 } else {
                     if (i + 1 < [options length]) {
                         [results setString:@"\n<?xml version=\"1.0\"?>\n\n<items>"];
@@ -945,6 +1143,10 @@ end_result_generation:
                                     
                                     NSMutableDictionary *infoPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingPathComponent:@"/info.plist"]];
                                     NSDictionary *prefLibPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingPathComponent:@"/prefLib.plist"]];
+                                    if (changedCodes & CTFritzBox)
+                                        [self manipulateInfoPlistWithComponentName:@"Fritz!Box Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
+                                    if (changedCodes & CTCallTrunk)
+                                        [self manipulateInfoPlistWithComponentName:@"CallTrunk Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                     if (changedCodes & CTGrowlVoice)
                                         [self manipulateInfoPlistWithComponentName:@"GrowlVoice Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                     if (changedCodes & CTPushDialer)
@@ -969,6 +1171,18 @@ end_result_generation:
                                     CallType previewCodes = 0;
                                     if (restQueryMatches && [restQueryMatches count] > 0)
                                         previewCodes = [self getCallTypeFromComponentCodes:[query substringWithRange:[self getRangeFromQueryMatch:restQueryMatches[0]]]];
+                                    if (!(enabledCallType_ & CTFritzBox)) {
+                                        if (previewCodes & CTFritzBox)
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Fritz!Box Call Component Code z</title><subtitle>Make a Fritz!Box call to your contact via Frizzix</subtitle><icon>05088DC0-D882-4E8B-B130-F087F7C04FC2.png</icon></item>"];
+                                        else
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Fritz!Box Call Component Code z</title><subtitle>Make a Fritz!Box call to your contact via Frizzix</subtitle><icon>05088DC0-D882-4E8B-B130-F087F7C04FC2-disabled.png</icon></item>"];
+                                    }
+                                    if (!(enabledCallType_ & CTCallTrunk)) {
+                                        if (previewCodes & CTCallTrunk)
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>CallTrunk Call Component Code k</title><subtitle>Make a CallTrunk call to your contact</subtitle><icon>40A993D6-613C-4D0B-9083-E73ADD85C9B5.png</icon></item>"];
+                                        else
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>CallTrunk Call Component Code k</title><subtitle>Make a CallTrunk call to your contact</subtitle><icon>40A993D6-613C-4D0B-9083-E73ADD85C9B5-disabled.png</icon></item>"];
+                                    }
                                     if (!(enabledCallType_ & CTGrowlVoice)) {
                                         if (previewCodes & CTGrowlVoice)
                                             [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>GrowlVoice Call Component Code g</title><subtitle>Make a Google Voice call to your contact via GrowlVoice</subtitle><icon>07913B02-FCA2-4435-B010-A160ECC14BDF.png</icon></item>"];
@@ -1023,6 +1237,10 @@ end_result_generation:
                                     
                                     NSMutableDictionary *infoPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingPathComponent:@"/info.plist"]];
                                     NSDictionary *prefLibPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingPathComponent:@"/prefLib.plist"]];
+                                    if (changedCodes & CTFritzBox)
+                                        [self manipulateInfoPlistWithComponentName:@"Fritz!Box Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
+                                    if (changedCodes & CTCallTrunk)
+                                        [self manipulateInfoPlistWithComponentName:@"CallTrunk Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                     if (changedCodes & CTGrowlVoice)
                                         [self manipulateInfoPlistWithComponentName:@"GrowlVoice Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                     if (changedCodes & CTPushDialer)
@@ -1047,6 +1265,18 @@ end_result_generation:
                                     CallType previewCodes = 0;
                                     if (restQueryMatches && [restQueryMatches count] > 0)
                                         previewCodes = [self getCallTypeFromComponentCodes:[query substringWithRange:[self getRangeFromQueryMatch:restQueryMatches[0]]]];
+                                    if (enabledCallType_ & CTFritzBox) {
+                                        if (!(previewCodes & CTFritzBox))
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Fritz!Box Call Component Code z</title><subtitle>Make a Fritz!Box call to your contact via Frizzix</subtitle><icon>05088DC0-D882-4E8B-B130-F087F7C04FC2.png</icon></item>"];
+                                        else
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Fritz!Box Call Component Code z</title><subtitle>Make a Fritz!Box call to your contact via Frizzix</subtitle><icon>05088DC0-D882-4E8B-B130-F087F7C04FC2-disabled.png</icon></item>"];
+                                    }
+                                    if (enabledCallType_ & CTCallTrunk) {
+                                        if (!(previewCodes & CTCallTrunk))
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>CallTrunk Call Component Code k</title><subtitle>Make a CallTrunk call to your contact</subtitle><icon>40A993D6-613C-4D0B-9083-E73ADD85C9B5.png</icon></item>"];
+                                        else
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>CallTrunk Call Component Code k</title><subtitle>Make a CallTrunk call to your contact</subtitle><icon>40A993D6-613C-4D0B-9083-E73ADD85C9B5-disabled.png</icon></item>"];
+                                    }
                                     if (enabledCallType_ & CTGrowlVoice) {
                                         if (!(previewCodes & CTGrowlVoice))
                                             [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>GrowlVoice Call Component Code g</title><subtitle>Make a Google Voice call to your contact via GrowlVoice</subtitle><icon>07913B02-FCA2-4435-B010-A160ECC14BDF.png</icon></item>"];
@@ -1118,6 +1348,15 @@ end_result_generation:
                                     [self manipulateInfoPlistWithComponentName:@"GrowlVoice Call" andOperation:@"add" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                 else
                                     [self manipulateInfoPlistWithComponentName:@"GrowlVoice Call" andOperation:@"remove" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
+                                if (enabledCallType_ & CTCallTrunk)
+                                    [self manipulateInfoPlistWithComponentName:@"CallTrunk Call" andOperation:@"add" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
+                                else
+                                    [self manipulateInfoPlistWithComponentName:@"CallTrunk Call" andOperation:@"remove" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
+                                if (enabledCallType_ & CTFritzBox)
+                                    [self manipulateInfoPlistWithComponentName:@"Fritz!Box Call" andOperation:@"add" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
+                                else
+                                    [self manipulateInfoPlistWithComponentName:@"Fritz!Box Call" andOperation:@"remove" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
+
                                 [infoPlist writeToFile:[[self workflowPath] stringByAppendingPathComponent:@"/info.plist"] atomically:YES];
                                 
                                 [results setString:@"\n<?xml version=\"1.0\"?>\n\n<items><item uid=\"done\" arg=\"\" autocomplete=\"-\" valid=\"no\"><title>Uni Call Option --updatealfredpreferences</title><subtitle>Done. Your Alfred Preferences are now updated to reflect your call component settings</subtitle><icon>updateAlfredPreferences.png</icon></item>"];
@@ -1203,6 +1442,20 @@ end_result_generation:
                     [results appendString:[self growlVoiceCallOptionHelp]];
                 }
                 break;
+            case 'k':
+                if ((enabledCallType_ & CTCallTrunk) && !(callType_ & CTCallTrunk)) {
+                    callType_ |= CTCallTrunk;
+                    [callTypes_ addObject:[NSNumber numberWithInt:CTCallTrunk]];
+                    [results appendString:[self callTrunkCallOptionHelp]];
+                }
+                break;
+            case 'z':
+                if ((enabledCallType_ & CTFritzBox) && !(callType_ & CTFritzBox)) {
+                    callType_ |= CTFritzBox;
+                    [callTypes_ addObject:[NSNumber numberWithInt:CTFritzBox]];
+                    [results appendString:[self fritzBoxCallOptionHelp]];
+                }
+                break;
             case '!':
                 if (!(callType_ & CTNoThumbnailCache)) {
                     callType_ |= CTNoThumbnailCache;
@@ -1213,6 +1466,33 @@ end_result_generation:
     }
     
     return NO;
+}
+
+- (NSDictionary *)checkAvailableCallTrunkCountries
+{
+    NSDictionary *knownCountries = @{@"AU":@"Australia", @"UK":@"United Kingdom", @"US":@"United States"};
+    NSMutableDictionary *availableCountries = [NSMutableDictionary dictionary];
+    
+    
+    
+    for (NSString *c in knownCountries) {
+        CFURLRef appURL = NULL;
+		OSStatus result = LSFindApplicationForInfo (
+                                                    kLSUnknownCreator,         //creator codes are dead, so we don't care about it
+                                                    (__bridge CFStringRef)([NSString stringWithFormat:@"com.calltrunk.CallTrunk-%@", c]), //you can use the bundle ID here
+                                                    NULL,                      //or the name of the app here (CFSTR("Safari.app"))
+                                                    NULL,                      //this is used if you want an FSRef rather than a CFURLRef
+                                                    &appURL
+                                                    );
+        if (result == noErr)
+            [availableCountries setObject:knownCountries[c] forKey:c];
+        
+		//the CFURLRef returned from the function is retained as per the docs so we must release it
+		if(appURL)
+		    CFRelease(appURL);
+    }
+    
+    return availableCountries;
 }
 
 #pragma mark -

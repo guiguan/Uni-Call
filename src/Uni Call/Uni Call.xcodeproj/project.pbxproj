@@ -18,6 +18,8 @@
 		A53A272E173BE41D00D3496F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53A272D173BE41D00D3496F /* Security.framework */; };
 		A53A275F173CC34500D3496F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53A272D173BE41D00D3496F /* Security.framework */; };
 		A53A2760173CC3C600D3496F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0E6E5173296AC002E8289 /* AppKit.framework */; };
+		A54D6B2F1760735100104E23 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54D6B2E1760735100104E23 /* ApplicationServices.framework */; };
+		A54D6B30176192E200104E23 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54D6B2E1760735100104E23 /* ApplicationServices.framework */; };
 		A58CC66B173DDC82002AA820 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A58CC66A173DDC82002AA820 /* GCDAsyncSocket.m */; };
 		A58CC66C173DDC82002AA820 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A58CC66A173DDC82002AA820 /* GCDAsyncSocket.m */; };
 		A58CC66E173E314D002AA820 /* Uni Call Basestation in CopyFiles */ = {isa = PBXBuildFile; fileRef = A53A2721173BE23800D3496F /* Uni Call Basestation */; };
@@ -94,6 +96,7 @@
 		A53A2728173BE23800D3496F /* Uni_Call_Basestation.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Uni_Call_Basestation.1; sourceTree = "<group>"; };
 		A53A272D173BE41D00D3496F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A53A275E173CBEA700D3496F /* NetworkSharedParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkSharedParameters.h; sourceTree = "<group>"; };
+		A54D6B2E1760735100104E23 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		A58CC669173DDC82002AA820 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		A58CC66A173DDC82002AA820 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		A5D57C671744A36D00571334 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A54D6B30176192E200104E23 /* ApplicationServices.framework in Frameworks */,
 				A53A272E173BE41D00D3496F /* Security.framework in Frameworks */,
 				A5E0E6E6173296AC002E8289 /* AppKit.framework in Frameworks */,
 				A51AC7A41729124000ADB097 /* AddressBook.framework in Frameworks */,
@@ -131,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A54D6B2F1760735100104E23 /* ApplicationServices.framework in Frameworks */,
 				A5D57C681744A36D00571334 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +169,7 @@
 		A51AC7941729122600ADB097 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A54D6B2E1760735100104E23 /* ApplicationServices.framework */,
 				A53A272D173BE41D00D3496F /* Security.framework */,
 				A5E0E6E5173296AC002E8289 /* AppKit.framework */,
 				A51AC7A31729124000ADB097 /* AddressBook.framework */,
@@ -418,6 +424,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Uni Call/Uni Call-Prefix.pch";
 				PRODUCT_NAME = "Uni Call";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -428,6 +435,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Uni Call/Uni Call-Prefix.pch";
 				PRODUCT_NAME = "Uni Call";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
