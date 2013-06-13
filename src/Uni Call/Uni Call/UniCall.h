@@ -10,6 +10,8 @@
 
 @interface UniCall : NSObject
 
++ (void)pushNotificationWithTitle:(NSString *)title andMessage:(NSString *)message andDetail:(NSString *)detail;
+
 -(NSString *)process:(NSString *)query;
 
 @end

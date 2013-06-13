@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A51AC7911729122600ADB097"
-               BuildableName = "Uni Call"
-               BlueprintName = "Uni Call"
+               BlueprintIdentifier = "A5A0D6C61769596E00677C93"
+               BuildableName = "Skype Call"
+               BlueprintName = "Skype Call"
                ReferencedContainer = "container:Uni Call.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A51AC7911729122600ADB097"
-            BuildableName = "Uni Call"
-            BlueprintName = "Uni Call"
+            BlueprintIdentifier = "A5A0D6C61769596E00677C93"
+            BuildableName = "Skype Call"
+            BlueprintName = "Skype Call"
             ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,12 +51,26 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A51AC7911729122600ADB097"
-            BuildableName = "Uni Call"
-            BlueprintName = "Uni Call"
+            BlueprintIdentifier = "A5A0D6C61769596E00677C93"
+            BuildableName = "Skype Call"
+            BlueprintName = "Skype Call"
             ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "[STATUS]echo123"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "laurel_skype"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "[STATUS]dfs"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -69,9 +83,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A51AC7911729122600ADB097"
-            BuildableName = "Uni Call"
-            BlueprintName = "Uni Call"
+            BlueprintIdentifier = "A5A0D6C61769596E00677C93"
+            BuildableName = "Skype Call"
+            BlueprintName = "Skype Call"
             ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

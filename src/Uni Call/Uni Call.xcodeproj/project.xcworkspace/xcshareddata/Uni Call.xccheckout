@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>29886106-3E16-4CF4-A177-2201AFE8090E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Uni Call</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DB0EA866-F52F-4ADF-AADE-581CFBF384E1</key>
+		<string>ssh://github.com/guiguan/Uni-Call.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>src/Uni Call/Uni Call.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DB0EA866-F52F-4ADF-AADE-581CFBF384E1</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/guiguan/Uni-Call.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DB0EA866-F52F-4ADF-AADE-581CFBF384E1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DB0EA866-F52F-4ADF-AADE-581CFBF384E1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Uni-Call</string>
+		</dict>
+	</array>
+</dict>
+</plist>

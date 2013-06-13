@@ -7,7 +7,7 @@ Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest
 
 ![Uni Call](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png)
 
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.4.0.833, FaceTime 2.0 (1080), Phone Amego 1.4_9, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Alfred 2.0.4 (199) and Mac OS X 10.8.4. Please note that the Mac OS X below 10.8 is not supported.
+Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.5.0.443, FaceTime 2.0 (1080), Phone Amego 1.4_9, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Alfred 2.0.4 (199) and Mac OS X 10.8.4. Please note that the Mac OS X below 10.8 is not supported.
 
 If you like Uni Call, please consider making a small donation to [me](http://www.guiguan.net) via PayPal as to show your thanks and support for my work :)
 
@@ -17,7 +17,7 @@ Installation & Upgrade
 --------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 5.1](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 5.2](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
 3. Double click on the downloaded workflow file to install
 4. Type the following command in your Alfred:
 
@@ -300,6 +300,10 @@ Credit
 
 Changelog
 ----------------
+
+#### v5.2 (13/06/13)
+* Now Skype Call component is compatible with the new Skype 6.5: the original skypecall.scpt AppleScript is rewritten in Objective C using Skype framework. The new Skype Call component is now more efficient and robust.
+
 #### v5.1 (07/06/13)
 * Fixed a minor bug of Skype Call that could prevent non-English platform from working properly
 * Added CallTrunk Call component. The user can use --setdefaultcountry long option to set a default country specific Call Trunk to use. Also, the user can provide an extra parameter to overwrite the default country, for example, using "callk guan gui /au" to call Guan Gui via AU version of Call Trunk.

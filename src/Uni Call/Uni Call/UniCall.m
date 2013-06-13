@@ -1,4 +1,4 @@
-#define VERSION @"v5.1"
+#define VERSION @"v5.2"
 //
 //  UniCall.m
 //  Uni Call
@@ -269,7 +269,9 @@ BOOL hasGeneratedOutputsForFirstContact_;
                             NSDictionary *entry = [ims valueAtIndex:i];
                             if ([entry[kABInstantMessageServiceKey] isEqualToString: kABInstantMessageServiceSkype]) {
                                 NSString *username = entry[kABInstantMessageUsernameKey];
-                                BOOL isOnline = [[UniCall runCommand:[NSString stringWithFormat:@"/usr/bin/osascript \"%@\" [STATUS]%@", [self skypeScptPath], username]] hasPrefix:@"1"];
+                                
+                                BOOL isOnline = [[UniCall runCommand:[NSString stringWithFormat:@"\"%@\" [STATUS]%@ 2> /dev/null", [self skypeCallPath], username]] hasPrefix:@"1"];
+                                
                                 if (isOnline)
                                     [bufferedResults insertObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype:Online\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@ (online)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeOnlineThumbnailPath] atIndex:0];
                                 else
@@ -577,7 +579,7 @@ end_result_generation:
     
     if (callType_ & CTBuildFullThumbnailCache) {
         //        [self releaseExecutionLock];
-        //        [self pushNotificationWithTitle:@"Finished" andMessage:@"building full thumbnail cache" andDetail:@"You have successfully used Uni Call option -#."];
+        //        [UniCall pushNotificationWithTitle:@"Finished" andMessage:@"building full thumbnail cache" andDetail:@"You have successfully used Uni Call option -#."];
         return @"\n<?xml version=\"1.0\"?>\n\n<items><item uid=\"done\" arg=\"\" autocomplete=\"-\" valid=\"no\"><title>Uni Call Option --buildfullthumbnailcache</title><subtitle>Done. Contact thumbnail cache is now fully built</subtitle><icon>buildFullThumbnailCache.png</icon></item></items>\n";
     } else {
         if ([peopleFound count] == 0) {
@@ -1370,7 +1372,7 @@ end_result_generation:
                             if ([longOption isEqualToString:@"buildfullthumbnailcache"] && restQueryMatches && [restQueryMatches count] == 1 && [[query substringWithRange:[self getRangeFromQueryMatch:restQueryMatches[0]]] isEqualToString:@"yes"]) {
                                 callType_ |= CTBuildFullThumbnailCache;
                                 // carry out CTBuildFullThumbnailCache operation
-                                //                    [self pushNotificationWithTitle:@"Started" andMessage:@"building full thumbnail cache" andDetail:@"Please sit tight. You are using Uni Call option -#."];
+                                //                    [UniCall pushNotificationWithTitle:@"Started" andMessage:@"building full thumbnail cache" andDetail:@"Please sit tight. You are using Uni Call option -#."];
                                 return NO;
                             } else {
                                 [results appendString:[self buildFullThumbnailCacheOptionHelp]];
@@ -1380,7 +1382,7 @@ end_result_generation:
                         if ([@"destroythumbnailcache" hasPrefix:longOption]) {
                             if ([longOption isEqualToString:@"destroythumbnailcache"] && restQueryMatches && [restQueryMatches count] == 1 && [[query substringWithRange:[self getRangeFromQueryMatch:restQueryMatches[0]]] isEqualToString:@"yes"]) {
                                 // carry out CTDestroyThumbnailCache operation
-                                //                    [self pushNotificationWithTitle:@"Started" andMessage:@"destroying thumbnail cache" andDetail:@"Please sit tight. You are using Uni Call option -$."];
+                                //                    [UniCall pushNotificationWithTitle:@"Started" andMessage:@"destroying thumbnail cache" andDetail:@"Please sit tight. You are using Uni Call option -$."];
                                 [[self fileManager] removeItemAtPath:[self thumbnailCachePath] error:nil];
                                 [results setString:@"\n<?xml version=\"1.0\"?>\n\n<items><item uid=\"done\" arg=\"\" autocomplete=\"-\" valid=\"no\"><title>Uni Call Option --destroythumbnailcache</title><subtitle>Done. Contact thumbnail cache is now destroyed</subtitle><icon>destroyThumbnailCache.png</icon></item>"];
                                 return YES;
@@ -1550,35 +1552,6 @@ end_result_generation:
 
 #pragma mark -
 #pragma mark Handle Thumbnails
-
-+(NSString *)runCommand:(NSString *)commandToRun
-{
-    NSTask *task;
-    task = [[NSTask alloc] init];
-    [task setLaunchPath: @"/bin/bash"];
-    
-    NSArray *arguments = [NSArray arrayWithObjects:
-                          @"-c" ,
-                          [NSString stringWithFormat:@"%@", commandToRun],
-                          nil];
-    [task setArguments: arguments];
-    
-    NSPipe *pipe;
-    pipe = [NSPipe pipe];
-    [task setStandardOutput: pipe];
-    
-    NSFileHandle *file;
-    file = [pipe fileHandleForReading];
-    
-    [task launch];
-    
-    NSData *data;
-    data = [file readDataToEndOfFile];
-    
-    NSString *output;
-    output = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-    return output;
-}
                               
 - (void)checkAndUpdateDefaultThumbnailIfNeededAtPath:(NSString *)path withColor:(NSColor *)color hasShadow:(BOOL)hasShadow
 {
@@ -1669,26 +1642,6 @@ end_result_generation:
     return newImage;
 }
 
-- (NSString *)dataPath
-{
-    static NSString *path = nil;
-    if (!path) {
-        //cache folder
-        path = [NSHomeDirectory() stringByAppendingFormat:@"/Library/Application Support/Alfred 2/Workflow Data/%@", IDENTIFIER];
-    }
-    return path;
-}
-
-- (NSString *)configPlistPath
-{
-    static NSString *path = nil;
-    if (!path) {
-        //cache folder
-        path = [[self dataPath] stringByAppendingPathComponent:@"/config.plist"];
-    }
-    return path;
-}
-
 - (NSString *)thumbnailCachePath
 {
     static NSString *path = nil;
@@ -1731,42 +1684,6 @@ end_result_generation:
         image = [[NSImage alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail.png"]];
     }
     return image;
-}
-
-- (void)pushNotificationWithTitle:(NSString *)title andMessage:(NSString *)message andDetail:(NSString *)detail
-{
-    static NSString *qNotifierHelperPath = nil;
-    if (!qNotifierHelperPath) {
-        qNotifierHelperPath = [[UniCall workingPath] stringByAppendingString:@"/q_notifier.helper"];
-    }
-    [UniCall runCommand:[NSString stringWithFormat:@"\"%@\" com.runningwithcrayons.Alfred-2 \"%@\" \"%@\" \"%@\"", qNotifierHelperPath, title, message, detail]];
-}
-
-- (NSString *)skypeScptPath
-{
-    static NSString *path = nil;
-    if (!path) {
-        path = [[UniCall workingPath] stringByAppendingString:@"/skypecall.scpt"];
-    }
-    return path;
-}
-
-- (NSString *)workflowPath
-{
-    static NSString *path = nil;
-    if (!path) {
-        path = [[UniCall workingPath] stringByDeletingLastPathComponent];
-    }
-    return path;
-}
-
-+ (NSString *)workingPath
-{
-    static NSString *path = nil;
-    if (!path) {
-        path = [[NSBundle mainBundle] bundlePath];
-    }
-    return path;
 }
 
 #pragma mark -
@@ -1858,6 +1775,91 @@ end_result_generation:
 
 #pragma mark -
 #pragma mark Utilities
+
+- (NSString *)dataPath
+{
+    static NSString *path = nil;
+    if (!path) {
+        //cache folder
+        path = [NSHomeDirectory() stringByAppendingFormat:@"/Library/Application Support/Alfred 2/Workflow Data/%@", IDENTIFIER];
+    }
+    return path;
+}
+
+- (NSString *)configPlistPath
+{
+    static NSString *path = nil;
+    if (!path) {
+        //cache folder
+        path = [[self dataPath] stringByAppendingPathComponent:@"/config.plist"];
+    }
+    return path;
+}
+
+- (NSString *)skypeCallPath
+{
+    static NSString *path = nil;
+    if (!path) {
+        path = [[UniCall workingPath] stringByAppendingString:@"/Skype Call"];
+    }
+    return path;
+}
+
+- (NSString *)workflowPath
+{
+    static NSString *path = nil;
+    if (!path) {
+        path = [[UniCall workingPath] stringByDeletingLastPathComponent];
+    }
+    return path;
+}
+
++ (NSString *)workingPath
+{
+    static NSString *path = nil;
+    if (!path) {
+        path = [[NSBundle mainBundle] bundlePath];
+    }
+    return path;
+}
+
++ (void)pushNotificationWithTitle:(NSString *)title andMessage:(NSString *)message andDetail:(NSString *)detail
+{
+    static NSString *qNotifierHelperPath = nil;
+    if (!qNotifierHelperPath) {
+        qNotifierHelperPath = [[UniCall workingPath] stringByAppendingString:@"/q_notifier.helper"];
+    }
+    [UniCall runCommand:[NSString stringWithFormat:@"\"%@\" com.runningwithcrayons.Alfred-2 \"%@\" \"%@\" \"%@\"", qNotifierHelperPath, title, message, detail]];
+}
+
++ (NSString *)runCommand:(NSString *)commandToRun
+{
+    NSTask *task;
+    task = [[NSTask alloc] init];
+    [task setLaunchPath: @"/bin/bash"];
+    
+    NSArray *arguments = [NSArray arrayWithObjects:
+                          @"-c" ,
+                          [NSString stringWithFormat:@"%@", commandToRun],
+                          nil];
+    [task setArguments: arguments];
+    
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    [task setStandardOutput: pipe];
+    
+    NSFileHandle *file;
+    file = [pipe fileHandleForReading];
+    
+    [task launch];
+    
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    
+    NSString *output;
+    output = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    return output;
+}
 
 - (NSString*) xmlSimpleEscape:(NSString*)unescapedStr
 {
