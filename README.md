@@ -17,7 +17,7 @@ Installation & Upgrade
 --------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 5.3](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 5.3](http://www.guiguan.net/download/uni-call-alfredworkflow/)
 3. Double click on the downloaded workflow file to install
 4. Type the following command in your Alfred:
 
@@ -366,7 +366,7 @@ Legacy: Skype-Call.alfredextension 1.0 for Alfred v1
 
 ### Installation
 1. Make sure the [Alfred](http://www.alfredapp.com) with [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest extension: [Skype-Call.alfredextension 1.0](http://www.guiguan.net/downloads/Skype-Call.alfredextension)
+2. Download the latest extension: [Skype-Call.alfredextension 1.0](http://www.guiguan.net/downloads/skype-call-alfredextension/)
 3. Double click on the downloaded extension file to install
 4. Select Skype-Call from drop-down menu in "Alfred Preferences > Features > Address Book > General > Phone" as shown in the following figure.
 
