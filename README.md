@@ -17,7 +17,7 @@ Installation & Upgrade
 --------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 5.3](http://www.guiguan.net/download/uni-call-alfredworkflow/)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 5.3](http://www.guiguan.net/downloads/uni-call-alfredworkflow/)
 3. Double click on the downloaded workflow file to install
 4. Type the following command in your Alfred:
 
