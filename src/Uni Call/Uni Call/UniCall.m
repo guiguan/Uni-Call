@@ -1,4 +1,4 @@
-#define VERSION @"v5.2"
+#define VERSION @"v5.3"
 //
 //  UniCall.m
 //  Uni Call
@@ -30,7 +30,8 @@ typedef NS_OPTIONS(NSInteger, CallType)
     CTPushDialer                    = 1 << 6,
     CTGrowlVoice                    = 1 << 7,
     CTCallTrunk                     = 1 << 8,
-    CTFritzBox                      = 1 << 9
+    CTFritzBox                      = 1 << 9,
+    CTDialogue                      = 1 << 10
 };
 
 //@implementation NSImage(saveAsJpegWithName)
@@ -50,7 +51,7 @@ typedef NS_OPTIONS(NSInteger, CallType)
 @implementation UniCall
 
 static CallType sNonSearchableOptions = CTNoThumbnailCache | CTBuildFullThumbnailCache;
-static CallType sAllCallTypes = CTSkype | CTFaceTime | CTPhoneAmego | CTSIP | CTPushDialer | CTGrowlVoice | CTCallTrunk | CTFritzBox;
+static CallType sAllCallTypes = CTSkype | CTFaceTime | CTPhoneAmego | CTSIP | CTPushDialer | CTGrowlVoice | CTCallTrunk | CTFritzBox | CTDialogue;
 static NSSize sThumbnailSize;
 static NSSet *sFaceTimeNominatedPhoneLabels;
 static NSMutableSet *sReservedPhoneLabels;
@@ -572,6 +573,36 @@ BOOL hasGeneratedOutputsForFirstContact_;
                     
                     break;
                 }
+                case CTDialogue: {
+                    BOOL isThumbNailOkay = NO;
+                    NSColor *color = [NSColor colorWithCalibratedRed:0.77647f green:0.00000f blue:0.74118f alpha:1.0f];
+                    NSString *dialogueThumbnailPath = [[self thumbnailCachePath] stringByAppendingFormat:@"/%@:Dialogue.tiff", [r uniqueId]];
+                    isThumbNailOkay = [self checkAndUpdateThumbnailIfNeededAtPath:dialogueThumbnailPath forRecord:r withColor:color hasShadow:NO];
+                    
+                    if (!isThumbNailOkay) {
+                        dialogueThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:Dialogue.tiff"];
+                        // generate default thumbnails
+//                        [self checkAndUpdateDefaultThumbnailIfNeededAtPath:dialogueThumbnailPath withColor:color hasShadow:NO];
+                    }
+                    
+                    if (!(callType_ & CTBuildFullThumbnailCache)) {
+                        NSMutableArray *bufferedResults = [NSMutableArray array];
+                        
+                        // output phone numbers
+                        ABMultiValue *ims = [r valueForProperty:kABPhoneProperty];
+                        for (int i = 0; i < [ims count]; i++) {
+                            NSString *phoneNum = [ims valueAtIndex:i];
+                            NSDictionary *processedPhoneLabels = [self processPhoneLabel:[ims labelAtIndex:i]];
+                            
+                            [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:Dialogue\" arg=\"[CTDialogue]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Bluetooth phone call to phone number: %@ %@ via Dialogue</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], phoneNum, phoneNum, outDisplayName, processedPhoneLabels[@"toDisplay"], phoneNum, dialogueThumbnailPath]];
+                        }
+                        
+                        if ([self fillResults:results withBufferedResults:bufferedResults])
+                            goto end_result_generation;
+                    }
+                    
+                    break;
+                }
             }
         }
     }
@@ -653,6 +684,9 @@ end_result_generation:
                     }
                     case CTFritzBox:
                         [results appendFormat:@"<item uid=\"%@:Fritz!Box\" arg=\"[CTFritzBox]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Fritz!Box call to: %@ via Frizzix (unidentified in Apple Contacts)</subtitle><icon>05088DC0-D882-4E8B-B130-F087F7C04FC2.png</icon></item>", query, query, query, query, query];
+                        break;
+                    case CTDialogue:
+                        [results appendFormat:@"<item uid=\"%@:Dialogue\" arg=\"[CTDialogue]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Bluetooth phone call to: %@ via Dialogue (unidentified in Apple Contacts)</subtitle><icon>D47F4C69-2F33-4974-AF4F-3027EF487BCB.png</icon></item>", query, query, query, query, query];
                         break;
                 }
             }
@@ -786,6 +820,13 @@ end_result_generation:
     return help;
 }
 
+- (NSString *)dialogueCallOptionHelp
+{
+    static NSString *help = @"<item uid=\"\" arg=\"\" autocomplete=\"-l\" valid=\"no\"><title>Uni Call Option -l</title><subtitle>Make a bluetooth phone call to your contact via Dialogue</subtitle><icon>D47F4C69-2F33-4974-AF4F-3027EF487BCB.png</icon></item>";
+    
+    return help;
+}
+
 - (NSString *)noThumbnailCacheOptionHelp
 {
     static NSString *help = @"<item uid=\"\" arg=\"\" valid=\"no\"><title>Uni Call Option -!</title><subtitle>Prohibit contact thumbnails caching</subtitle><icon>shouldNotCacheThumbnail.png</icon></item>";
@@ -854,6 +895,7 @@ end_result_generation:
                     enabledCallType_ & CTGrowlVoice ? [self growlVoiceCallOptionHelp] : @"",
                     enabledCallType_ & CTCallTrunk ? [self callTrunkCallOptionHelp] : @"",
                     enabledCallType_ & CTFritzBox ? [self fritzBoxCallOptionHelp] : @"",
+                    enabledCallType_ & CTDialogue ? [self dialogueCallOptionHelp] : @"",
                    [self longOptionHelp],
                     @"</items>\n"] componentsJoinedByString:@""];
 }
@@ -877,6 +919,8 @@ end_result_generation:
         [results appendFormat:@"k"];
     if (callType & CTFritzBox)
         [results appendFormat:@"z"];
+    if (callType & CTDialogue)
+        [results appendFormat:@"l"];
     return results;
 }
 
@@ -908,6 +952,9 @@ end_result_generation:
                 break;
             case 'z':
                 tmp |= CTFritzBox;
+                break;
+            case 'l':
+                tmp |= CTDialogue;
                 break;
         }
     }
@@ -1145,6 +1192,8 @@ end_result_generation:
                                     
                                     NSMutableDictionary *infoPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingPathComponent:@"/info.plist"]];
                                     NSDictionary *prefLibPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingPathComponent:@"/prefLib.plist"]];
+                                    if (changedCodes & CTDialogue)
+                                        [self manipulateInfoPlistWithComponentName:@"Dialogue Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                     if (changedCodes & CTFritzBox)
                                         [self manipulateInfoPlistWithComponentName:@"Fritz!Box Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                     if (changedCodes & CTCallTrunk)
@@ -1173,6 +1222,12 @@ end_result_generation:
                                     CallType previewCodes = 0;
                                     if (restQueryMatches && [restQueryMatches count] > 0)
                                         previewCodes = [self getCallTypeFromComponentCodes:[query substringWithRange:[self getRangeFromQueryMatch:restQueryMatches[0]]]];
+                                    if (!(enabledCallType_ & CTDialogue)) {
+                                        if (previewCodes & CTDialogue)
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Dialogue Call Component Code l</title><subtitle>Make a bluetooth phone call to your contact via Dialogue</subtitle><icon>D47F4C69-2F33-4974-AF4F-3027EF487BCB.png</icon></item>"];
+                                        else
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Dialogue Call Component Code l</title><subtitle>Make a bluetooth phone call to your contact via Dialogue</subtitle><icon>D47F4C69-2F33-4974-AF4F-3027EF487BCB-disabled.png</icon></item>"];
+                                    }
                                     if (!(enabledCallType_ & CTFritzBox)) {
                                         if (previewCodes & CTFritzBox)
                                             [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Fritz!Box Call Component Code z</title><subtitle>Make a Fritz!Box call to your contact via Frizzix</subtitle><icon>05088DC0-D882-4E8B-B130-F087F7C04FC2.png</icon></item>"];
@@ -1239,6 +1294,8 @@ end_result_generation:
                                     
                                     NSMutableDictionary *infoPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingPathComponent:@"/info.plist"]];
                                     NSDictionary *prefLibPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:[[self workflowPath] stringByAppendingPathComponent:@"/prefLib.plist"]];
+                                    if (changedCodes & CTDialogue)
+                                        [self manipulateInfoPlistWithComponentName:@"Dialogue Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                     if (changedCodes & CTFritzBox)
                                         [self manipulateInfoPlistWithComponentName:@"Fritz!Box Call" andOperation:operation andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                     if (changedCodes & CTCallTrunk)
@@ -1267,6 +1324,12 @@ end_result_generation:
                                     CallType previewCodes = 0;
                                     if (restQueryMatches && [restQueryMatches count] > 0)
                                         previewCodes = [self getCallTypeFromComponentCodes:[query substringWithRange:[self getRangeFromQueryMatch:restQueryMatches[0]]]];
+                                    if (enabledCallType_ & CTDialogue) {
+                                        if (!(previewCodes & CTDialogue))
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Dialogue Call Component Code l</title><subtitle>Make a bluetooth phone call to your contact via Dialogue</subtitle><icon>D47F4C69-2F33-4974-AF4F-3027EF487BCB.png</icon></item>"];
+                                        else
+                                            [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Dialogue Call Component Code l</title><subtitle>Make a bluetooth phone call to your contact via Dialogue</subtitle><icon>D47F4C69-2F33-4974-AF4F-3027EF487BCB-disabled.png</icon></item>"];
+                                    }
                                     if (enabledCallType_ & CTFritzBox) {
                                         if (!(previewCodes & CTFritzBox))
                                             [results appendString:@"<item uid=\"\" arg=\"\" valid=\"no\"><title>Fritz!Box Call Component Code z</title><subtitle>Make a Fritz!Box call to your contact via Frizzix</subtitle><icon>05088DC0-D882-4E8B-B130-F087F7C04FC2.png</icon></item>"];
@@ -1358,6 +1421,10 @@ end_result_generation:
                                     [self manipulateInfoPlistWithComponentName:@"Fritz!Box Call" andOperation:@"add" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
                                 else
                                     [self manipulateInfoPlistWithComponentName:@"Fritz!Box Call" andOperation:@"remove" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
+                                if (enabledCallType_ & CTDialogue)
+                                    [self manipulateInfoPlistWithComponentName:@"Dialogue Call" andOperation:@"add" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
+                                else
+                                    [self manipulateInfoPlistWithComponentName:@"Dialogue Call" andOperation:@"remove" andInfoPlist:infoPlist andPrefLibPlist:prefLibPlist];
 
                                 [infoPlist writeToFile:[[self workflowPath] stringByAppendingPathComponent:@"/info.plist"] atomically:YES];
                                 
@@ -1456,6 +1523,13 @@ end_result_generation:
                     callType_ |= CTFritzBox;
                     [callTypes_ addObject:[NSNumber numberWithInt:CTFritzBox]];
                     [results appendString:[self fritzBoxCallOptionHelp]];
+                }
+                break;
+            case 'l':
+                if ((enabledCallType_ & CTDialogue) && !(callType_ & CTDialogue)) {
+                    callType_ |= CTDialogue;
+                    [callTypes_ addObject:[NSNumber numberWithInt:CTDialogue]];
+                    [results appendString:[self dialogueCallOptionHelp]];
                 }
                 break;
             case '!':

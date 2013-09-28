@@ -3,11 +3,11 @@
 [Uni Call](http://guiguan.github.com/Uni-Call/)
 ==========
 
-Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make [Skype](#skype-call), [FaceTime](#facetime-call), [bluetooth](#phone-amego-call) (via Phone Amego), [SIP](#sip-call) (via Telephone), [PushDialer](#pushdialer-call), [Google Voice](#growlvoice-call) (via GrowlVoice), [CallTrunk](#calltrunk-call) and [Fritz!Box](#fritzbox-call) phone call. However, more call methods could be added. Please let me know if you are interested!
+Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make [Skype](#skype-call), [FaceTime](#facetime-call), bluetooth (via either [Phone Amego](#phone-amego-call) or [Dialogue](#dialogue-call)), [SIP](#sip-call) (via Telephone), [PushDialer](#pushdialer-call), [Google Voice](#growlvoice-call) (via GrowlVoice), [CallTrunk](#calltrunk-call) and [Fritz!Box](#fritzbox-call) phone call. However, more call methods could be added. Please let me know if you are interested!
 
 ![Uni Call](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png)
 
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.5.0.443, FaceTime 2.0 (1080), Phone Amego 1.4_9, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Alfred 2.0.4 (199) and Mac OS X 10.8.4. Please note that the Mac OS X below 10.8 is not supported.
+Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.8.0.351, FaceTime 2.0 (1080), Phone Amego 1.4.18.02, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Dialogue 1.1 (70), Alfred 2.0.4 (199) and Mac OS X 10.8.5. Please note that the Mac OS X below 10.8 is not supported.
 
 If you like Uni Call, please consider making a small donation to [me](http://www.guiguan.net) via PayPal as to show your thanks and support for my work :)
 
@@ -17,7 +17,7 @@ Installation & Upgrade
 --------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 5.2](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 5.3](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
 3. Double click on the downloaded workflow file to install
 4. Type the following command in your Alfred:
 
@@ -38,7 +38,7 @@ When you would like to make a call, simply type:
 
 where the TARGET could be:
 
-1. a phone number ([Skype](#skype-call), [FaceTime](#facetime-call), [Phone Amego](#phone-amego-call), [SIP](#sip-call), [PushDialer](#pushdialer-call), [GrowlVoice](#growlvoice-call), [CallTrunk](#calltrunk-call), [Fritz!Box](#fritzbox-call))
+1. a phone number ([Skype](#skype-call), [FaceTime](#facetime-call), [Phone Amego](#phone-amego-call), [SIP](#sip-call), [PushDialer](#pushdialer-call), [GrowlVoice](#growlvoice-call), [CallTrunk](#calltrunk-call), [Fritz!Box](#fritzbox-call), [Dialogue](#dialogue-call))
 2. a Skype username ([Skype](#skype-call))
 3. an email address ([FaceTime](#facetime-call))
 4. a SIP address ([SIP](#sip-call))
@@ -75,30 +75,35 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 		call -f TARGET
 		callf TARGET
 		
-6. **-p**: make a [bluetooth phone call](#phone-amego-call) to your contact via Phone Amego
+6. **-p**: make a bluetooth phone call to your contact via [Phone Amego](#phone-amego-call)
 
 		call -p TARGET
 		callp TARGET
 		callp TARGET /DEVICE_ALIAS_OR_DEVICE_LABEL  # select a device to use [*].
 
 	[*] Please refer to [Manage Aliases for Device Labels](#manage-aliases-for-device-labels)
+
+7. **-l**: make a bluetooth phone call to your contact via [Dialogue](#dialogue-call)
+
+		call -l TARGET
+		calll TARGET
 		
-7. **-i**: make a [SIP call](#sip-call) to your contact via Telephone
+8. **-i**: make a [SIP call](#sip-call) to your contact via Telephone
 
 		call -i TARGET
 		calli TARGET
 
-8. **-d**: make a [PushDialer call](#pushdialer-call) to your contact
+9. **-d**: make a [PushDialer call](#pushdialer-call) to your contact
 
 		call -d TARGET
 		calld TARGET
 
-9. **-g**: make a [Google Voice call](#growlvoice-call) to your contact via GrowlVoice
+10. **-g**: make a [Google Voice call](#growlvoice-call) to your contact via GrowlVoice
 
 		call -g TARGET
 		callg TARGET
 
-10. **-k**: make a [CallTrunk](#calltrunk-call) to your contact
+11. **-k**: make a [CallTrunk](#calltrunk-call) to your contact
 
 		call -k TARGET
 		callk TARGET
@@ -106,12 +111,12 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 
 	[*] Please refer to [Set Call Trunk Country](#set-call-trunk-country)
 
-11. **-z**: make a [Fritz!Box](#fritzbox-call) to your contact via Frizzix
+12. **-z**: make a [Fritz!Box](#fritzbox-call) to your contact via Frizzix
 
 		call -z TARGET
 		callz TARGET
 
-Alternatively, you can make calls using Alfred's Contacts Feature. There will be eight contact actions available for you to choose from in **_Alfred's Contacts Feature_** (under Alfred Preferences > Features > Contacts): [Skype Call](#skype-call), [FaceTime Call](#facetime-call), [Phone Amego Call](#phone-amego-call), [SIP Call](#sip-call), [PushDialer Call](#pushdialer-call), [GrowlVoice Call](#growlvoice-call), [CallTrunk Call](#calltrunk-call) and [Fritz!Box Call](#fritzbox-call).
+Alternatively, you can make calls using Alfred's Contacts Feature. There will be eight contact actions available for you to choose from in **_Alfred's Contacts Feature_** (under Alfred Preferences > Features > Contacts): [Skype Call](#skype-call), [FaceTime Call](#facetime-call), [Phone Amego Call](#phone-amego-call), [SIP Call](#sip-call), [PushDialer Call](#pushdialer-call), [GrowlVoice Call](#growlvoice-call), [CallTrunk Call](#calltrunk-call), [Fritz!Box Call](#fritzbox-call) and [Dialogue](#dialogue-call).
 
 ![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
 
@@ -294,12 +299,24 @@ Among the search results for Fritz!Box Call, contact thumbnails will be shown in
 
 ![Fritz!Box](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FritzBox.png)
 
+### Dialogue Call
+-----------------
+
+Dialogue Call requires the newest version of [Dialogue](http://www.getdialogue.com).
+
+Among the search results for Dialogue Call, contact thumbnails will be shown in color:#c600bd border:
+
+![Dialogue](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Dialogue.png)
+
 Credit
 ----------------
 [Guan Gui](http://www.guiguan.net)
 
 Changelog
 ----------------
+
+#### v5.3 (28/09/13)
+* Added support for [Dialogue](http://www.getdialogue.com), which is an alternative to Phone Amego making bluetooth phone calls. It provides a more elegant UI and a call recording functionality.
 
 #### v5.2 (13/06/13)
 * Now Skype Call component is compatible with the new Skype 6.5: the original skypecall.scpt AppleScript is rewritten in Objective C using Skype framework. The new Skype Call component is now more efficient and robust.

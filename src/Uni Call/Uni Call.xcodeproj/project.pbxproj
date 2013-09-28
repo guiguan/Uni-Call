@@ -33,6 +33,8 @@
 		A5D57C6B1744A36D00571334 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D57C6A1744A36D00571334 /* main.m */; };
 		A5E0E6E217327C3C002E8289 /* UniCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0E6E117327C3C002E8289 /* UniCall.m */; settings = {COMPILER_FLAGS = ""; }; };
 		A5E0E6E6173296AC002E8289 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0E6E5173296AC002E8289 /* AppKit.framework */; };
+		A5F40BDF17F5B96900747AC5 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7A31729124000ADB097 /* AddressBook.framework */; };
+		A5F40BE017F5B98A00747AC5 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0E6E5173296AC002E8289 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -155,6 +157,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F40BE017F5B98A00747AC5 /* AppKit.framework in Frameworks */,
+				A5F40BDF17F5B96900747AC5 /* AddressBook.framework in Frameworks */,
 				A5A0D6C81769596E00677C93 /* Foundation.framework in Frameworks */,
 				A5A0D6D5176959CF00677C93 /* Skype.framework in Frameworks */,
 			);
@@ -640,6 +644,7 @@
 				A5A0D6D21769596E00677C93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5D57C721744A36D00571334 /* Build configuration list for PBXNativeTarget "Test" */ = {
 			isa = XCConfigurationList;
