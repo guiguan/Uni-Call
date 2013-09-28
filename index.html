@@ -23,7 +23,8 @@
         </header>
 
         <section id="downloads" class="clearfix">
-          <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow" id="download-alfredworkflow" class="button"><span>Download Uni-Call.alfredworkflow 5.2</span></a>
+          <a href="https://github.com/guiguan/Uni-Call/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/guiguan/Uni-Call/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
           <a href="https://github.com/guiguan/Uni-Call" id="view-on-github" class="button"><span>View on GitHub</span></a>
         </section>
 
@@ -36,11 +37,11 @@
 <a name="uni-call" class="anchor" href="#uni-call"><span class="octicon octicon-link"></span></a><a href="http://guiguan.github.com/Uni-Call/">Uni Call</a>
 </h1>
 
-<p>Uni Call is an <a href="http://www.alfredapp.com">Alfred</a> workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make <a href="#skype-call">Skype</a>, <a href="#facetime-call">FaceTime</a>, <a href="#phone-amego-call">bluetooth</a> (via Phone Amego), <a href="#sip-call">SIP</a> (via Telephone), <a href="#pushdialer-call">PushDialer</a>, <a href="#growlvoice-call">Google Voice</a> (via GrowlVoice), <a href="#calltrunk-call">CallTrunk</a> and <a href="#fritzbox-call">Fritz!Box</a> phone call. However, more call methods could be added. Please let me know if you are interested!</p>
+<p>Uni Call is an <a href="http://www.alfredapp.com">Alfred</a> workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make <a href="#skype-call">Skype</a>, <a href="#facetime-call">FaceTime</a>, bluetooth (via either <a href="#phone-amego-call">Phone Amego</a> or <a href="#dialogue-call">Dialogue</a>), <a href="#sip-call">SIP</a> (via Telephone), <a href="#pushdialer-call">PushDialer</a>, <a href="#growlvoice-call">Google Voice</a> (via GrowlVoice), <a href="#calltrunk-call">CallTrunk</a> and <a href="#fritzbox-call">Fritz!Box</a> phone call. However, more call methods could be added. Please let me know if you are interested!</p>
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png" alt="Uni Call"></p>
 
-<p>Uni Call workflow supports <a href="http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/">Alleyoop auto-updater</a>. It has been tested on Skype 6.5.0.443, FaceTime 2.0 (1080), Phone Amego 1.4_9, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Alfred 2.0.4 (199) and Mac OS X 10.8.4. Please note that the Mac OS X below 10.8 is not supported.</p>
+<p>Uni Call workflow supports <a href="http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/">Alleyoop auto-updater</a>. It has been tested on Skype 6.8.0.351, FaceTime 2.0 (1080), Phone Amego 1.4.18.02, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Dialogue 1.1 (70), Alfred 2.0.4 (199) and Mac OS X 10.8.5. Please note that the Mac OS X below 10.8 is not supported.</p>
 
 <p>If you like Uni Call, please consider making a small donation to <a href="http://www.guiguan.net">me</a> via PayPal as to show your thanks and support for my work :)</p>
 
@@ -51,7 +52,7 @@
 
 <ol>
 <li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> (with version 2 and above) and <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
-<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow">Uni-Call.alfredworkflow 5.2</a>
+<li>Download the latest workflow: <a href="http://www.guiguan.net/downloads/Uni-Call.alfredworkflow">Uni-Call.alfredworkflow 5.3</a>
 </li>
 <li>Double click on the downloaded workflow file to install</li>
 <li>
@@ -77,7 +78,7 @@
 <p>where the TARGET could be:</p>
 
 <ol>
-<li>a phone number (<a href="#skype-call">Skype</a>, <a href="#facetime-call">FaceTime</a>, <a href="#phone-amego-call">Phone Amego</a>, <a href="#sip-call">SIP</a>, <a href="#pushdialer-call">PushDialer</a>, <a href="#growlvoice-call">GrowlVoice</a>, <a href="#calltrunk-call">CallTrunk</a>, <a href="#fritzbox-call">Fritz!Box</a>)</li>
+<li>a phone number (<a href="#skype-call">Skype</a>, <a href="#facetime-call">FaceTime</a>, <a href="#phone-amego-call">Phone Amego</a>, <a href="#sip-call">SIP</a>, <a href="#pushdialer-call">PushDialer</a>, <a href="#growlvoice-call">GrowlVoice</a>, <a href="#calltrunk-call">CallTrunk</a>, <a href="#fritzbox-call">Fritz!Box</a>, <a href="#dialogue-call">Dialogue</a>)</li>
 <li>a Skype username (<a href="#skype-call">Skype</a>)</li>
 <li>an email address (<a href="#facetime-call">FaceTime</a>)</li>
 <li>a SIP address (<a href="#sip-call">SIP</a>)</li>
@@ -124,7 +125,7 @@ callf TARGET
 </code></pre>
 </li>
 <li>
-<p><strong>-p</strong>: make a <a href="#phone-amego-call">bluetooth phone call</a> to your contact via Phone Amego</p>
+<p><strong>-p</strong>: make a bluetooth phone call to your contact via <a href="#phone-amego-call">Phone Amego</a></p>
 
 <pre><code>call -p TARGET
 callp TARGET
@@ -132,6 +133,13 @@ callp TARGET /DEVICE_ALIAS_OR_DEVICE_LABEL  # select a device to use [*].
 </code></pre>
 
 <p>[*] Please refer to <a href="#manage-aliases-for-device-labels">Manage Aliases for Device Labels</a></p>
+</li>
+<li>
+<p><strong>-l</strong>: make a bluetooth phone call to your contact via <a href="#dialogue-call">Dialogue</a></p>
+
+<pre><code>call -l TARGET
+calll TARGET
+</code></pre>
 </li>
 <li>
 <p><strong>-i</strong>: make a <a href="#sip-call">SIP call</a> to your contact via Telephone</p>
@@ -171,7 +179,7 @@ callk TARGET /COUNTRY_CODE # select a country specific Call Trunk app to use, wh
 callz TARGET
 </code></pre>
 </li>
-</ol><p>Alternatively, you can make calls using Alfred's Contacts Feature. There will be eight contact actions available for you to choose from in <strong><em>Alfred's Contacts Feature</em></strong> (under Alfred Preferences &gt; Features &gt; Contacts): <a href="#skype-call">Skype Call</a>, <a href="#facetime-call">FaceTime Call</a>, <a href="#phone-amego-call">Phone Amego Call</a>, <a href="#sip-call">SIP Call</a>, <a href="#pushdialer-call">PushDialer Call</a>, <a href="#growlvoice-call">GrowlVoice Call</a>, <a href="#calltrunk-call">CallTrunk Call</a> and <a href="#fritzbox-call">Fritz!Box Call</a>.</p>
+</ol><p>Alternatively, you can make calls using Alfred's Contacts Feature. There will be eight contact actions available for you to choose from in <strong><em>Alfred's Contacts Feature</em></strong> (under Alfred Preferences &gt; Features &gt; Contacts): <a href="#skype-call">Skype Call</a>, <a href="#facetime-call">FaceTime Call</a>, <a href="#phone-amego-call">Phone Amego Call</a>, <a href="#sip-call">SIP Call</a>, <a href="#pushdialer-call">PushDialer Call</a>, <a href="#growlvoice-call">GrowlVoice Call</a>, <a href="#calltrunk-call">CallTrunk Call</a>, <a href="#fritzbox-call">Fritz!Box Call</a> and <a href="#dialogue-call">Dialogue</a>.</p>
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png" alt="Integrate Uni-Call with Alfred's Contacts Feature"></p>
 
@@ -369,6 +377,15 @@ callz TARGET
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FritzBox.png" alt="Fritz!Box"></p>
 
+<h3>
+<a name="dialogue-call" class="anchor" href="#dialogue-call"><span class="octicon octicon-link"></span></a>Dialogue Call</h3>
+
+<hr><p>Dialogue Call requires the newest version of <a href="http://www.getdialogue.com">Dialogue</a>.</p>
+
+<p>Among the search results for Dialogue Call, contact thumbnails will be shown in color:#c600bd border:</p>
+
+<p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Dialogue.png" alt="Dialogue"></p>
+
 <h2>
 <a name="credit" class="anchor" href="#credit"><span class="octicon octicon-link"></span></a>Credit</h2>
 
@@ -378,6 +395,11 @@ callz TARGET
 <a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
 
 <h4>
+<a name="v53-280913" class="anchor" href="#v53-280913"><span class="octicon octicon-link"></span></a>v5.3 (28/09/13)</h4>
+
+<ul>
+<li>Added support for <a href="http://www.getdialogue.com">Dialogue</a>, which is an alternative to Phone Amego making bluetooth phone calls. It provides a more elegant UI and a call recording functionality.</li>
+</ul><h4>
 <a name="v52-130613" class="anchor" href="#v52-130613"><span class="octicon octicon-link"></span></a>v5.2 (13/06/13)</h4>
 
 <ul>
@@ -488,7 +510,7 @@ call 043333333
 
         <footer>
           Uni Call is maintained by <a href="https://github.com/guiguan">guiguan</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
         </footer>
 
                   <script type="text/javascript">
