@@ -159,14 +159,14 @@ Among the search results for Skype Call, contact thumbnails will be shown in col
 
 ![Skype](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype.png)
 
-<s>If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in color:#47baec border with color:#47baec inner shadow:
+<del>If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in color:#47baec border with color:#47baec inner shadow:
 
 ![Skype Online](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype-Online.png)
 
 If the Skype hasn't been opened yet, Skype Call will open it and ensure it is online before starting the phone call. When making a phone call, Skype Call won't change your Skype online status, and no annoying confirmation dialog box will be popped up.
 
-The alternative url scheme *skype:{query}?call* approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</s>
-(Refer to [v5.31 changelog][v5.31 (15/12/13)])
+The alternative url scheme *skype:{query}?call* approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</del>
+(Refer to [v5.31 changelog](#v531-151213))
 
 #### The Correct Way to Store a Skype Username for Your Contact
 1. Retrieve your contact's Skype username from Skype App
