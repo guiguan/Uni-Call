@@ -23,7 +23,8 @@
         </header>
 
         <section id="downloads" class="clearfix">
-          <a href="http://www.guiguan.net/download/uni-call-alfredworkflow/" id="download-alfredworkflow" class="button"><span>Download Uni-Call.alfredworkflow 5.3</span></a>
+          <a href="https://github.com/guiguan/Uni-Call/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/guiguan/Uni-Call/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
           <a href="https://github.com/guiguan/Uni-Call" id="view-on-github" class="button"><span>View on GitHub</span></a>
         </section>
 
@@ -40,7 +41,7 @@
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png" alt="Uni Call"></p>
 
-<p>Uni Call workflow supports <a href="http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/">Alleyoop auto-updater</a>. It has been tested on Skype 6.8.0.351, FaceTime 2.0 (1080), Phone Amego 1.4.18.02, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Dialogue 1.1 (70), Alfred 2.0.4 (199) and Mac OS X 10.8.5. Please note that the Mac OS X below 10.8 is not supported.</p>
+<p>Uni Call workflow supports <a href="http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/">Alleyoop auto-updater</a>. It has been tested on Skype 6.11, FaceTime 2.0 (1080), Phone Amego 1.4.18.02, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Dialogue 1.1 (70), Alfred 2.0.4 (199) and Mac OS X 10.8.5. Please note that the Mac OS X below 10.8 is not supported.</p>
 
 <p>If you like Uni Call, please consider making a small donation to <a href="http://www.guiguan.net">me</a> via PayPal as to show your thanks and support for my work :)</p>
 
@@ -51,7 +52,7 @@
 
 <ol>
 <li>Make sure the <a href="http://www.alfredapp.com">Alfred</a> (with version 2 and above) and <a href="http://www.alfredapp.com/powerpack">Powerpack</a> is installed</li>
-<li>Download the latest workflow: <a href="http://www.guiguan.net/download/uni-call-alfredworkflow/">Uni-Call.alfredworkflow 5.3</a>
+<li>Download the latest workflow: <a href="http://www.guiguan.net/download/uni-call-alfredworkflow/">Uni-Call.alfredworkflow 5.31</a>
 </li>
 <li>Double click on the downloaded workflow file to install</li>
 <li>
@@ -227,13 +228,13 @@ callz TARGET
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype.png" alt="Skype"></p>
 
-<p>If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in color:#47baec border with color:#47baec inner shadow:</p>
+<del>If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in color:#47baec border with color:#47baec inner shadow:</del>
 
 <p><img src="https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype-Online.png" alt="Skype Online"></p>
 
-<p>If the Skype hasn't been opened yet, Skype Call will open it and ensure it is online before starting the phone call. When making a phone call, Skype Call won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</p>
+<del>If the Skype hasn't been opened yet, Skype Call will open it and ensure it is online before starting the phone call. When making a phone call, Skype Call won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</del>
 
-<p>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</p>
+<p><del>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</del> (Refer to <a href="#v531-151213">v5.31 changelog</a>)</p>
 
 <h4>
 <a name="the-correct-way-to-store-a-skype-username-for-your-contact" class="anchor" href="#the-correct-way-to-store-a-skype-username-for-your-contact"><span class="octicon octicon-link"></span></a>The Correct Way to Store a Skype Username for Your Contact</h4>
@@ -394,6 +395,11 @@ callz TARGET
 <a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
 
 <h4>
+<a name="v531-151213" class="anchor" href="#v531-151213"><span class="octicon octicon-link"></span></a>v5.31 (15/12/13)</h4>
+
+<ul>
+<li>Changed Skype Call component to use the URL Scheme method which will be the only Skype API supported in the future Skype versions.</li>
+</ul><h4>
 <a name="v53-280913" class="anchor" href="#v53-280913"><span class="octicon octicon-link"></span></a>v5.3 (28/09/13)</h4>
 
 <ul>
