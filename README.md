@@ -165,8 +165,7 @@ Among the search results for Skype Call, contact thumbnails will be shown in col
 
 <del>If the Skype hasn't been opened yet, Skype Call will open it and ensure it is online before starting the phone call. When making a phone call, Skype Call won't change your Skype online status, and no annoying confirmation dialog box will be popped up.</del>
 
-<del>The alternative url scheme *skype:{query}?call* approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</del>
-(Refer to [v5.31 changelog](#v531-151213))
+<del>The alternative url scheme *skype:{query}?call* approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</del> (Refer to [v5.31 changelog](#v531-151213))
 
 #### The Correct Way to Store a Skype Username for Your Contact
 1. Retrieve your contact's Skype username from Skype App
