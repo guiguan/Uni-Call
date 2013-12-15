@@ -236,7 +236,7 @@
 
 case "$query" in
 	"[CTSkype]"*)
-		./bin/Skype\ Call ${query#'[CTSkype]'};;
+		open "skype:${query#'[CTSkype]'}";;
 	"[CTFaceTime]"*)
 		open "facetime:${query#'[CTFaceTime]'}";;
 	"[CTPhoneAmego]"*)
@@ -329,7 +329,7 @@ esac</string>
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>script</key>
-				<string>./bin/Skype\ Call {query}</string>
+				<string>open "skype:{query}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -835,7 +835,7 @@ fi</string>
 	</array>
 	<key>readme</key>
 	<string>Uni Call
-v5.3
+v5.31
 
 The missing universal phone call workflow for Alfred
 ----------------------------------------------------
@@ -854,7 +854,7 @@ Installation &amp; Upgrade
 --------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 5.3](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 5.31](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
 3. Double click on the downloaded workflow file to install
 4. Type the following command in your Alfred:
 

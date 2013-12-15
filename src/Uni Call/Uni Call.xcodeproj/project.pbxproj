@@ -28,7 +28,6 @@
 		A5A0D6CF1769596E00677C93 /* Skype_Call.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5A0D6CE1769596E00677C93 /* Skype_Call.1 */; };
 		A5A0D6D5176959CF00677C93 /* Skype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A0D6D4176959CF00677C93 /* Skype.framework */; };
 		A5A0D6D717698C4E00677C93 /* UniCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0E6E117327C3C002E8289 /* UniCall.m */; };
-		A5A0D6DA1769DA2900677C93 /* Skype Call in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5A0D6C71769596E00677C93 /* Skype Call */; };
 		A5D57C681744A36D00571334 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7951729122600ADB097 /* Foundation.framework */; };
 		A5D57C6B1744A36D00571334 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D57C6A1744A36D00571334 /* main.m */; };
 		A5E0E6E217327C3C002E8289 /* UniCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0E6E117327C3C002E8289 /* UniCall.m */; settings = {COMPILER_FLAGS = ""; }; };
@@ -87,16 +86,6 @@
 				A5A0D6CF1769596E00677C93 /* Skype_Call.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
-		};
-		A5A0D6D91769DA0B00677C93 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "/Users/guiguan/Dropbox/Alfred.alfredpreferences/workflows/user.workflow.D1A87876-B4E1-4FB9-9028-2562B0B52AEA/bin";
-			dstSubfolderSpec = 0;
-			files = (
-				A5A0D6DA1769DA2900677C93 /* Skype Call in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -343,7 +332,6 @@
 				A5A0D6C31769596E00677C93 /* Sources */,
 				A5A0D6C41769596E00677C93 /* Frameworks */,
 				A5A0D6C51769596E00677C93 /* CopyFiles */,
-				A5A0D6D91769DA0B00677C93 /* CopyFiles */,
 			);
 			buildRules = (
 			);

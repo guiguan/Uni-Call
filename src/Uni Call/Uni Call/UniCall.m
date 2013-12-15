@@ -1,4 +1,4 @@
-#define VERSION @"v5.3"
+#define VERSION @"v5.31"
 //
 //  UniCall.m
 //  Uni Call
@@ -249,13 +249,13 @@ BOOL hasGeneratedOutputsForFirstContact_;
                     BOOL isThumbNailOkay = NO;
                     NSColor *color = [NSColor colorWithCalibratedRed:0.23137f green:0.72941f blue:0.93725f alpha:1.0f];
                     NSString *skypeThumbnailPath = [[self thumbnailCachePath] stringByAppendingFormat:@"/%@:Skype.tiff", [r uniqueId]];
-                    NSString *skypeOnlineThumbnailPath = [[self thumbnailCachePath] stringByAppendingFormat:@"/%@:Skype:Online.tiff", [r uniqueId]];
+//                    NSString *skypeOnlineThumbnailPath = [[self thumbnailCachePath] stringByAppendingFormat:@"/%@:Skype:Online.tiff", [r uniqueId]];
                     isThumbNailOkay = [self checkAndUpdateThumbnailIfNeededAtPath:skypeThumbnailPath forRecord:r withColor:color hasShadow:NO];
-                    [self checkAndUpdateThumbnailIfNeededAtPath:skypeOnlineThumbnailPath forRecord:r withColor:color hasShadow:YES];
+                    [self checkAndUpdateThumbnailIfNeededAtPath:skypeThumbnailPath forRecord:r withColor:color hasShadow:YES];
                     
                     if (!isThumbNailOkay) {
                         skypeThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:Skype.tiff"];
-                        skypeOnlineThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:Skype:Online.tiff"];
+//                        skypeOnlineThumbnailPath = [[self workflowPath] stringByAppendingString:@"/defaultContactThumbnail:Skype:Online.tiff"];
                         // generate default thumbnails
 //                        [self checkAndUpdateDefaultThumbnailIfNeededAtPath:skypeThumbnailPath withColor:color hasShadow:NO];
 //                        [self checkAndUpdateDefaultThumbnailIfNeededAtPath:skypeOnlineThumbnailPath withColor:color hasShadow:YES];
@@ -271,11 +271,11 @@ BOOL hasGeneratedOutputsForFirstContact_;
                             if ([entry[kABInstantMessageServiceKey] isEqualToString: kABInstantMessageServiceSkype]) {
                                 NSString *username = entry[kABInstantMessageUsernameKey];
                                 
-                                BOOL isOnline = [[UniCall runCommand:[NSString stringWithFormat:@"\"%@\" [STATUS]%@ 2> /dev/null", [self skypeCallPath], username]] hasPrefix:@"1"];
+//                                BOOL isOnline = [[UniCall runCommand:[NSString stringWithFormat:@"\"%@\" [STATUS]%@ 2> /dev/null", [self skypeCallPath], username]] hasPrefix:@"1"];
                                 
-                                if (isOnline)
-                                    [bufferedResults insertObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype:Online\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@ (online)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeOnlineThumbnailPath] atIndex:0];
-                                else
+//                                if (isOnline)
+//                                    [bufferedResults insertObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype:Online\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@ (online)</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeOnlineThumbnailPath] atIndex:0];
+//                                else
                                     [bufferedResults addObject:[NSString stringWithFormat:@"<item uid=\"%@:Skype\" arg=\"[CTSkype]%@\" autocomplete=\"%@\"><title>%@</title><subtitle>Skype call to Skype username: %@</subtitle><icon>%@</icon></item>", [ims identifierAtIndex:i], username, username, outDisplayName, username, skypeThumbnailPath]];
                             }
                         }

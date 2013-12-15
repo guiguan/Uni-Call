@@ -7,7 +7,7 @@ Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest
 
 ![Uni Call](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png)
 
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.8.0.351, FaceTime 2.0 (1080), Phone Amego 1.4.18.02, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Dialogue 1.1 (70), Alfred 2.0.4 (199) and Mac OS X 10.8.5. Please note that the Mac OS X below 10.8 is not supported.
+Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.11, FaceTime 2.0 (1080), Phone Amego 1.4.18.02, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Dialogue 1.1 (70), Alfred 2.0.4 (199) and Mac OS X 10.8.5. Please note that the Mac OS X below 10.8 is not supported.
 
 If you like Uni Call, please consider making a small donation to [me](http://www.guiguan.net) via PayPal as to show your thanks and support for my work :)
 
@@ -17,7 +17,7 @@ Installation & Upgrade
 --------------
 
 1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 5.3](http://www.guiguan.net/download/uni-call-alfredworkflow/)
+2. Download the latest workflow: [Uni-Call.alfredworkflow 5.31](http://www.guiguan.net/download/uni-call-alfredworkflow/)
 3. Double click on the downloaded workflow file to install
 4. Type the following command in your Alfred:
 
@@ -159,13 +159,14 @@ Among the search results for Skype Call, contact thumbnails will be shown in col
 
 ![Skype](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype.png)
 
-If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in color:#47baec border with color:#47baec inner shadow:
+<s>If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in color:#47baec border with color:#47baec inner shadow:
 
 ![Skype Online](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-Skype-Online.png)
 
 If the Skype hasn't been opened yet, Skype Call will open it and ensure it is online before starting the phone call. When making a phone call, Skype Call won't change your Skype online status, and no annoying confirmation dialog box will be popped up.
 
-The alternative url scheme *skype:{query}?call* approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.
+The alternative url scheme *skype:{query}?call* approach is not able make a phone call when Skype hasn't been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</s>
+(Refer to [v5.31 changelog][v5.31 (15/12/13)])
 
 #### The Correct Way to Store a Skype Username for Your Contact
 1. Retrieve your contact's Skype username from Skype App
@@ -314,6 +315,9 @@ Credit
 
 Changelog
 ----------------
+
+#### v5.31 (15/12/13)
+* Changed Skype Call component to use the URL Scheme method which will be the only Skype API supported in the future Skype versions.
 
 #### v5.3 (28/09/13)
 * Added support for [Dialogue](http://www.getdialogue.com), which is an alternative to Phone Amego making bluetooth phone calls. It provides a more elegant UI and a call recording functionality.
