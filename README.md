@@ -120,21 +120,35 @@ Alternatively, you can make calls using Alfred's Contacts Feature. There will be
 
 ![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
 
+### COMPONENT_CODES
+
+A COMPONENT_CODE is the short option letter for each call component. For example, Skype Call component has "s" as its COMPONENT_CODE. Please refer to [Detailed Usage](#detailed-usage) for which letter corresponds to which call component.
+
 ### Enable/disable Call Components
 
 If you only make use of several call components in your daily life, you can completely disable others. Then your Uni Call will act as if it only has those call components working internally. In reality, this will also speedup your Uni Call.
 
 To disable call components:
 
-	call --disable
+	call --disable COMPONENT_CODES yes
 
 To re-enable disabled call components:
 
-	call --enable
+	call --enable COMPONENT_CODES yes
+
+where the COMPONENT_CODES is defined in [COMPONENT_CODES](#component_codes) section.
 
 When a call component is disabled, its corresponding Alfred Preferences will be automatically removed; later when it is enabled again, its Alfred Preferences will then be automatically restored.
 
 Your decision about which call components to enable will be stored persistently in ~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/config.plist. The meaning of "persistently" is that your decision will be kept even after you upgrade to future Uni Call versions.
+
+### Reorder Call Components
+
+The default call component order is the order of call component candidates by default shown in search results. If you want a certain call component candidates to be always shown among the top of search results, you can type the following command to reorder call components:
+
+    call --reorder COMPONENT_CODES yes
+
+where the COMPONENT_CODES is defined in [COMPONENT_CODES](#component_codes) section.
 
 ### Contact Thumbnail Cache
 
@@ -151,7 +165,8 @@ If you decided not to show contact thumbnails, you can completely remove the cac
 and then use -! option along with other search options to prohibit the automatic thumbnail generation and caching. You can change script filters to adopt -! option too.
 
 ### Skype Call
---------------
+
+---
 
 Skype Call requires the newest version of [Skype](http://www.skype.com/en/download-skype/skype-for-mac/).
 
@@ -177,7 +192,8 @@ Among the search results for Skype Call, contact thumbnails will be shown in col
 ![Apple-Contacts](https://github.com/guiguan/Uni-Call/raw/master/Apple-Contacts.png)
 
 ### FaceTime Call
------------------
+
+---
 
 FaceTime Call requires the newest version of [FaceTime](http://www.apple.com/au/mac/facetime/).
 
@@ -198,7 +214,8 @@ The thumbnail of a person who has nominated phone number or email will be shown 
 FaceTime Call uses url scheme *facetime:{query}* to launch FaceTime and start a call.
 
 ### Phone Amego Call
---------------------
+
+---
 
 With the help of [Phone Amego](http://www.sustworks.com/pa_guide/), you can turn your Mac into a bluetooth headset and remotely control your real mobile phone to start and receive real phone calls. Sweet?!
 
@@ -225,7 +242,8 @@ To remove the assigned alias:
 	callp --unmap ip yes
 
 ### SIP Call
-------------
+
+---
 
 SIP Call requires the newest version of [SIP](http://voip.about.com/od/sipandh323/a/What-Is-Sip-And-What-Is-It-Good-For.htm) client [Telephone](http://www.tlphn.com/).
 
@@ -244,7 +262,8 @@ then the corresponding thumbnail for that person will be shown in color:#fcbd5a 
 SIP Call uses url scheme *tel:{query}* for phone numbers and url scheme *sip:{query}* for SIP addresses to launch Telephone and start a call.
 
 ### PushDialer Call
--------------------
+
+---
 
 PushDialer Call requires the newest version of [PushDialer](http://pushdialer.com/).
 
@@ -255,7 +274,8 @@ Among the search results for PushDialer Call, contact thumbnails will be shown i
 PushDialer Call uses url scheme *pushdialer://{query}* to launch PushDialer and start a call. By default, PushDialer will send out a Growl notification to confirm a dialling out.
 
 ### GrowlVoice Call
--------------------
+
+---
 
 GrowlVoice Call requires the newest version of [GrowlVoice](http://www.growlvoice.com/).
 
@@ -266,7 +286,8 @@ Among the search results for GrowlVoice Call, contact thumbnails will be shown i
 GrowlVoice Call uses url scheme *growlvoice:{query}* to launch GrowlVoice and start a call.
 
 ### CallTrunk Call
-------------------
+
+---
 
 You can record your phone calls and have the conversations automatically recognised for fast searching and analysis with the help of [CallTrunk](https://www.calltrunk.com/au/en/).
 
@@ -291,7 +312,8 @@ Apart from setting the default country, you can also temporarily overwrite the s
 will set Unite States (US) as the country for Call Trunk. Therefore, the Call Trunk US app will be used to dial out the call.
 
 ### Fritz!Box Call
-------------------
+
+---
 
 Fritz!Box Call requires the newest version of [Frizzix](http://mac.frizzix.de/en/).
 
@@ -300,7 +322,8 @@ Among the search results for Fritz!Box Call, contact thumbnails will be shown in
 ![Fritz!Box](https://github.com/guiguan/Uni-Call/raw/master/defaultContactThumbnail-FritzBox.png)
 
 ### Dialogue Call
------------------
+
+---
 
 Dialogue Call requires the newest version of [Dialogue](http://www.getdialogue.com).
 
@@ -314,6 +337,10 @@ Credit
 
 Changelog
 ----------------
+
+#### v6.0 (02/10/14)
+* Changed to a new logo icon. Special thanks to [Dmitry Zaborskikh](https://dribbble.com/Gust-art) for the icon's original design :)
+* Added option to change call component default order: call --reorder
 
 #### v5.31 (15/12/13)
 * Changed Skype Call component to use the URL Scheme method which will be the only Skype API supported in the future Skype versions.
@@ -365,9 +392,10 @@ Changelog
 * Big changes to original Skype Call workflow and renamed it to Uni Call. FaceTime and Phone Amego Call components are introduced.
 
 Legacy: Skype-Call.alfredextension 1.0 for Alfred v1
-----------------
+================
 
-### Installation
+Installation
+------------
 1. Make sure the [Alfred](http://www.alfredapp.com) with [Powerpack](http://www.alfredapp.com/powerpack) is installed
 2. Download the latest extension: [Skype-Call.alfredextension 1.0](http://www.guiguan.net/download/skype-call-alfredextension/)
 3. Double click on the downloaded extension file to install
@@ -375,7 +403,8 @@ Legacy: Skype-Call.alfredextension 1.0 for Alfred v1
 
 ![Integrate Skype-Call with Alfred's Address Book Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Preferences.png)
 
-### Usage
+Usage
+-----
 
 #### type "call PHONE_NUMBER"
 	call +61 4 3333 3333
@@ -388,7 +417,8 @@ Legacy: Skype-Call.alfredextension 1.0 for Alfred v1
 ![Search for A Contact](https://github.com/guiguan/Uni-Call/raw/master/Search-for-A-Contact.png)
 ![Select A Phone Number](https://github.com/guiguan/Uni-Call/raw/master/Select-A-Phone-Number.png)
 
-### Troubleshooting
+Troubleshooting
+---------------
 
 #### If nothing happens
 This is a known issue for Skype-Call.alfredextension 1.0 if you are using a non-english Skype (depends on your Mac OS X language). However, this should have already been fixed in Skype-Call.alfredworkflow 2.0. If by any change, you still encounter a similar problem, please remove the *AppleScript* entry from the "Skype main menu > Skype > Manage API Clients..." dialog (as shown in the following figure), and restart your Skype.
