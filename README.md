@@ -23,11 +23,15 @@ Installation & Upgrade
 
 		call --updatealfredpreferences yes
 
-5. (Optional) If you have used previous version of Uni Call, new components introduced in a new version are disabled by default. To enable them please refer to [Enable/disable Call Components](#enabledisable-call-components). 
+5. (**_important_**) If you are new to Uni Call, all call components are enabled by default. If you have previously enabled or disabled call components, new components introduced in a new version are disabled by default. To enable or disable Uni Call call components, please refer to [Enable/disable Call Components](#enabledisable-call-components). 
 
 Support
 ----------------
-Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Uni-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/uni-call). Or, you can post on the [Uni Call topic section of Alfred forum](http://www.guiguan.net/redirections/Alfred-Forum-Uni-Call).
+Please using one of the following methods to get support:
+1. file any issue from [this GitHub issue tracker](https://github.com/guiguan/Uni-Call/issues/new)
+2. leave comments on [my blog page](http://www.guiguan.net/uni-call)
+3. post on the [Uni Call topic section of official Alfred forum](http://www.guiguan.net/redirections/Alfred-Forum-Uni-Call)
+4. email user feedback directly to me by typing "call --contactauthor" in Alfred
 
 Detailed Usage
 --------------
@@ -119,6 +123,10 @@ When typing the TARGET, the top N closest fuzzy matching results drawn from Appl
 Alternatively, you can make calls using Alfred's Contacts Feature. There will be eight contact actions available for you to choose from in **_Alfred's Contacts Feature_** (under Alfred Preferences > Features > Contacts): [Skype Call](#skype-call), [FaceTime Call](#facetime-call), [Phone Amego Call](#phone-amego-call), [SIP Call](#sip-call), [PushDialer Call](#pushdialer-call), [GrowlVoice Call](#growlvoice-call), [CallTrunk Call](#calltrunk-call), [Fritz!Box Call](#fritzbox-call) and [Dialogue](#dialogue-call).
 
 ![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
+
+### Call Component
+
+Each call component represents a method to communicate with your contact. For example, Skype Call component enables you to communicate with your contact through Skype. Each call component has three potential operating modes: audio call, video call or text.
 
 ### COMPONENT_CODES
 
@@ -277,7 +285,7 @@ PushDialer Call uses url scheme *pushdialer://{query}* to launch PushDialer and 
 
 ---
 
-GrowlVoice Call requires the newest version of [GrowlVoice](http://www.growlvoice.com/).
+GrowlVoice Call requires the newest version of [GrowlVoice](http://www.growlvoice.com/). Please note that as of version 2.0.3 (30), GrowlVoice is [dying](https://twitter.com/GrowlVoice/status/455931023868448768). A quick and dirty hack to fix the dying GrowlVoice can be found from [here](https://gist.github.com/kroo/11205755) and [there](https://github.com/szhu/fix-growlvoice).
 
 Among the search results for GrowlVoice Call, contact thumbnails will be shown in color:#37a940 border:
 
@@ -338,9 +346,17 @@ Credit
 Changelog
 ----------------
 
-#### v6.0 (02/10/14)
-* Changed to a new logo icon. Special thanks to [Dmitry Zaborskikh](https://dribbble.com/Gust-art) for the icon's original design :)
+#### v6.0 (10/10/14)
+* Improved fuzzy searching: now you can use name initials, for example my name initials "gg" for "Guan Gui", to carry out searching; also some performance improvement
+* Improved support for Chinese users: now you can search with phonetic name initials, for example using "gg" to search for "桂冠"; Chinese names are automatically detected and displayed in correct order, i.e. last name is followed by first name without space in between, for example, the previous name "冠 桂" is now displayed as "桂冠"
+* Improved support for retina displays
+* Changed to a new logo. Special thanks to [Dmitry Zaborskikh](https://dribbble.com/Gust-art) for the icon's original design :)
 * Added option to change call component default order: call --reorder
+* Added option to send user feedback directly to my email address: call --contactauthor
+* Minor bug fixes for CallTrunk Call component
+* Now contact actions and call components use the same facade "callinitiator.bash" to communicate external call related applications. This solves issues previously reported of using GrowlVoice contact action and etc.
+* Removed special characters in file names. Now Uni Call is compatible with sync solutions other than Dropbox, such as Microsoft OneDrive.
+* Dropped support for old alleyoop updater. From now on, please use [Packal](http://www.packal.org/) to update automatically.
 
 #### v5.31 (15/12/13)
 * Changed Skype Call component to use the URL Scheme method which will be the only Skype API supported in the future Skype versions.

@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		A51AC7961729122600ADB097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7951729122600ADB097 /* Foundation.framework */; };
 		A51AC7991729122600ADB097 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AC7981729122600ADB097 /* main.m */; settings = {COMPILER_FLAGS = ""; }; };
-		A51AC79D1729122600ADB097 /* Uni_Call.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC79C1729122600ADB097 /* Uni_Call.1 */; };
 		A51AC7A41729124000ADB097 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7A31729124000ADB097 /* AddressBook.framework */; };
 		A51AC7A6172928A600ADB097 /* Uni Call in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC7921729122600ADB097 /* Uni Call */; };
+		A52335261A1B06A000FEBD1A /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52335241A1B06A000FEBD1A /* libpcre.a */; };
+		A52335271A1B06A000FEBD1A /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52335241A1B06A000FEBD1A /* libpcre.a */; };
+		A52CC9841A0DA0DB0076ECC9 /* RMPhoneFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A52CC9831A0DA0DB0076ECC9 /* RMPhoneFormat.m */; };
+		A52CC9851A0DA0DB0076ECC9 /* RMPhoneFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A52CC9831A0DA0DB0076ECC9 /* RMPhoneFormat.m */; };
+		A52CC98B1A0DA2B00076ECC9 /* PhoneFormats.dat in CopyFiles */ = {isa = PBXBuildFile; fileRef = A52CC9811A0DA0DB0076ECC9 /* PhoneFormats.dat */; };
+		A52CC98D1A0F95860076ECC9 /* PhoneFormats.dat in CopyFiles */ = {isa = PBXBuildFile; fileRef = A52CC9811A0DA0DB0076ECC9 /* PhoneFormats.dat */; };
+		A52CC98E1A0F95A00076ECC9 /* PhoneFormats.dat in CopyFiles */ = {isa = PBXBuildFile; fileRef = A52CC9811A0DA0DB0076ECC9 /* PhoneFormats.dat */; };
 		A53A2722173BE23800D3496F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7951729122600ADB097 /* Foundation.framework */; };
 		A53A2725173BE23800D3496F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A53A2724173BE23800D3496F /* main.m */; };
-		A53A2729173BE23800D3496F /* Uni_Call_Basestation.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A53A2728173BE23800D3496F /* Uni_Call_Basestation.1 */; };
 		A53A272E173BE41D00D3496F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53A272D173BE41D00D3496F /* Security.framework */; };
 		A53A275F173CC34500D3496F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53A272D173BE41D00D3496F /* Security.framework */; };
 		A53A2760173CC3C600D3496F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0E6E5173296AC002E8289 /* AppKit.framework */; };
@@ -25,28 +30,32 @@
 		A58CC66E173E314D002AA820 /* Uni Call Basestation in CopyFiles */ = {isa = PBXBuildFile; fileRef = A53A2721173BE23800D3496F /* Uni Call Basestation */; };
 		A5A0D6C81769596E00677C93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7951729122600ADB097 /* Foundation.framework */; };
 		A5A0D6CB1769596E00677C93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A0D6CA1769596E00677C93 /* main.m */; };
-		A5A0D6CF1769596E00677C93 /* Skype_Call.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5A0D6CE1769596E00677C93 /* Skype_Call.1 */; };
 		A5A0D6D5176959CF00677C93 /* Skype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A0D6D4176959CF00677C93 /* Skype.framework */; };
 		A5A0D6D717698C4E00677C93 /* UniCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0E6E117327C3C002E8289 /* UniCall.m */; };
+		A5CDBA521A21A97A00CD4A5B /* Updater.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDBA511A21A97A00CD4A5B /* Updater.m */; };
+		A5CDF5B51A1F27CF0013C013 /* ChineseToPinyinResource.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5A91A1F27CF0013C013 /* ChineseToPinyinResource.m */; };
+		A5CDF5B61A1F27CF0013C013 /* ChineseToPinyinResource.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5A91A1F27CF0013C013 /* ChineseToPinyinResource.m */; };
+		A5CDF5B71A1F27CF0013C013 /* HanyuPinyinOutputFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5AB1A1F27CF0013C013 /* HanyuPinyinOutputFormat.m */; };
+		A5CDF5B81A1F27CF0013C013 /* HanyuPinyinOutputFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5AB1A1F27CF0013C013 /* HanyuPinyinOutputFormat.m */; };
+		A5CDF5B91A1F27CF0013C013 /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5AD1A1F27CF0013C013 /* NSString+PinYin4Cocoa.m */; };
+		A5CDF5BA1A1F27CF0013C013 /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5AD1A1F27CF0013C013 /* NSString+PinYin4Cocoa.m */; };
+		A5CDF5BB1A1F27CF0013C013 /* PinyinFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5B01A1F27CF0013C013 /* PinyinFormatter.m */; };
+		A5CDF5BC1A1F27CF0013C013 /* PinyinFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5B01A1F27CF0013C013 /* PinyinFormatter.m */; };
+		A5CDF5BD1A1F27CF0013C013 /* PinyinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5B21A1F27CF0013C013 /* PinyinHelper.m */; };
+		A5CDF5BE1A1F27CF0013C013 /* PinyinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CDF5B21A1F27CF0013C013 /* PinyinHelper.m */; };
+		A5CDF5BF1A1F27EF0013C013 /* unicode_to_hanyu_pinyin.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5CDF5B41A1F27CF0013C013 /* unicode_to_hanyu_pinyin.txt */; };
+		A5CDF5C01A1F2B1D0013C013 /* unicode_to_hanyu_pinyin.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5CDF5B41A1F27CF0013C013 /* unicode_to_hanyu_pinyin.txt */; };
+		A5CDF5C11A1F2B1F0013C013 /* unicode_to_hanyu_pinyin.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5CDF5B41A1F27CF0013C013 /* unicode_to_hanyu_pinyin.txt */; };
 		A5D57C681744A36D00571334 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7951729122600ADB097 /* Foundation.framework */; };
 		A5D57C6B1744A36D00571334 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D57C6A1744A36D00571334 /* main.m */; };
 		A5E0E6E217327C3C002E8289 /* UniCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E0E6E117327C3C002E8289 /* UniCall.m */; settings = {COMPILER_FLAGS = ""; }; };
 		A5E0E6E6173296AC002E8289 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0E6E5173296AC002E8289 /* AppKit.framework */; };
+		A5E6F85F1A06F1A400967B72 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7A31729124000ADB097 /* AddressBook.framework */; };
 		A5F40BDF17F5B96900747AC5 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7A31729124000ADB097 /* AddressBook.framework */; };
 		A5F40BE017F5B98A00747AC5 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E0E6E5173296AC002E8289 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A51AC7901729122600ADB097 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-				A51AC79D1729122600ADB097 /* Uni_Call.1 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		A51AC7A51729285B00ADB097 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -54,18 +63,32 @@
 			dstSubfolderSpec = 0;
 			files = (
 				A51AC7A6172928A600ADB097 /* Uni Call in CopyFiles */,
+				A52CC98E1A0F95A00076ECC9 /* PhoneFormats.dat in CopyFiles */,
+				A5CDF5C01A1F2B1D0013C013 /* unicode_to_hanyu_pinyin.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A53A271F173BE23800D3496F /* CopyFiles */ = {
+		A52CC98A1A0DA2A50076ECC9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
-				A53A2729173BE23800D3496F /* Uni_Call_Basestation.1 in CopyFiles */,
+				A52CC98B1A0DA2B00076ECC9 /* PhoneFormats.dat in CopyFiles */,
+				A5CDF5BF1A1F27EF0013C013 /* unicode_to_hanyu_pinyin.txt in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A52CC98C1A0F95780076ECC9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				A52CC98D1A0F95860076ECC9 /* PhoneFormats.dat in CopyFiles */,
+				A5CDF5C11A1F2B1F0013C013 /* unicode_to_hanyu_pinyin.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A58CC66D173E3145002AA820 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -77,16 +100,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A5A0D6C51769596E00677C93 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-				A5A0D6CF1769596E00677C93 /* Skype_Call.1 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -94,12 +107,15 @@
 		A51AC7951729122600ADB097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A51AC7981729122600ADB097 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A51AC79B1729122600ADB097 /* Uni Call-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Uni Call-Prefix.pch"; sourceTree = "<group>"; };
-		A51AC79C1729122600ADB097 /* Uni_Call.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Uni_Call.1; sourceTree = "<group>"; };
 		A51AC7A31729124000ADB097 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		A52335241A1B06A000FEBD1A /* libpcre.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpcre.a; sourceTree = "<group>"; };
+		A52335251A1B06A000FEBD1A /* pcre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcre.h; sourceTree = "<group>"; };
+		A52CC9811A0DA0DB0076ECC9 /* PhoneFormats.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = PhoneFormats.dat; sourceTree = "<group>"; };
+		A52CC9821A0DA0DB0076ECC9 /* RMPhoneFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPhoneFormat.h; sourceTree = "<group>"; };
+		A52CC9831A0DA0DB0076ECC9 /* RMPhoneFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPhoneFormat.m; sourceTree = "<group>"; };
 		A53A2721173BE23800D3496F /* Uni Call Basestation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Uni Call Basestation"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53A2724173BE23800D3496F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A53A2727173BE23800D3496F /* Uni Call Basestation-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Uni Call Basestation-Prefix.pch"; sourceTree = "<group>"; };
-		A53A2728173BE23800D3496F /* Uni_Call_Basestation.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Uni_Call_Basestation.1; sourceTree = "<group>"; };
 		A53A272D173BE41D00D3496F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A53A275E173CBEA700D3496F /* NetworkSharedParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkSharedParameters.h; sourceTree = "<group>"; };
 		A54D6B2E1760735100104E23 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
@@ -108,12 +124,24 @@
 		A5A0D6C71769596E00677C93 /* Skype Call */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Skype Call"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A0D6CA1769596E00677C93 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A5A0D6CD1769596E00677C93 /* Skype Call-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Skype Call-Prefix.pch"; sourceTree = "<group>"; };
-		A5A0D6CE1769596E00677C93 /* Skype_Call.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Skype_Call.1; sourceTree = "<group>"; };
 		A5A0D6D4176959CF00677C93 /* Skype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Skype.framework; path = "Skype Call/Skype.framework"; sourceTree = "<group>"; };
+		A5CDBA501A21A97A00CD4A5B /* Updater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Updater.h; sourceTree = "<group>"; };
+		A5CDBA511A21A97A00CD4A5B /* Updater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Updater.m; sourceTree = "<group>"; };
+		A5CDF5A81A1F27CF0013C013 /* ChineseToPinyinResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyinResource.h; sourceTree = "<group>"; };
+		A5CDF5A91A1F27CF0013C013 /* ChineseToPinyinResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyinResource.m; sourceTree = "<group>"; };
+		A5CDF5AA1A1F27CF0013C013 /* HanyuPinyinOutputFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HanyuPinyinOutputFormat.h; sourceTree = "<group>"; };
+		A5CDF5AB1A1F27CF0013C013 /* HanyuPinyinOutputFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HanyuPinyinOutputFormat.m; sourceTree = "<group>"; };
+		A5CDF5AC1A1F27CF0013C013 /* NSString+PinYin4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYin4Cocoa.h"; sourceTree = "<group>"; };
+		A5CDF5AD1A1F27CF0013C013 /* NSString+PinYin4Cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYin4Cocoa.m"; sourceTree = "<group>"; };
+		A5CDF5AE1A1F27CF0013C013 /* PinYin4Objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinYin4Objc.h; sourceTree = "<group>"; };
+		A5CDF5AF1A1F27CF0013C013 /* PinyinFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinFormatter.h; sourceTree = "<group>"; };
+		A5CDF5B01A1F27CF0013C013 /* PinyinFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinFormatter.m; sourceTree = "<group>"; };
+		A5CDF5B11A1F27CF0013C013 /* PinyinHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinHelper.h; sourceTree = "<group>"; };
+		A5CDF5B21A1F27CF0013C013 /* PinyinHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinHelper.m; sourceTree = "<group>"; };
+		A5CDF5B41A1F27CF0013C013 /* unicode_to_hanyu_pinyin.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unicode_to_hanyu_pinyin.txt; sourceTree = "<group>"; };
 		A5D57C671744A36D00571334 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D57C6A1744A36D00571334 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A5D57C6D1744A36D00571334 /* Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Prefix.pch"; sourceTree = "<group>"; };
-		A5D57C6E1744A36D00571334 /* Test.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Test.1; sourceTree = "<group>"; };
 		A5E0E6E017327C3C002E8289 /* UniCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniCall.h; sourceTree = "<group>"; };
 		A5E0E6E117327C3C002E8289 /* UniCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniCall.m; sourceTree = "<group>"; };
 		A5E0E6E5173296AC002E8289 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -129,6 +157,7 @@
 				A5E0E6E6173296AC002E8289 /* AppKit.framework in Frameworks */,
 				A51AC7A41729124000ADB097 /* AddressBook.framework in Frameworks */,
 				A51AC7961729122600ADB097 /* Foundation.framework in Frameworks */,
+				A52335261A1B06A000FEBD1A /* libpcre.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +186,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5E6F85F1A06F1A400967B72 /* AddressBook.framework in Frameworks */,
+				A52335271A1B06A000FEBD1A /* libpcre.a in Frameworks */,
 				A54D6B2F1760735100104E23 /* ApplicationServices.framework in Frameworks */,
 				A5D57C681744A36D00571334 /* Foundation.framework in Frameworks */,
 			);
@@ -169,6 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				A53A275E173CBEA700D3496F /* NetworkSharedParameters.h */,
+				A5CDF5A61A1F27CF0013C013 /* PinYin4Objc */,
+				A52335231A1B06A000FEBD1A /* pcre */,
+				A52CC9801A0DA0DB0076ECC9 /* RMPhoneFormat */,
 				A58CC668173DDC82002AA820 /* GCD */,
 				A51AC7971729122600ADB097 /* Uni Call */,
 				A53A2723173BE23800D3496F /* Uni Call Basestation */,
@@ -208,8 +242,9 @@
 			children = (
 				A5E0E6E017327C3C002E8289 /* UniCall.h */,
 				A5E0E6E117327C3C002E8289 /* UniCall.m */,
+				A5CDBA501A21A97A00CD4A5B /* Updater.h */,
+				A5CDBA511A21A97A00CD4A5B /* Updater.m */,
 				A51AC7981729122600ADB097 /* main.m */,
-				A51AC79C1729122600ADB097 /* Uni_Call.1 */,
 				A51AC79A1729122600ADB097 /* Supporting Files */,
 			);
 			path = "Uni Call";
@@ -223,11 +258,29 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A52335231A1B06A000FEBD1A /* pcre */ = {
+			isa = PBXGroup;
+			children = (
+				A52335241A1B06A000FEBD1A /* libpcre.a */,
+				A52335251A1B06A000FEBD1A /* pcre.h */,
+			);
+			path = pcre;
+			sourceTree = "<group>";
+		};
+		A52CC9801A0DA0DB0076ECC9 /* RMPhoneFormat */ = {
+			isa = PBXGroup;
+			children = (
+				A52CC9811A0DA0DB0076ECC9 /* PhoneFormats.dat */,
+				A52CC9821A0DA0DB0076ECC9 /* RMPhoneFormat.h */,
+				A52CC9831A0DA0DB0076ECC9 /* RMPhoneFormat.m */,
+			);
+			path = RMPhoneFormat;
+			sourceTree = "<group>";
+		};
 		A53A2723173BE23800D3496F /* Uni Call Basestation */ = {
 			isa = PBXGroup;
 			children = (
 				A53A2724173BE23800D3496F /* main.m */,
-				A53A2728173BE23800D3496F /* Uni_Call_Basestation.1 */,
 				A53A2726173BE23800D3496F /* Supporting Files */,
 			);
 			path = "Uni Call Basestation";
@@ -254,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				A5A0D6CA1769596E00677C93 /* main.m */,
-				A5A0D6CE1769596E00677C93 /* Skype_Call.1 */,
 				A5A0D6CC1769596E00677C93 /* Supporting Files */,
 			);
 			path = "Skype Call";
@@ -268,11 +320,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A5CDF5A61A1F27CF0013C013 /* PinYin4Objc */ = {
+			isa = PBXGroup;
+			children = (
+				A5CDF5A71A1F27CF0013C013 /* Classes */,
+				A5CDF5B31A1F27CF0013C013 /* Resources */,
+			);
+			path = PinYin4Objc;
+			sourceTree = "<group>";
+		};
+		A5CDF5A71A1F27CF0013C013 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A5CDF5A81A1F27CF0013C013 /* ChineseToPinyinResource.h */,
+				A5CDF5A91A1F27CF0013C013 /* ChineseToPinyinResource.m */,
+				A5CDF5AA1A1F27CF0013C013 /* HanyuPinyinOutputFormat.h */,
+				A5CDF5AB1A1F27CF0013C013 /* HanyuPinyinOutputFormat.m */,
+				A5CDF5AC1A1F27CF0013C013 /* NSString+PinYin4Cocoa.h */,
+				A5CDF5AD1A1F27CF0013C013 /* NSString+PinYin4Cocoa.m */,
+				A5CDF5AE1A1F27CF0013C013 /* PinYin4Objc.h */,
+				A5CDF5AF1A1F27CF0013C013 /* PinyinFormatter.h */,
+				A5CDF5B01A1F27CF0013C013 /* PinyinFormatter.m */,
+				A5CDF5B11A1F27CF0013C013 /* PinyinHelper.h */,
+				A5CDF5B21A1F27CF0013C013 /* PinyinHelper.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A5CDF5B31A1F27CF0013C013 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A5CDF5B41A1F27CF0013C013 /* unicode_to_hanyu_pinyin.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A5D57C691744A36D00571334 /* Test */ = {
 			isa = PBXGroup;
 			children = (
 				A5D57C6A1744A36D00571334 /* main.m */,
-				A5D57C6E1744A36D00571334 /* Test.1 */,
 				A5D57C6C1744A36D00571334 /* Supporting Files */,
 			);
 			path = Test;
@@ -295,8 +381,8 @@
 			buildPhases = (
 				A51AC78E1729122600ADB097 /* Sources */,
 				A51AC78F1729122600ADB097 /* Frameworks */,
-				A51AC7901729122600ADB097 /* CopyFiles */,
 				A51AC7A51729285B00ADB097 /* CopyFiles */,
+				A52CC98C1A0F95780076ECC9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -313,7 +399,6 @@
 			buildPhases = (
 				A53A271D173BE23800D3496F /* Sources */,
 				A53A271E173BE23800D3496F /* Frameworks */,
-				A53A271F173BE23800D3496F /* CopyFiles */,
 				A58CC66D173E3145002AA820 /* CopyFiles */,
 			);
 			buildRules = (
@@ -331,7 +416,6 @@
 			buildPhases = (
 				A5A0D6C31769596E00677C93 /* Sources */,
 				A5A0D6C41769596E00677C93 /* Frameworks */,
-				A5A0D6C51769596E00677C93 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -348,6 +432,7 @@
 			buildPhases = (
 				A5D57C631744A36D00571334 /* Sources */,
 				A5D57C641744A36D00571334 /* Frameworks */,
+				A52CC98A1A0DA2A50076ECC9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -392,9 +477,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CDF5BD1A1F27CF0013C013 /* PinyinHelper.m in Sources */,
+				A5CDBA521A21A97A00CD4A5B /* Updater.m in Sources */,
+				A5CDF5B71A1F27CF0013C013 /* HanyuPinyinOutputFormat.m in Sources */,
+				A5CDF5B51A1F27CF0013C013 /* ChineseToPinyinResource.m in Sources */,
+				A52CC9841A0DA0DB0076ECC9 /* RMPhoneFormat.m in Sources */,
 				A51AC7991729122600ADB097 /* main.m in Sources */,
+				A5CDF5B91A1F27CF0013C013 /* NSString+PinYin4Cocoa.m in Sources */,
 				A5E0E6E217327C3C002E8289 /* UniCall.m in Sources */,
 				A58CC66B173DDC82002AA820 /* GCDAsyncSocket.m in Sources */,
+				A5CDF5BB1A1F27CF0013C013 /* PinyinFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +512,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A52CC9851A0DA0DB0076ECC9 /* RMPhoneFormat.m in Sources */,
+				A5CDF5BC1A1F27CF0013C013 /* PinyinFormatter.m in Sources */,
+				A5CDF5BA1A1F27CF0013C013 /* NSString+PinYin4Cocoa.m in Sources */,
+				A5CDF5BE1A1F27CF0013C013 /* PinyinHelper.m in Sources */,
 				A5D57C6B1744A36D00571334 /* main.m in Sources */,
+				A5CDF5B81A1F27CF0013C013 /* HanyuPinyinOutputFormat.m in Sources */,
+				A5CDF5B61A1F27CF0013C013 /* ChineseToPinyinResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +588,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Uni Call/Uni Call-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/pcre",
+				);
 				PRODUCT_NAME = "Uni Call";
 				SDKROOT = macosx;
 			};
@@ -501,6 +603,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Uni Call/Uni Call-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/pcre",
+				);
 				PRODUCT_NAME = "Uni Call";
 				SDKROOT = macosx;
 			};
@@ -578,6 +684,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Test/Test-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/pcre",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -591,6 +701,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Test/Test-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/pcre",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

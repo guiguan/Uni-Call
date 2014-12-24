@@ -10,7 +10,7 @@
 #include "GCDAsyncSocket.h"
 #include "NetworkSharedParameters.h"
 
-#define CONNECTION_TIMEOUT 1 // 1 sec
+#define CONNECTION_TIMEOUT 30 // 30 sec
 
 @interface Main : NSObject
 
@@ -67,8 +67,6 @@ NSString *query_;
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
 {
-//    NSLog(@"Time taken to connect Uni Call: %f", [[NSDate date] timeIntervalSince1970] -  [connectionStartTime_ timeIntervalSince1970]);
-    
     NSData *messageBody = [query_ dataUsingEncoding:NSUTF8StringEncoding];
     NSUInteger messageLen = [messageBody length];
     
@@ -92,6 +90,9 @@ NSString *query_;
             [(NSFileHandle *)[NSFileHandle fileHandleWithStandardOutput] writeData:[results dataUsingEncoding:NSUTF8StringEncoding]];
             CFRunLoopStop(CFRunLoopGetMain());
             [sender disconnect];
+            
+            NSLog(@"Uni Call Runtime: %f", [[NSDate date] timeIntervalSince1970] -  [connectionStartTime_ timeIntervalSince1970]);
+            
             break;
         }
     }
