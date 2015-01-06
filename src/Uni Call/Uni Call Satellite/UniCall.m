@@ -11,10 +11,10 @@
 #import <AppKit/AppKit.h>
 #import <ApplicationServices/ApplicationServices.h>
 
+#import "UniCall.h"
 #import "RMPhoneFormat.h"
 #import "PinYin4Objc.h"
 #import "pcre.h"
-#import "UniCall.h"
 #import "Updater.h"
 
 #define IDENTIFIER @"net.guiguan.Uni-Call"
@@ -207,6 +207,7 @@ static NSMutableSet *sReservedPhoneLabels;
 
 @synthesize config = config_; // don't assume config.plist has necessary components
 
+
 - (CallType)getSetValueForCallModifier:(CallType)ct
 {
     switch (ct) {
@@ -306,10 +307,10 @@ static NSMutableSet *sReservedPhoneLabels;
             // new user
             hasStartedSettingUp_ = NO;
             isNewUser_ = YES;
-            config_ = [[NSMutableDictionary alloc] init];
+            config_ = [[GGMutableDictionary alloc] init];
             configHasChanged = YES;
         } else {
-            config_ = [[NSMutableDictionary alloc] initWithContentsOfFile:[self configPlistPath]];
+            config_ = [[GGMutableDictionary alloc] initWithContentsOfFile:[self configPlistPath]];
         }
 
         if (!config_[@"uId"]) {

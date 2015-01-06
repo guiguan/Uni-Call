@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "GGMutableDictionary.h"
+
 @interface UniCall : NSObject
 
-@property NSMutableDictionary *config;
+@property GGMutableDictionary *config;
 
 + (NSString *)version;
 + (void)pushNotificationWithOptions:(NSDictionary *)options;

@@ -15,6 +15,8 @@
 		A52335271A1B06A000FEBD1A /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52335241A1B06A000FEBD1A /* libpcre.a */; };
 		A52858481A5ACEA900FBEFFB /* Uni Call Satellite in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC7921729122600ADB097 /* Uni Call Satellite */; };
 		A52858491A5ACECC00FBEFFB /* Uni Call Basestation in CopyFiles */ = {isa = PBXBuildFile; fileRef = A53A2721173BE23800D3496F /* Uni Call Basestation */; };
+		A528584F1A5BD0B000FBEFFB /* GGMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A528584E1A5BD0B000FBEFFB /* GGMutableDictionary.m */; };
+		A52858501A5BD87C00FBEFFB /* GGMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A528584E1A5BD0B000FBEFFB /* GGMutableDictionary.m */; };
 		A52CC9841A0DA0DB0076ECC9 /* RMPhoneFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A52CC9831A0DA0DB0076ECC9 /* RMPhoneFormat.m */; };
 		A52CC9851A0DA0DB0076ECC9 /* RMPhoneFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A52CC9831A0DA0DB0076ECC9 /* RMPhoneFormat.m */; };
 		A52CC98B1A0DA2B00076ECC9 /* PhoneFormats.dat in CopyFiles */ = {isa = PBXBuildFile; fileRef = A52CC9811A0DA0DB0076ECC9 /* PhoneFormats.dat */; };
@@ -113,6 +115,8 @@
 		A51AC7A31729124000ADB097 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		A52335241A1B06A000FEBD1A /* libpcre.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpcre.a; sourceTree = "<group>"; };
 		A52335251A1B06A000FEBD1A /* pcre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcre.h; sourceTree = "<group>"; };
+		A528584D1A5BD0B000FBEFFB /* GGMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGMutableDictionary.h; sourceTree = "<group>"; };
+		A528584E1A5BD0B000FBEFFB /* GGMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGMutableDictionary.m; sourceTree = "<group>"; };
 		A52CC9811A0DA0DB0076ECC9 /* PhoneFormats.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = PhoneFormats.dat; sourceTree = "<group>"; };
 		A52CC9821A0DA0DB0076ECC9 /* RMPhoneFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPhoneFormat.h; sourceTree = "<group>"; };
 		A52CC9831A0DA0DB0076ECC9 /* RMPhoneFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPhoneFormat.m; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				A53A275E173CBEA700D3496F /* NetworkSharedParameters.h */,
+				A528584C1A5BD05A00FBEFFB /* GGMutableDictionary */,
 				A5CDF5A61A1F27CF0013C013 /* PinYin4Objc */,
 				A52335231A1B06A000FEBD1A /* pcre */,
 				A52CC9801A0DA0DB0076ECC9 /* RMPhoneFormat */,
@@ -272,6 +277,15 @@
 				A52335251A1B06A000FEBD1A /* pcre.h */,
 			);
 			path = pcre;
+			sourceTree = "<group>";
+		};
+		A528584C1A5BD05A00FBEFFB /* GGMutableDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				A528584D1A5BD0B000FBEFFB /* GGMutableDictionary.h */,
+				A528584E1A5BD0B000FBEFFB /* GGMutableDictionary.m */,
+			);
+			path = GGMutableDictionary;
 			sourceTree = "<group>";
 		};
 		A52CC9801A0DA0DB0076ECC9 /* RMPhoneFormat */ = {
@@ -534,6 +548,7 @@
 				A5CDF5B51A1F27CF0013C013 /* ChineseToPinyinResource.m in Sources */,
 				A52CC9841A0DA0DB0076ECC9 /* RMPhoneFormat.m in Sources */,
 				A51AC7991729122600ADB097 /* main.m in Sources */,
+				A528584F1A5BD0B000FBEFFB /* GGMutableDictionary.m in Sources */,
 				A5CDF5B91A1F27CF0013C013 /* NSString+PinYin4Cocoa.m in Sources */,
 				A5E0E6E217327C3C002E8289 /* UniCall.m in Sources */,
 				A58CC66B173DDC82002AA820 /* GCDAsyncSocket.m in Sources */,
@@ -563,6 +578,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A52858501A5BD87C00FBEFFB /* GGMutableDictionary.m in Sources */,
 				A52CC9851A0DA0DB0076ECC9 /* RMPhoneFormat.m in Sources */,
 				A5CDF5BC1A1F27CF0013C013 /* PinyinFormatter.m in Sources */,
 				A5CDF5BA1A1F27CF0013C013 /* NSString+PinYin4Cocoa.m in Sources */,
