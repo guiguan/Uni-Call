@@ -1,0 +1,4 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :osx, '10.8'
+link_with 'Uni Call'
+pod 'AFNetworking', '~> 2.5'

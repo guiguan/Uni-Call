@@ -25,9 +25,9 @@ NSString *query_;
 {
     query_ = query;
     
-    if(system("killall -s \"Uni Call\" > /dev/null 2>&1")) {
+    if(system("killall -s \"Uni Call Satellite\" > /dev/null 2>&1")) {
         // if Uni Call is not yet launched
-        if(system([[NSString stringWithFormat:@"\"%@/Uni Call\" > /dev/null 2>&1 &", [Main workingPath]] UTF8String])) {
+        if(system([[NSString stringWithFormat:@"\"%@/Uni Call Satellite\" > /dev/null 2>&1 &", [Main workingPath]] UTF8String])) {
             NSLog(@"Error: cannot launch Uni Call!");
             return;
         }
@@ -38,7 +38,7 @@ NSString *query_;
     
     connectionStartTime_ = [NSDate date];
     NSError *err = nil;
-    if (![socket connectToHost:@"localhost" onPort:PORT_NUM viaInterface:@"localhost" withTimeout:-1 error:&err]) {
+    if (![socket connectToHost:HOST onPort:PORT_NUM viaInterface:HOST withTimeout:-1 error:&err]) {
         // If there was an error, it's likely something like "already connected" or "no delegate set"
         NSLog(@"Error: %@", err);
         return;
@@ -53,7 +53,7 @@ NSString *query_;
         [sock disconnect];
         [NSThread sleepForTimeInterval:0.01];
         NSError *err = nil;
-        if (![sock connectToHost:@"localhost" onPort:PORT_NUM viaInterface:@"localhost" withTimeout:-1 error:&err]) {
+        if (![sock connectToHost:HOST onPort:PORT_NUM viaInterface:HOST withTimeout:-1 error:&err]) {
             // If there was an error, it's likely something like "already connected" or "no delegate set"
             NSLog(@"Error: %@", err);
             return;
@@ -91,7 +91,7 @@ NSString *query_;
             CFRunLoopStop(CFRunLoopGetMain());
             [sender disconnect];
             
-            NSLog(@"Uni Call Runtime: %f", [[NSDate date] timeIntervalSince1970] -  [connectionStartTime_ timeIntervalSince1970]);
+//            NSLog(@"Uni Call Runtime: %f", [[NSDate date] timeIntervalSince1970] -  [connectionStartTime_ timeIntervalSince1970]);
             
             break;
         }

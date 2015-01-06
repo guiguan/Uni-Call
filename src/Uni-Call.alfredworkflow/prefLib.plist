@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CallTrunk Call</key>
+	<key>CTCallTrunk</key>
 	<dict>
 		<key>connections</key>
 		<dict>
@@ -48,9 +48,9 @@
 				<key>config</key>
 				<dict>
 					<key>escaping</key>
-					<integer>127</integer>
+					<integer>102</integer>
 					<key>script</key>
-					<string>osascript bin/calltrunkcall.scpt {query}/US</string>
+					<string>./bin/callinitiator.bash &quot;[CTCallTrunk]{query}/US&quot;</string>
 					<key>type</key>
 					<integer>0</integer>
 				</dict>
@@ -73,7 +73,7 @@
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -k "{query}"</string>
+					<string>./bin/Uni\ Call\ Basestation -k &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Make a CallTrunk call to your contact</string>
 					<key>title</key>
@@ -110,7 +110,7 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>Dialogue Call</key>
+	<key>CTDialogue</key>
 	<dict>
 		<key>connections</key>
 		<dict>
@@ -156,9 +156,9 @@
 				<key>config</key>
 				<dict>
 					<key>escaping</key>
-					<integer>127</integer>
+					<integer>102</integer>
 					<key>script</key>
-					<string>open "x-dialogue://{query}"</string>
+					<string>./bin/callinitiator.bash &quot;[CTDialogue]{query}&quot;</string>
 					<key>type</key>
 					<integer>0</integer>
 				</dict>
@@ -181,7 +181,7 @@
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -l "{query}"</string>
+					<string>./bin/Uni\ Call\ Basestation -l &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Make a bluetooth phone call to your contact via Dialogue</string>
 					<key>title</key>
@@ -218,7 +218,7 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>FaceTime Call</key>
+	<key>CTFaceTime</key>
 	<dict>
 		<key>connections</key>
 		<dict>
@@ -262,9 +262,9 @@
 				<key>config</key>
 				<dict>
 					<key>escaping</key>
-					<integer>127</integer>
+					<integer>102</integer>
 					<key>script</key>
-					<string>open "facetime:{query}"</string>
+					<string>./bin/callinitiator.bash &quot;[CTFaceTime]{query}&quot;</string>
 					<key>type</key>
 					<integer>0</integer>
 				</dict>
@@ -285,7 +285,7 @@
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -f "{query}"</string>
+					<string>./bin/Uni\ Call\ Basestation -f &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Make a FaceTime call to your contact</string>
 					<key>title</key>
@@ -320,7 +320,7 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>Fritz!Box Call</key>
+	<key>CTFritzBox</key>
 	<dict>
 		<key>connections</key>
 		<dict>
@@ -353,9 +353,9 @@
 				<key>config</key>
 				<dict>
 					<key>escaping</key>
-					<integer>127</integer>
+					<integer>102</integer>
 					<key>script</key>
-					<string>osascript bin/fritz!boxcall.scpt {query}</string>
+					<string>./bin/callinitiator.bash &quot;[CTFritzBox]{query}&quot;</string>
 					<key>type</key>
 					<integer>0</integer>
 				</dict>
@@ -391,7 +391,7 @@
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -z "{query}"</string>
+					<string>./bin/Uni\ Call\ Basestation -z &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Make a Fritz!Box call to your contact via Frizzix</string>
 					<key>title</key>
@@ -428,7 +428,7 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>GrowlVoice Call</key>
+	<key>CTGrowlVoice</key>
 	<dict>
 		<key>connections</key>
 		<dict>
@@ -472,9 +472,9 @@
 				<key>config</key>
 				<dict>
 					<key>escaping</key>
-					<integer>127</integer>
+					<integer>102</integer>
 					<key>script</key>
-					<string>open "growlvoice:${query}?call"</string>
+					<string>./bin/callinitiator.bash &quot;[CTGrowlVoice]{query}&quot;</string>
 					<key>type</key>
 					<integer>0</integer>
 				</dict>
@@ -495,7 +495,7 @@
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -g "{query}"</string>
+					<string>./bin/Uni\ Call\ Basestation -g &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Make a Google Voice call to your contact via GrowlVoice</string>
 					<key>title</key>
@@ -539,7 +539,115 @@
 		<key>uidata</key>
 		<dict/>
 	</dict>
-	<key>Phone Amego Call</key>
+	<key>CTWeChat</key>
+	<dict>
+		<key>connections</key>
+		<dict>
+			<key>E2DECCAB-CDD2-459E-BACC-9FBD1CAB69EA</key>
+			<array>
+				<dict>
+					<key>destinationuid</key>
+					<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+					<key>modifiers</key>
+					<integer>0</integer>
+					<key>modifiersubtext</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>10E473C7-EBC3-4886-BDB0-C43072A6BC69</key>
+			<array>
+				<dict>
+					<key>destinationuid</key>
+					<string>46DA4F61-CD20-463C-8744-4D83DF7DB7A1</string>
+					<key>modifiers</key>
+					<integer>0</integer>
+					<key>modifiersubtext</key>
+					<string></string>
+				</dict>
+			</array>
+		</dict>
+		<key>objects</key>
+		<array>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>argumenttype</key>
+					<integer>0</integer>
+					<key>escaping</key>
+					<integer>102</integer>
+					<key>keyword</key>
+					<string>callw</string>
+					<key>runningsubtext</key>
+					<string>Searching...</string>
+					<key>script</key>
+					<string>./bin/Uni\ Call\ Basestation -w &quot;{query}&quot;</string>
+					<key>subtext</key>
+					<string>Send Message to your contact via WeChat</string>
+					<key>title</key>
+					<string>WeChat Call</string>
+					<key>type</key>
+					<integer>0</integer>
+					<key>withspace</key>
+					<true/>
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.input.scriptfilter</string>
+				<key>uid</key>
+				<string>E2DECCAB-CDD2-459E-BACC-9FBD1CAB69EA</string>
+				<key>version</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>escaping</key>
+					<integer>102</integer>
+					<key>script</key>
+					<string>./bin/callinitiator.bash &quot;[CTWeChat]{query}&quot;</string>
+					<key>type</key>
+					<integer>0</integer>
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.action.script</string>
+				<key>uid</key>
+				<string>46DA4F61-CD20-463C-8744-4D83DF7DB7A1</string>
+				<key>version</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>name</key>
+					<string>WeChat Call</string>
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.trigger.contact</string>
+				<key>uid</key>
+				<string>10E473C7-EBC3-4886-BDB0-C43072A6BC69</string>
+				<key>version</key>
+				<integer>0</integer>
+			</dict>
+		</array>
+		<key>uidata</key>
+		<dict>
+			<key>E2DECCAB-CDD2-459E-BACC-9FBD1CAB69EA</key>
+			<dict>
+				<key>ypos</key>
+				<real>80</real>
+			</dict>
+			<key>10E473C7-EBC3-4886-BDB0-C43072A6BC69</key>
+			<dict>
+				<key>ypos</key>
+				<real>140</real>
+			</dict>
+			<key>46DA4F61-CD20-463C-8744-4D83DF7DB7A1</key>
+			<dict>
+				<key>ypos</key>
+				<real>140</real>
+			</dict>
+		</dict>
+	</dict>
+	<key>CTPhoneAmego</key>
 	<dict>
 		<key>connections</key>
 		<dict>
@@ -583,9 +691,9 @@
 				<key>config</key>
 				<dict>
 					<key>escaping</key>
-					<integer>127</integer>
+					<integer>102</integer>
 					<key>script</key>
-					<string>open "phoneAmego:{query};alert=no"</string>
+					<string>./bin/callinitiator.bash &quot;[CTPhoneAmego]{query}&quot;</string>
 					<key>type</key>
 					<integer>0</integer>
 				</dict>
@@ -606,7 +714,7 @@
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -p "{query}"</string>
+					<string>./bin/Uni\ Call\ Basestation -p &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Make a bluetooth phone call to your contact via Phone Amego</string>
 					<key>title</key>
@@ -641,7 +749,7 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>PushDialer Call</key>
+	<key>CTPushDialer</key>
 	<dict>
 		<key>connections</key>
 		<dict>
@@ -685,9 +793,9 @@
 				<key>config</key>
 				<dict>
 					<key>escaping</key>
-					<integer>127</integer>
+					<integer>102</integer>
 					<key>script</key>
-					<string>open "pushdialer://{query}"</string>
+					<string>./bin/callinitiator.bash &quot;[CTPushDialer]{query}&quot;</string>
 					<key>type</key>
 					<integer>0</integer>
 				</dict>
@@ -708,7 +816,7 @@
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -d "{query}"</string>
+					<string>./bin/Uni\ Call\ Basestation -d &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Make a PushDialer call to your contact</string>
 					<key>title</key>
@@ -743,7 +851,7 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>SIP Call</key>
+	<key>CTSIP</key>
 	<dict>
 		<key>connections</key>
 		<dict>
@@ -787,16 +895,9 @@
 				<key>config</key>
 				<dict>
 					<key>escaping</key>
-					<integer>127</integer>
+					<integer>102</integer>
 					<key>script</key>
-					<string>query={query}
-
-if [[ "$query" == *"@"* ]]; then
-	open "sip:${query#'sip:'}"
-else
-	query="${query#'tel:'}"
-	open "tel:${query//[ -()]/}"
-fi</string>
+					<string>./bin/callinitiator.bash &quot;[CTSIP]{query}&quot;</string>
 					<key>type</key>
 					<integer>0</integer>
 				</dict>
@@ -817,7 +918,7 @@ fi</string>
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -i "{query}"</string>
+					<string>./bin/Uni\ Call\ Basestation -i &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Make a SIP call to your contact via Telephone</string>
 					<key>title</key>
@@ -852,7 +953,7 @@ fi</string>
 			</dict>
 		</dict>
 	</dict>
-	<key>Skype Call</key>
+	<key>CTSkype</key>
 	<dict>
 		<key>connections</key>
 		<dict>
@@ -893,7 +994,7 @@ fi</string>
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -s "{query}"</string>
+					<string>./bin/Uni\ Call\ Basestation -s &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Make a Skype call to your contact</string>
 					<key>title</key>
@@ -923,9 +1024,9 @@ fi</string>
 				<key>config</key>
 				<dict>
 					<key>escaping</key>
-					<integer>127</integer>
+					<integer>102</integer>
 					<key>script</key>
-					<string>./bin/Skype\ Call {query}</string>
+					<string>./bin/callinitiator.bash &quot;[CTSkype]{query}&quot;</string>
 					<key>type</key>
 					<integer>0</integer>
 				</dict>
@@ -951,6 +1052,222 @@ fi</string>
 			<dict>
 				<key>ypos</key>
 				<real>260</real>
+			</dict>
+		</dict>
+	</dict>
+	<key>CTIPhone</key>
+	<dict>
+		<key>connections</key>
+		<dict>
+			<key>C35996F3-5CF7-4B64-9690-3D12C42A585D</key>
+			<array>
+				<dict>
+					<key>destinationuid</key>
+					<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+					<key>modifiers</key>
+					<integer>0</integer>
+					<key>modifiersubtext</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>6BEDF161-D38D-4368-83ED-F2319AD5F378</key>
+			<array>
+				<dict>
+					<key>destinationuid</key>
+					<string>FC05FE9F-78E8-4433-BBC3-7A5E91FC8398</string>
+					<key>modifiers</key>
+					<integer>0</integer>
+					<key>modifiersubtext</key>
+					<string></string>
+				</dict>
+			</array>
+		</dict>
+		<key>objects</key>
+		<array>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>escaping</key>
+					<integer>102</integer>
+					<key>script</key>
+					<string>./bin/callinitiator.bash &quot;[CTIPhone]{query}&quot;</string>
+					<key>type</key>
+					<integer>0</integer>
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.action.script</string>
+				<key>uid</key>
+				<string>FC05FE9F-78E8-4433-BBC3-7A5E91FC8398</string>
+				<key>version</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>name</key>
+					<string>iPhone Call</string>
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.trigger.contact</string>
+				<key>uid</key>
+				<string>6BEDF161-D38D-4368-83ED-F2319AD5F378</string>
+				<key>version</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>argumenttype</key>
+					<integer>0</integer>
+					<key>escaping</key>
+					<integer>102</integer>
+					<key>keyword</key>
+					<string>callh</string>
+					<key>runningsubtext</key>
+					<string>Searching...</string>
+					<key>script</key>
+					<string>./bin/Uni\ Call\ Basestation -h &quot;{query}&quot;</string>
+					<key>subtext</key>
+					<string>Make a phone call to your contact via iPhone (Yosemite Handoff)</string>
+					<key>title</key>
+					<string>iPhone Call</string>
+					<key>type</key>
+					<integer>0</integer>
+					<key>withspace</key>
+					<true/>
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.input.scriptfilter</string>
+				<key>uid</key>
+				<string>C35996F3-5CF7-4B64-9690-3D12C42A585D</string>
+				<key>version</key>
+				<integer>0</integer>
+			</dict>
+		</array>
+		<key>uidata</key>
+		<dict>
+			<key>C35996F3-5CF7-4B64-9690-3D12C42A585D</key>
+			<dict>
+				<key>ypos</key>
+				<real>1280</real>
+			</dict>
+			<key>6BEDF161-D38D-4368-83ED-F2319AD5F378</key>
+			<dict>
+				<key>ypos</key>
+				<real>1340</real>
+			</dict>
+			<key>FC05FE9F-78E8-4433-BBC3-7A5E91FC8398</key>
+			<dict>
+				<key>ypos</key>
+				<real>1340</real>
+			</dict>
+		</dict>
+	</dict>
+	<key>CTMessages</key>
+	<dict>
+		<key>connections</key>
+		<dict>
+			<key>DD5A46E8-58B2-4349-B8F0-6093A63E607F</key>
+			<array>
+				<dict>
+					<key>destinationuid</key>
+					<string>0AF3E531-0CB1-4436-89D5-2B1E917D6181</string>
+					<key>modifiers</key>
+					<integer>0</integer>
+					<key>modifiersubtext</key>
+					<string></string>
+				</dict>
+			</array>
+			<key>DCE03DF2-CD83-4F89-BB02-3AEC8A6F7FEB</key>
+			<array>
+				<dict>
+					<key>destinationuid</key>
+					<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+					<key>modifiers</key>
+					<integer>0</integer>
+					<key>modifiersubtext</key>
+					<string></string>
+				</dict>
+			</array>
+		</dict>
+		<key>objects</key>
+		<array>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>escaping</key>
+					<integer>102</integer>
+					<key>script</key>
+					<string>./bin/callinitiator.bash &quot;[CTMessages]{query}&quot;</string>
+					<key>type</key>
+					<integer>0</integer>
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.action.script</string>
+				<key>uid</key>
+				<string>0AF3E531-0CB1-4436-89D5-2B1E917D6181</string>
+				<key>version</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>name</key>
+					<string>Messages Call</string>
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.trigger.contact</string>
+				<key>uid</key>
+				<string>DD5A46E8-58B2-4349-B8F0-6093A63E607F</string>
+				<key>version</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>argumenttype</key>
+					<integer>0</integer>
+					<key>escaping</key>
+					<integer>102</integer>
+					<key>keyword</key>
+					<string>callm</string>
+					<key>runningsubtext</key>
+					<string>Searching...</string>
+					<key>script</key>
+					<string>./bin/Uni\ Call\ Basestation -l &quot;{query}&quot;</string>
+					<key>subtext</key>
+					<string>Send Message to your contact via Messages</string>
+					<key>title</key>
+					<string>Messages Call</string>
+					<key>type</key>
+					<integer>0</integer>
+					<key>withspace</key>
+					<true/>
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.input.scriptfilter</string>
+				<key>uid</key>
+				<string>DCE03DF2-CD83-4F89-BB02-3AEC8A6F7FEB</string>
+				<key>version</key>
+				<integer>0</integer>
+			</dict>
+		</array>
+		<key>uidata</key>
+		<dict>
+			<key>0AF3E531-0CB1-4436-89D5-2B1E917D6181</key>
+			<dict>
+				<key>ypos</key>
+				<real>1460</real>
+			</dict>
+			<key>DD5A46E8-58B2-4349-B8F0-6093A63E607F</key>
+			<dict>
+				<key>ypos</key>
+				<real>1460</real>
+			</dict>
+			<key>DCE03DF2-CD83-4F89-BB02-3AEC8A6F7FEB</key>
+			<dict>
+				<key>ypos</key>
+				<real>1400</real>
 			</dict>
 		</dict>
 	</dict>

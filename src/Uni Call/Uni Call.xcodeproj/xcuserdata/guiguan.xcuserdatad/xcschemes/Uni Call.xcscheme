@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A51AC7911729122600ADB097"
                BuildableName = "Uni Call"
-               BlueprintName = "Uni Call"
+               BlueprintName = "Uni Call Satellite"
                ReferencedContainer = "container:Uni Call.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A51AC7911729122600ADB097"
             BuildableName = "Uni Call"
-            BlueprintName = "Uni Call"
+            BlueprintName = "Uni Call Satellite"
             ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -44,7 +44,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
@@ -53,7 +53,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A51AC7911729122600ADB097"
             BuildableName = "Uni Call"
-            BlueprintName = "Uni Call"
+            BlueprintName = "Uni Call Satellite"
             ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,7 +71,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A51AC7911729122600ADB097"
             BuildableName = "Uni Call"
-            BlueprintName = "Uni Call"
+            BlueprintName = "Uni Call Satellite"
             ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
