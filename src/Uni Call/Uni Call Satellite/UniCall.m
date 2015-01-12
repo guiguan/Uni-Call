@@ -18,7 +18,7 @@
 #import "Updater.h"
 
 #define IDENTIFIER @"net.guiguan.Uni-Call"
-#define VERSION @"5.0"
+#define VERSION @"6.0"
 //#define GENERATE_DEFAULT_THUMBNAILS 1 // uncomment to generate default thumbnails
 #define THUMBNAIL_CACHE_LIFESPAN 604800 // 1 week
 #define PREPOPULATE_IM_STATUS_INTERVAL 60 // 1 min
@@ -327,7 +327,7 @@ static NSMutableSet *sReservedPhoneLabels;
                 tmp |= [sCallTypeDefault[i] integerValue];
             }
             enabledCallType_ = tmp;
-            config_[@"callComponentStatus"] = [NSNumber numberWithInteger: enabledCallType_];
+            config_[@"callComponentStatus"] = [NSNumber numberWithInteger: enabledCallType_ >> CALLTYPE_BOUNDARY_LOW];
             configHasChanged = YES;
         }
         
@@ -440,8 +440,8 @@ static NSMutableSet *sReservedPhoneLabels;
         
         // post upgrade process
         isInProcessOfSettingUp_ = YES;
+        [self process:@"--updatealfredpreferences yes "];
         if (!isNewUser_) {
-            [self process:@"--updatealfredpreferences yes "];
             [self process:@"--destroythumbnailcache yes "];
         }
         [self process:@"--buildfullthumbnailcache yes "];
@@ -2579,7 +2579,7 @@ static NSString *sDefaultResultA = @"<item";
     for (NSNumber *rawCT in callModifiers_) {
         CallType ct = [rawCT integerValue];
         if (nonSearchableOptions & ct) {
-            callType_ &= [self getSetValueForCallModifier:ct];
+            callType_ |= [self getSetValueForCallModifier:ct];
             if (optionHelp) {
                 #pragma clang diagnostic push
                 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"

@@ -1,14 +1,14 @@
 #!/bin/bash
 #
 # This script will automatically download the newest `Uni Call.alfredworkflow`,
-# verify its sha1 integrity, unzip it to overwrite the old Uni Call Alfred
-# workflow files
+# verify its sha1 integrity, unzip it, and overwrite the old Uni Call Alfred
+# workflow files with the new ones
 #
 # @Author: Guan Gui
 # @Date:   2015-01-05 17:34:35
 # @Email:  root@guiguan.net
 # @Last modified by:   Guan Gui
-# @Last modified time: 2015-01-05 23:12:22
+# @Last modified time: 2015-01-13 01:46:45
 
 sha1="$1"
 unicall_bin_path=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
@@ -47,7 +47,7 @@ mkdir -p "$tmp_dir"
 add_on_exit rm -rf "$tmp_dir"
 cd "$tmp_dir"
 echo 'Downloading the latest Uni Call from official website...'
-curl -o "$filename" https://www.guiguan.net/download/uni-call-test-alfredworkflow/
+curl -o "$filename" https://www.guiguan.net/download/uni-call-alfredworkflow/
 if [ `openssl sha1 Uni-Call.alfredworkflow | awk '{print $2}'` != "$sha1" ]; then
     echo "Error: auto upgrade has failed, because the downloaded Uni Call file doesn't match the officially provided sha1 checksum" 1>&2
     "$unicall_bin_path/Uni Call.app/Contents/MacOS/Uni Call" -title "Auto upgrade failed" -message "The downloaded Uni Call is corrupted. Click me to visit Uni Call project page to manually download it" -sound "Ping" -group "upgrading" -open "http://unicall.guiguan.net" > /dev/null

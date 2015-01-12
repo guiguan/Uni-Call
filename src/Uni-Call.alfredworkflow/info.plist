@@ -8,55 +8,11 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>05088DC0-D882-4E8B-B130-F087F7C04FC2</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>07913B02-FCA2-4435-B010-A160ECC14BDF</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>08541403-BBB8-4F64-B149-5A52E3136F88</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>28BBD4A6-F125-4651-A83C-B8BAD8685DF2</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
 		<key>10E473C7-EBC3-4886-BDB0-C43072A6BC69</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>46DA4F61-CD20-463C-8744-4D83DF7DB7A1</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>146CA72B-6714-450E-BD75-A6E79A333EB9</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>8CC9ECE8-1459-49B8-8CCB-FD3A38956348</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -74,17 +30,6 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>40A993D6-613C-4D0B-9083-E73ADD85C9B5</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
 		<key>4BFCA6E8-65B9-4A44-9550-75E7319D88D1</key>
 		<array>
 			<dict>
@@ -96,33 +41,11 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>4E251686-06AC-44A9-8C74-C6A03158E9DC</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
 		<key>54C2F3DC-1B4B-476D-9E47-214A16D51F39</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>67053939-F8A0-4809-9769-EB70B68F425A</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>AF3F83A1-92BE-4FE4-A15D-4AADD5D5038A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -173,17 +96,6 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>7C77EC82-6545-4451-AFFF-00A017A524B2</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>C0388279-4206-43B1-B04E-AB8C66C6CA72</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
 		<key>824B81E3-2C65-454B-86A7-033401A2223F</key>
 		<array>
 			<dict>
@@ -217,29 +129,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>B3FB4D6B-48F3-4418-BC4A-0ECA50FA8F82</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>44DE1718-7C29-419B-8B73-EED948E778C6</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
 		<key>C35996F3-5CF7-4B64-9690-3D12C42A585D</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>D47F4C69-2F33-4974-AF4F-3027EF487BCB</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -320,7 +210,7 @@
 	<key>createdby</key>
 	<string>Guan Gui</string>
 	<key>description</key>
-	<string>The missing universal phone call workflow for Alfred</string>
+	<string>Type in your Alfred: 'call -' or 'call --' for options; 'call --enable/disable/reorder' for controlling call components</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -630,301 +520,6 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>calld</string>
-				<key>runningsubtext</key>
-				<string>Searching...</string>
-				<key>script</key>
-				<string>./bin/Uni\ Call\ Basestation -d "{query}"</string>
-				<key>subtext</key>
-				<string>Make a PushDialer call to your contact</string>
-				<key>title</key>
-				<string>PushDialer Call</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>4E251686-06AC-44A9-8C74-C6A03158E9DC</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./bin/callinitiator.bash "[CTPushDialer]{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>8CC9ECE8-1459-49B8-8CCB-FD3A38956348</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>name</key>
-				<string>PushDialer Call</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.contact</string>
-			<key>uid</key>
-			<string>146CA72B-6714-450E-BD75-A6E79A333EB9</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>callg</string>
-				<key>runningsubtext</key>
-				<string>Searching...</string>
-				<key>script</key>
-				<string>./bin/Uni\ Call\ Basestation -g "{query}"</string>
-				<key>subtext</key>
-				<string>Make a Google Voice call to your contact via GrowlVoice</string>
-				<key>title</key>
-				<string>GrowlVoice Call</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>07913B02-FCA2-4435-B010-A160ECC14BDF</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>name</key>
-				<string>GrowlVoice Call</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.contact</string>
-			<key>uid</key>
-			<string>67053939-F8A0-4809-9769-EB70B68F425A</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./bin/callinitiator.bash "[CTGrowlVoice]{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AF3F83A1-92BE-4FE4-A15D-4AADD5D5038A</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>callk</string>
-				<key>runningsubtext</key>
-				<string>Searching...</string>
-				<key>script</key>
-				<string>./bin/Uni\ Call\ Basestation -k "{query}"</string>
-				<key>subtext</key>
-				<string>Make a CallTrunk call to your contact</string>
-				<key>title</key>
-				<string>CallTrunk Call</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>40A993D6-613C-4D0B-9083-E73ADD85C9B5</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>name</key>
-				<string>CallTrunk Call</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.contact</string>
-			<key>uid</key>
-			<string>7C77EC82-6545-4451-AFFF-00A017A524B2</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./bin/callinitiator.bash "[CTCallTrunk]{query}/US"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>C0388279-4206-43B1-B04E-AB8C66C6CA72</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>callz</string>
-				<key>runningsubtext</key>
-				<string>Searching...</string>
-				<key>script</key>
-				<string>./bin/Uni\ Call\ Basestation -z "{query}"</string>
-				<key>subtext</key>
-				<string>Make a Fritz!Box call to your contact via Frizzix</string>
-				<key>title</key>
-				<string>Fritz!Box Call</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>05088DC0-D882-4E8B-B130-F087F7C04FC2</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>name</key>
-				<string>Fritz!Box Call</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.contact</string>
-			<key>uid</key>
-			<string>B3FB4D6B-48F3-4418-BC4A-0ECA50FA8F82</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./bin/callinitiator.bash "[CTFritzBox]{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>44DE1718-7C29-419B-8B73-EED948E778C6</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>calll</string>
-				<key>runningsubtext</key>
-				<string>Searching...</string>
-				<key>script</key>
-				<string>./bin/Uni\ Call\ Basestation -l "{query}"</string>
-				<key>subtext</key>
-				<string>Make a bluetooth phone call to your contact via Dialogue</string>
-				<key>title</key>
-				<string>Dialogue Call</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>D47F4C69-2F33-4974-AF4F-3027EF487BCB</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>name</key>
-				<string>Dialogue Call</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.contact</string>
-			<key>uid</key>
-			<string>08541403-BBB8-4F64-B149-5A52E3136F88</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./bin/callinitiator.bash "[CTDialogue]{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>28BBD4A6-F125-4651-A83C-B8BAD8685DF2</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
 				<string>callh</string>
 				<key>runningsubtext</key>
 				<string>Searching...</string>
@@ -1170,150 +765,13 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Uni Call
-v5.31
+	<string>+————————————————————————————————————————————————————+
+|The missing universal phone call workflow for Alfred|
++———————————————————————————————————————————————————-+
 
-The missing universal phone call workflow for Alfred
-----------------------------------------------------
-
-Uni Call is an [Alfred](http://www.alfredapp.com) workflow providing the fastest way to make whatever phone call on your Mac OS X (ambitious :). It will look for information stored in your Apple Contacts (we love the address book :) to help you initiate your phone call as quickly as possible. Right now, with Uni Call, you can make [Skype](#skype-call), [FaceTime](#facetime-call), bluetooth (via either [Phone Amego](#phone-amego-call) or [Dialogue](#dialogue-call)), [SIP](#sip-call) (via Telephone), [PushDialer](#pushdialer-call), [Google Voice](#growlvoice-call) (via GrowlVoice), [CallTrunk](#calltrunk-call) and [Fritz!Box](#fritzbox-call) phone call. However, more call methods could be added. Please let me know if you are interested!
-
-![Uni Call](https://github.com/guiguan/Uni-Call/raw/master/Uni-Call.png)
-
-Uni Call workflow supports [Alleyoop auto-updater](http://www.alfredforum.com/topic/1582-alleyoop-update-alfred-workflows/). It has been tested on Skype 6.8.0.351, FaceTime 2.0 (1080), Phone Amego 1.4.18.02, Telephone 1.0.4 (104), PushDialer 1.7 (Build 64), GrowlVoice 2.0.3 (30), Call Trunk AU/UK/US 1.0 (1.0), Frizzix 1.6.17 (1347), Dialogue 1.1 (70), Alfred 2.0.4 (199) and Mac OS X 10.8.5. Please note that the Mac OS X below 10.8 is not supported.
-
-If you like Uni Call, please consider making a small donation to [me](http://www.guiguan.net) via PayPal as to show your thanks and support for my work :)
-
-[![Donate](http://www.paypalobjects.com/en_AU/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=2QBXQLYQNF552&amp;lc=AU&amp;item_name=Uni%20Call&amp;item_number=Uni%20Call&amp;currency_code=AUD&amp;bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
-
-Installation &amp; Upgrade
---------------
-
-1. Make sure the [Alfred](http://www.alfredapp.com) (with version 2 and above) and [Powerpack](http://www.alfredapp.com/powerpack) is installed
-2. Download the latest workflow: [Uni-Call.alfredworkflow 5.31](http://www.guiguan.net/downloads/Uni-Call.alfredworkflow)
-3. Double click on the downloaded workflow file to install
-4. Type the following command in your Alfred:
-
-		call --updatealfredpreferences yes
-
-5. (Optional) If you have used previous version of Uni Call, new components introduced in a new version are disabled by default. To enable them please refer to [Enable/disable Call Components](#enabledisable-call-components). 
-
-Support
-----------------
-Please file any issue from [this GitHub issue tracker](https://github.com/guiguan/Uni-Call/issues/new). Alternatively, you can leave comments on [my blog page](http://www.guiguan.net/uni-call). Or, you can post on the [Uni Call topic section of Alfred forum](http://www.guiguan.net/redirections/Alfred-Forum-Uni-Call).
-
-Detailed Usage
---------------
-
-When you would like to make a call, simply type:
-
-	call TARGET
-
-where the TARGET could be:
-
-1. a phone number ([Skype](#skype-call), [FaceTime](#facetime-call), [Phone Amego](#phone-amego-call), [SIP](#sip-call), [PushDialer](#pushdialer-call), [GrowlVoice](#growlvoice-call), [CallTrunk](#calltrunk-call), [Fritz!Box](#fritzbox-call), [Dialogue](#dialogue-call))
-2. a Skype username ([Skype](#skype-call))
-3. an email address ([FaceTime](#facetime-call))
-4. a SIP address ([SIP](#sip-call))
-5. combination of contact details stored in your Apple Contacts: first/last names or corresponding phonetic names, nicknames, organisations (All)
-
-When typing the TARGET, the top N closest fuzzy matching results drawn from Apple Contacts will be provided to you in a timely manner. You can choose one of the results to start the call immediately. Meanwhile, you can use the following options to control your search:
-
-
-1. Any combination of the following options, the order of which will determine the order of results for each person in your Apple Contacts. Also, you can use options anywhere in your call query.
-
-		call -sf TARGET		# search Skype and FaceTime
-		call TARGET -p!f	# search Phone Amego and FaceTime without thumbnails
-		call -sfp! TARGET	# equivalent to call -a! TARGET
-		callp TARGET -f     # search Phone Amego and FaceTime
-		calli TAR -s GET    # search SIP and Skype
-
-2. **-!**: prohibit contact thumbnails caching
-
-		call -!a TARGET		# search for all without thumbnails
-		call -s! TARGET		# search for Skype without thumbnails
-
-3. **-a**: lay out all possible call options for your contact (default)
-
-		call -a TARGET
-		call TARGET
-	
-4. **-s**: make a [Skype call](#skype-call) to your contact
-
-		call -s TARGET
-		calls TARGET
-		
-5. **-f**: make a [FaceTime call](#facetime-call) to your contact
-
-		call -f TARGET
-		callf TARGET
-		
-6. **-p**: make a bluetooth phone call to your contact via [Phone Amego](#phone-amego-call)
-
-		call -p TARGET
-		callp TARGET
-		callp TARGET /DEVICE_ALIAS_OR_DEVICE_LABEL  # select a device to use [*].
-
-	[*] Please refer to [Manage Aliases for Device Labels](#manage-aliases-for-device-labels)
-
-7. **-l**: make a bluetooth phone call to your contact via [Dialogue](#dialogue-call)
-
-		call -l TARGET
-		calll TARGET
-		
-8. **-i**: make a [SIP call](#sip-call) to your contact via Telephone
-
-		call -i TARGET
-		calli TARGET
-
-9. **-d**: make a [PushDialer call](#pushdialer-call) to your contact
-
-		call -d TARGET
-		calld TARGET
-
-10. **-g**: make a [Google Voice call](#growlvoice-call) to your contact via GrowlVoice
-
-		call -g TARGET
-		callg TARGET
-
-11. **-k**: make a [CallTrunk](#calltrunk-call) to your contact
-
-		call -k TARGET
-		callk TARGET
-		callk TARGET /COUNTRY_CODE # select a country specific Call Trunk app to use, which will overwrite the default country setting
-
-	[*] Please refer to [Set Call Trunk Country](#set-call-trunk-country)
-
-12. **-z**: make a [Fritz!Box](#fritzbox-call) to your contact via Frizzix
-
-		call -z TARGET
-		callz TARGET
-
-Alternatively, you can make calls using Alfred's Contacts Feature. There will be eight contact actions available for you to choose from in **_Alfred's Contacts Feature_** (under Alfred Preferences &gt; Features &gt; Contacts): [Skype Call](#skype-call), [FaceTime Call](#facetime-call), [Phone Amego Call](#phone-amego-call), [SIP Call](#sip-call), [PushDialer Call](#pushdialer-call), [GrowlVoice Call](#growlvoice-call), [CallTrunk Call](#calltrunk-call), [Fritz!Box Call](#fritzbox-call) and [Dialogue](#dialogue-call).
-
-![Integrate Uni-Call with Alfred's Contacts Feature](https://github.com/guiguan/Uni-Call/raw/master/Alfred-Contacts-Feature.png)
-
-------------------------------------------------
-For more details, please visit http://guiguan.github.io/Uni-Call/
-
-Enjoy calling!</string>
+Thanks for using Uni Call. Please visit the official project page (http://unicall.guiguan.net) for news, documentations and source code.</string>
 	<key>uidata</key>
 	<dict>
-		<key>05088DC0-D882-4E8B-B130-F087F7C04FC2</key>
-		<dict>
-			<key>ypos</key>
-			<real>1040</real>
-		</dict>
-		<key>07913B02-FCA2-4435-B010-A160ECC14BDF</key>
-		<dict>
-			<key>ypos</key>
-			<real>800</real>
-		</dict>
-		<key>08541403-BBB8-4F64-B149-5A52E3136F88</key>
-		<dict>
-			<key>ypos</key>
-			<real>1220</real>
-		</dict>
 		<key>0AF3E531-0CB1-4436-89D5-2B1E917D6181</key>
 		<dict>
 			<key>ypos</key>
@@ -1323,11 +781,6 @@ Enjoy calling!</string>
 		<dict>
 			<key>ypos</key>
 			<real>140</real>
-		</dict>
-		<key>146CA72B-6714-450E-BD75-A6E79A333EB9</key>
-		<dict>
-			<key>ypos</key>
-			<real>740</real>
 		</dict>
 		<key>16039760-F173-4AB8-9C73-DA7401D5DE23</key>
 		<dict>
@@ -1339,21 +792,6 @@ Enjoy calling!</string>
 			<key>ypos</key>
 			<real>620</real>
 		</dict>
-		<key>28BBD4A6-F125-4651-A83C-B8BAD8685DF2</key>
-		<dict>
-			<key>ypos</key>
-			<real>1220</real>
-		</dict>
-		<key>40A993D6-613C-4D0B-9083-E73ADD85C9B5</key>
-		<dict>
-			<key>ypos</key>
-			<real>920</real>
-		</dict>
-		<key>44DE1718-7C29-419B-8B73-EED948E778C6</key>
-		<dict>
-			<key>ypos</key>
-			<real>1100</real>
-		</dict>
 		<key>46DA4F61-CD20-463C-8744-4D83DF7DB7A1</key>
 		<dict>
 			<key>ypos</key>
@@ -1364,20 +802,10 @@ Enjoy calling!</string>
 			<key>ypos</key>
 			<real>380</real>
 		</dict>
-		<key>4E251686-06AC-44A9-8C74-C6A03158E9DC</key>
-		<dict>
-			<key>ypos</key>
-			<real>680</real>
-		</dict>
 		<key>54C2F3DC-1B4B-476D-9E47-214A16D51F39</key>
 		<dict>
 			<key>ypos</key>
 			<real>440</real>
-		</dict>
-		<key>67053939-F8A0-4809-9769-EB70B68F425A</key>
-		<dict>
-			<key>ypos</key>
-			<real>860</real>
 		</dict>
 		<key>674DE779-72F5-4632-932B-FD1404CBE0FA</key>
 		<dict>
@@ -1399,11 +827,6 @@ Enjoy calling!</string>
 			<key>ypos</key>
 			<real>500</real>
 		</dict>
-		<key>7C77EC82-6545-4451-AFFF-00A017A524B2</key>
-		<dict>
-			<key>ypos</key>
-			<real>980</real>
-		</dict>
 		<key>824B81E3-2C65-454B-86A7-033401A2223F</key>
 		<dict>
 			<key>ypos</key>
@@ -1424,11 +847,6 @@ Enjoy calling!</string>
 			<key>ypos</key>
 			<real>620</real>
 		</dict>
-		<key>8CC9ECE8-1459-49B8-8CCB-FD3A38956348</key>
-		<dict>
-			<key>ypos</key>
-			<real>740</real>
-		</dict>
 		<key>981DEDD4-2F6E-41C6-AF93-DFAECAB74618</key>
 		<dict>
 			<key>ypos</key>
@@ -1439,30 +857,10 @@ Enjoy calling!</string>
 			<key>ypos</key>
 			<real>1850</real>
 		</dict>
-		<key>AF3F83A1-92BE-4FE4-A15D-4AADD5D5038A</key>
-		<dict>
-			<key>ypos</key>
-			<real>860</real>
-		</dict>
-		<key>B3FB4D6B-48F3-4418-BC4A-0ECA50FA8F82</key>
-		<dict>
-			<key>ypos</key>
-			<real>1100</real>
-		</dict>
-		<key>C0388279-4206-43B1-B04E-AB8C66C6CA72</key>
-		<dict>
-			<key>ypos</key>
-			<real>980</real>
-		</dict>
 		<key>C35996F3-5CF7-4B64-9690-3D12C42A585D</key>
 		<dict>
 			<key>ypos</key>
 			<real>1280</real>
-		</dict>
-		<key>D47F4C69-2F33-4974-AF4F-3027EF487BCB</key>
-		<dict>
-			<key>ypos</key>
-			<real>1160</real>
 		</dict>
 		<key>D635F69F-C7A5-49ED-8D7D-900627932693</key>
 		<dict>
