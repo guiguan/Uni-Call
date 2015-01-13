@@ -3,7 +3,7 @@
 //  Uni Call
 //
 //  Created by Guan Gui on 19/05/13.
-//  Last modified by Guan Gui on 06/01/15.
+//  Last modified by Guan Gui on 13/01/15.
 //  Copyright (c) 2013 Guan Gui. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -18,7 +18,7 @@
 #import "Updater.h"
 
 #define IDENTIFIER @"net.guiguan.Uni-Call"
-#define VERSION @"6.0"
+#define VERSION @"6.01"
 //#define GENERATE_DEFAULT_THUMBNAILS 1 // uncomment to generate default thumbnails
 #define THUMBNAIL_CACHE_LIFESPAN 604800 // 1 week
 #define PREPOPULATE_IM_STATUS_INTERVAL 60 // 1 min

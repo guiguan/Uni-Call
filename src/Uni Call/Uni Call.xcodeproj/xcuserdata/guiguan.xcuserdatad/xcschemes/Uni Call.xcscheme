@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A51AC7911729122600ADB097"
-               BuildableName = "Uni Call"
+               BuildableName = "Uni Call Satellite"
                BlueprintName = "Uni Call Satellite"
                ReferencedContainer = "container:Uni Call.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A51AC7911729122600ADB097"
-            BuildableName = "Uni Call"
+            BuildableName = "Uni Call Satellite"
             BlueprintName = "Uni Call Satellite"
             ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A51AC7911729122600ADB097"
-            BuildableName = "Uni Call"
+            BuildableName = "Uni Call Satellite"
             BlueprintName = "Uni Call Satellite"
             ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A51AC7911729122600ADB097"
-            BuildableName = "Uni Call"
+            BuildableName = "Uni Call Satellite"
             BlueprintName = "Uni Call Satellite"
             ReferencedContainer = "container:Uni Call.xcodeproj">
          </BuildableReference>

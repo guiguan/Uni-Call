@@ -1234,7 +1234,7 @@
 					<key>runningsubtext</key>
 					<string>Searching...</string>
 					<key>script</key>
-					<string>./bin/Uni\ Call\ Basestation -l &quot;{query}&quot;</string>
+					<string>./bin/Uni\ Call\ Basestation -m &quot;{query}&quot;</string>
 					<key>subtext</key>
 					<string>Send Message to your contact via Messages</string>
 					<key>title</key>
