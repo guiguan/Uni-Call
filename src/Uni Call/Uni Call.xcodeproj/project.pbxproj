@@ -11,8 +11,8 @@
 		A51AC7961729122600ADB097 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7951729122600ADB097 /* Foundation.framework */; };
 		A51AC7991729122600ADB097 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AC7981729122600ADB097 /* main.m */; settings = {COMPILER_FLAGS = ""; }; };
 		A51AC7A41729124000ADB097 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51AC7A31729124000ADB097 /* AddressBook.framework */; };
-		A52335261A1B06A000FEBD1A /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52335241A1B06A000FEBD1A /* libpcre.a */; };
 		A52335271A1B06A000FEBD1A /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52335241A1B06A000FEBD1A /* libpcre.a */; };
+		A524C5461A68D83100FCE323 /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52335241A1B06A000FEBD1A /* libpcre.a */; };
 		A52858481A5ACEA900FBEFFB /* Uni Call Satellite in CopyFiles */ = {isa = PBXBuildFile; fileRef = A51AC7921729122600ADB097 /* Uni Call Satellite */; };
 		A52858491A5ACECC00FBEFFB /* Uni Call Basestation in CopyFiles */ = {isa = PBXBuildFile; fileRef = A53A2721173BE23800D3496F /* Uni Call Basestation */; };
 		A528584F1A5BD0B000FBEFFB /* GGMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A528584E1A5BD0B000FBEFFB /* GGMutableDictionary.m */; };
@@ -165,7 +165,7 @@
 				A5E0E6E6173296AC002E8289 /* AppKit.framework in Frameworks */,
 				A51AC7A41729124000ADB097 /* AddressBook.framework in Frameworks */,
 				A51AC7961729122600ADB097 /* Foundation.framework in Frameworks */,
-				A52335261A1B06A000FEBD1A /* libpcre.a in Frameworks */,
+				A524C5461A68D83100FCE323 /* libpcre.a in Frameworks */,
 				5BA778D7AE9FD064163744D3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

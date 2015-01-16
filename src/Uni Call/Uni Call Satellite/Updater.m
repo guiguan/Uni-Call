@@ -2,7 +2,7 @@
 //  Updater.m
 //  Uni Call
 //
-//  Created by Guan Gui on 23/11/2014.
+//  Created by Guan Gui on 16/01/2015.
 //  Copyright (c) 2014 Guan Gui. All rights reserved.
 //
 
@@ -60,13 +60,6 @@
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Checking for update failed: %@", [error localizedDescription]);
-            if (shouldDeliverNotif) {
-                [UniCall pushNotificationWithOptions:@{@"title": @"Failed to check for update",
-                                                       @"message": @"Click me to check your Console logs for details",
-                                                       @"sound": @"Ping",
-                                                       @"group": @"checkingForUpdate",
-                                                       @"activate": @"com.apple.Console"}];
-            }
             responseObject_ = nil;
             [unicall_.config removeObjectForKey:@"autoUpdateCheckingResponseObject"];
             [unicall_ saveConfig];

@@ -18,7 +18,7 @@
 #import "Updater.h"
 
 #define IDENTIFIER @"net.guiguan.Uni-Call"
-#define VERSION @"6.01"
+#define VERSION @"6.02"
 //#define GENERATE_DEFAULT_THUMBNAILS 1 // uncomment to generate default thumbnails
 #define THUMBNAIL_CACHE_LIFESPAN 604800 // 1 week
 #define PREPOPULATE_IM_STATUS_INTERVAL 60 // 1 min

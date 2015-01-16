@@ -41,6 +41,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>54C2F3DC-1B4B-476D-9E47-214A16D51F39</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>674DE779-72F5-4632-932B-FD1404CBE0FA</key>
 		<array>
 			<dict>
@@ -68,6 +79,17 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>7667D1EB-1962-4049-A475-472CCB778F4B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>981DEDD4-2F6E-41C6-AF93-DFAECAB74618</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -380,6 +402,65 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
+				<string>callp</string>
+				<key>runningsubtext</key>
+				<string>Searching...</string>
+				<key>script</key>
+				<string>./bin/Uni\ Call\ Basestation -p "{query}"</string>
+				<key>subtext</key>
+				<string>Make a bluetooth phone call to your contact via Phone Amego</string>
+				<key>title</key>
+				<string>Phone Amego Call</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>54C2F3DC-1B4B-476D-9E47-214A16D51F39</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>name</key>
+				<string>Phone Amego Call</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.contact</string>
+			<key>uid</key>
+			<string>7667D1EB-1962-4049-A475-472CCB778F4B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./bin/callinitiator.bash "[CTPhoneAmego]{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>981DEDD4-2F6E-41C6-AF93-DFAECAB74618</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
 				<string>calli</string>
 				<key>runningsubtext</key>
 				<string>Searching...</string>
@@ -404,19 +485,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>name</key>
-				<string>SIP Call</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.contact</string>
-			<key>uid</key>
-			<string>25F387AB-A1A0-4844-B137-32E950156EF1</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
@@ -428,6 +496,19 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>85348601-CC11-42E7-978C-6B419BEB8B12</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>name</key>
+				<string>SIP Call</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.contact</string>
+			<key>uid</key>
+			<string>25F387AB-A1A0-4844-B137-32E950156EF1</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -487,6 +568,65 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>FC05FE9F-78E8-4433-BBC3-7A5E91FC8398</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>callm</string>
+				<key>runningsubtext</key>
+				<string>Searching...</string>
+				<key>script</key>
+				<string>./bin/Uni\ Call\ Basestation -m "{query}"</string>
+				<key>subtext</key>
+				<string>Send Message to your contact via Messages</string>
+				<key>title</key>
+				<string>Messages Call</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>DCE03DF2-CD83-4F89-BB02-3AEC8A6F7FEB</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>name</key>
+				<string>Messages Call</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.contact</string>
+			<key>uid</key>
+			<string>DD5A46E8-58B2-4349-B8F0-6093A63E607F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./bin/callinitiator.bash "[CTMessages]{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0AF3E531-0CB1-4436-89D5-2B1E917D6181</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -623,65 +763,6 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./bin/callinitiator.bash "[CTMessages]{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>0AF3E531-0CB1-4436-89D5-2B1E917D6181</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>name</key>
-				<string>Messages Call</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.contact</string>
-			<key>uid</key>
-			<string>DD5A46E8-58B2-4349-B8F0-6093A63E607F</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>callm</string>
-				<key>runningsubtext</key>
-				<string>Searching...</string>
-				<key>script</key>
-				<string>./bin/Uni\ Call\ Basestation -m "{query}"</string>
-				<key>subtext</key>
-				<string>Send Message to your contact via Messages</string>
-				<key>title</key>
-				<string>Messages Call</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>DCE03DF2-CD83-4F89-BB02-3AEC8A6F7FEB</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>+————————————————————————————————————————————————————+
@@ -721,6 +802,11 @@ Thanks for using Uni Call. Please visit the official project page (http://unical
 			<key>ypos</key>
 			<real>380</real>
 		</dict>
+		<key>54C2F3DC-1B4B-476D-9E47-214A16D51F39</key>
+		<dict>
+			<key>ypos</key>
+			<real>440</real>
+		</dict>
 		<key>674DE779-72F5-4632-932B-FD1404CBE0FA</key>
 		<dict>
 			<key>ypos</key>
@@ -735,6 +821,11 @@ Thanks for using Uni Call. Please visit the official project page (http://unical
 		<dict>
 			<key>ypos</key>
 			<real>200</real>
+		</dict>
+		<key>7667D1EB-1962-4049-A475-472CCB778F4B</key>
+		<dict>
+			<key>ypos</key>
+			<real>500</real>
 		</dict>
 		<key>824B81E3-2C65-454B-86A7-033401A2223F</key>
 		<dict>
@@ -755,6 +846,11 @@ Thanks for using Uni Call. Please visit the official project page (http://unical
 		<dict>
 			<key>ypos</key>
 			<real>620</real>
+		</dict>
+		<key>981DEDD4-2F6E-41C6-AF93-DFAECAB74618</key>
+		<dict>
+			<key>ypos</key>
+			<real>500</real>
 		</dict>
 		<key>A100DD1C-5504-4743-A78F-26547DA94CA7</key>
 		<dict>
@@ -808,6 +904,6 @@ Thanks for using Uni Call. Please visit the official project page (http://unical
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>http://guiguan.github.io/Uni-Call/</string>
+	<string>http://unicall.guiguan.net</string>
 </dict>
 </plist>
