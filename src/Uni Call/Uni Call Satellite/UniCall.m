@@ -18,7 +18,7 @@
 #import "Updater.h"
 
 #define IDENTIFIER @"net.guiguan.Uni-Call"
-#define VERSION @"6.02"
+#define VERSION @"6.03"
 //#define GENERATE_DEFAULT_THUMBNAILS 1 // uncomment to generate default thumbnails
 #define THUMBNAIL_CACHE_LIFESPAN 604800 // 1 week
 #define PREPOPULATE_IM_STATUS_INTERVAL 60 // 1 min
@@ -415,12 +415,12 @@ static NSMutableSet *sReservedPhoneLabels;
     return dict;
 }
 
-- (NSRegularExpression *)chineseRe
+// determine whether a string belongs to Chinese, Japanese and Korean combined character set
+- (NSRegularExpression *)cjkRe
 {
     static NSRegularExpression *re = nil;
     if (!re)
-        // Chinese names allow spaces in between Chinese characters
-        re = [NSRegularExpression regularExpressionWithPattern:@"^(\\p{script=Han}+ *)+$" options:0 error:nil];
+        re = [NSRegularExpression regularExpressionWithPattern:@"^([\\p{Katakana}\\p{Hiragana}\\p{Han}\\p{Hangul}]+ *)+$" options:0 error:nil];
     return re;
 }
 
@@ -428,6 +428,8 @@ static NSMutableSet *sReservedPhoneLabels;
 #pragma mark Process Query
 - (NSString *)process:(NSString *)query
 {
+    query = [query precomposedStringWithCompatibilityMapping];
+    
 #pragma mark Set Up
     if (!hasStartedSettingUp_) {
         hasStartedSettingUp_ = YES;
@@ -590,23 +592,23 @@ static NSMutableSet *sReservedPhoneLabels;
 #pragma mark Generate Search Element
         NSMutableArray *searchTerms = [[NSMutableArray alloc] initWithCapacity:[queryParts count]];
         NSMutableString *newQuery = [NSMutableString string];
-        BOOL isQueryInChinese = YES;
+        BOOL isQueryInCJK = YES;
         
         // build search element for queryParts
         for (int i = 0; i < queryParts.count; i++) {
             NSString *curQueryPart = queryParts[i];
             
-            BOOL isCurQueryPartInChinese = [[self chineseRe] matchesInString:curQueryPart options:0 range:NSMakeRange(0, [curQueryPart length])].count > 0;
-            isQueryInChinese = isCurQueryPartInChinese && isQueryInChinese;
+            BOOL isCurQueryPartInCJK = [[self cjkRe] matchesInString:curQueryPart options:0 range:NSMakeRange(0, curQueryPart.length)].count > 0;
+            isQueryInCJK = isCurQueryPartInCJK && isQueryInCJK;
             
             NSMutableArray *searchElements = [NSMutableArray array];
-            ABSearchComparison nameSC = queryParts.count > 1 && isCurQueryPartInChinese ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive;
+            ABSearchComparison nameSC = queryParts.count > 1 && isCurQueryPartInCJK ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive;
             
             // first name
             [searchElements addObject:[ABPerson searchElementForProperty:kABFirstNameProperty label:nil key:nil value:curQueryPart comparison:nameSC]];
             // last name
             [searchElements addObject:[ABPerson searchElementForProperty:kABLastNameProperty label:nil key:nil value:curQueryPart comparison:nameSC]];
-            if (!isCurQueryPartInChinese) {
+            if (!isCurQueryPartInCJK) {
                 ABSearchComparison phoneticNameSC = curQueryPart.length > 1 ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive;
                 // first name phonetic
                 [searchElements addObject:[ABPerson searchElementForProperty:kABFirstNamePhoneticProperty label:nil key:nil value:curQueryPart comparison:phoneticNameSC]];
@@ -635,7 +637,7 @@ static NSMutableSet *sReservedPhoneLabels;
             [newQuery appendFormat:@"%@ ", queryParts[i]]; // keep spaces typed by user
         }
         
-        isQueryInChinese = isQueryInChinese && queryParts.count == 1;
+        isQueryInCJK = isQueryInCJK && queryParts.count == 1;
         ABSearchElement *searchEl = [ABSearchElement searchElementForConjunction:kABSearchAnd children:searchTerms];
         
         // this represents the whole query (without options)
@@ -666,7 +668,7 @@ static NSMutableSet *sReservedPhoneLabels;
         NSMutableArray *searchElements = [NSMutableArray array];
         
         if (queryParts.count > 1) {
-            ABSearchComparison nameSC = query.length > 1 && isQueryInChinese ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive;
+            ABSearchComparison nameSC = query.length > 1 && isQueryInCJK ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive;
             // first name
             [searchElements addObject:[ABPerson searchElementForProperty:kABFirstNameProperty label:nil key:nil value:query comparison:nameSC]];
             // last name
@@ -674,11 +676,11 @@ static NSMutableSet *sReservedPhoneLabels;
         }
         
         // organization
-        [searchElements addObject:[ABPerson searchElementForProperty:kABOrganizationProperty label:nil key:nil value:query comparison:(isQueryInChinese && query.length > 1) || query.length > 2 ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive]];
+        [searchElements addObject:[ABPerson searchElementForProperty:kABOrganizationProperty label:nil key:nil value:query comparison:(isQueryInCJK && query.length > 1) || query.length > 2 ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive]];
         // nickname
-        [searchElements addObject:[ABPerson searchElementForProperty:kABNicknameProperty label:nil key:nil value:query comparison:isQueryInChinese || query.length > 2 ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive]];
+        [searchElements addObject:[ABPerson searchElementForProperty:kABNicknameProperty label:nil key:nil value:query comparison:isQueryInCJK || query.length > 2 ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive]];
         
-        if (!isQueryInChinese && query.length > 1) {
+        if (!isQueryInCJK && query.length > 1) {
             ABSearchComparison sc = query.length > 2 ? kABContainsSubStringCaseInsensitive : kABPrefixMatchCaseInsensitive;
             
             // phone number
@@ -760,8 +762,8 @@ static NSMutableSet *sReservedPhoneLabels;
             NSString *middleName = [r valueForProperty:kABMiddleNameProperty];
             
             if (lastName && firstName) {
-                NSArray *mLastName = [[self chineseRe] matchesInString:lastName options:0 range:NSMakeRange(0, [lastName length])];
-                NSArray *mFirstName = [[self chineseRe] matchesInString:firstName options:0 range:NSMakeRange(0, [firstName length])];
+                NSArray *mLastName = [[self cjkRe] matchesInString:lastName options:0 range:NSMakeRange(0, [lastName length])];
+                NSArray *mFirstName = [[self cjkRe] matchesInString:firstName options:0 range:NSMakeRange(0, [firstName length])];
                 if ([mLastName count] > 0 && [mFirstName count] > 0) {
                     // Chinese name
                     [outDisplayName appendFormat:@"%@%@", lastName, firstName];
@@ -2156,7 +2158,7 @@ end_result_generation:
         }
         
         if ([results isEqualToString:[self xmlHeader]]) {
-            [results appendFormat:@"<item arg=\"\" autocomplete=\"%@\" valid=\"no\"><title>No Call Options Available</title><subtitle>Try to revise search string, relax query criteria or enable more call components</subtitle></item>", query];
+            [results appendFormat:@"<item arg=\"\" autocomplete=\"%@\" valid=\"no\"><title>No Call Options Available</title><subtitle>Try to revise search string, relax query criteria or enable more call components</subtitle><icon>icon.png</icon></item>", query];
         }
         
         [results appendString:@"</items>\n"];
@@ -3289,7 +3291,7 @@ static NSString *sDefaultResultA = @"<item";
                                                 NSString *lastName = [r valueForProperty:kABLastNameProperty];
                                                 
                                                 if (lastName) {
-                                                    NSArray *mLastName = [[self chineseRe] matchesInString:lastName options:0 range:NSMakeRange(0, [lastName length])];
+                                                    NSArray *mLastName = [[self cjkRe] matchesInString:lastName options:0 range:NSMakeRange(0, [lastName length])];
                                                     if ([mLastName count] > 0) {
                                                         NSString *lastNamePhonetic = [r valueForProperty:kABLastNamePhoneticProperty];
                                                         if(!lastNamePhonetic || [lastNamePhonetic stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) {
@@ -3305,7 +3307,7 @@ static NSString *sDefaultResultA = @"<item";
                                                 NSString *firstName = [r valueForProperty:kABFirstNameProperty];
                                                 
                                                 if (firstName) {
-                                                    NSArray *mFirstName = [[self chineseRe] matchesInString:firstName options:0 range:NSMakeRange(0, [firstName length])];
+                                                    NSArray *mFirstName = [[self cjkRe] matchesInString:firstName options:0 range:NSMakeRange(0, [firstName length])];
                                                     if ([mFirstName count] > 0) {
                                                         NSString *firstNamePhonetic = [r valueForProperty:kABFirstNamePhoneticProperty];
                                                         if(!firstNamePhonetic || [firstNamePhonetic stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) {
