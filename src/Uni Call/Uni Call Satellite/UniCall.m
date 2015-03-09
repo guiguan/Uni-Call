@@ -18,7 +18,7 @@
 #import "Updater.h"
 
 #define IDENTIFIER @"net.guiguan.Uni-Call"
-#define VERSION @"6.03"
+#define VERSION @"6.031"
 //#define GENERATE_DEFAULT_THUMBNAILS 1 // uncomment to generate default thumbnails
 #define THUMBNAIL_CACHE_LIFESPAN 604800 // 1 week
 #define PREPOPULATE_IM_STATUS_INTERVAL 60 // 1 min
@@ -421,6 +421,14 @@ static NSMutableSet *sReservedPhoneLabels;
     static NSRegularExpression *re = nil;
     if (!re)
         re = [NSRegularExpression regularExpressionWithPattern:@"^([\\p{Katakana}\\p{Hiragana}\\p{Han}\\p{Hangul}]+ *)+$" options:0 error:nil];
+    return re;
+}
+
+- (NSRegularExpression *)chineseRe
+{
+    static NSRegularExpression *re = nil;
+    if (!re)
+        re = [NSRegularExpression regularExpressionWithPattern:@"^(\\p{Han}+ *)+$" options:0 error:nil];
     return re;
 }
 
@@ -3291,7 +3299,7 @@ static NSString *sDefaultResultA = @"<item";
                                                 NSString *lastName = [r valueForProperty:kABLastNameProperty];
                                                 
                                                 if (lastName) {
-                                                    NSArray *mLastName = [[self cjkRe] matchesInString:lastName options:0 range:NSMakeRange(0, [lastName length])];
+                                                    NSArray *mLastName = [[self chineseRe] matchesInString:lastName options:0 range:NSMakeRange(0, [lastName length])];
                                                     if ([mLastName count] > 0) {
                                                         NSString *lastNamePhonetic = [r valueForProperty:kABLastNamePhoneticProperty];
                                                         if(!lastNamePhonetic || [lastNamePhonetic stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) {
@@ -3307,7 +3315,7 @@ static NSString *sDefaultResultA = @"<item";
                                                 NSString *firstName = [r valueForProperty:kABFirstNameProperty];
                                                 
                                                 if (firstName) {
-                                                    NSArray *mFirstName = [[self cjkRe] matchesInString:firstName options:0 range:NSMakeRange(0, [firstName length])];
+                                                    NSArray *mFirstName = [[self chineseRe] matchesInString:firstName options:0 range:NSMakeRange(0, [firstName length])];
                                                     if ([mFirstName count] > 0) {
                                                         NSString *firstNamePhonetic = [r valueForProperty:kABFirstNamePhoneticProperty];
                                                         if(!firstNamePhonetic || [firstNamePhonetic stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) {
