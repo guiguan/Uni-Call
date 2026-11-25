@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FAQ - Uni Call</title>
+    <meta name="description" content="Frequent Asked Questions">
+    <meta name="author" content="Guan Gui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="assets/themes/bootswatch/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/themes/bootswatch/css/bootswatch.css" rel="stylesheet">
+    <link href="assets/themes/bootswatch/css/toc.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/themes/bootswatch/js/html5shiv.js"></script>
+      <script src="assets/themes/bootswatch/js/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="icon" href="assets/themes/bootswatch/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="assets/themes/bootswatch/img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" href="assets/themes/bootswatch/img/apple-touch-icon-57x57-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/themes/bootswatch/img/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/themes/bootswatch/img/apple-touch-icon-114x114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/themes/bootswatch/img/apple-touch-icon-144x144-precomposed.png" />
+
+    <link href="atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+    <script type="text/javascript" src="assets/themes/bootswatch/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        if (true && location.href.indexOf('#') != -1) {
+          $('#wrapper').removeClass('toggled');
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav id="navheader" class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand"><span class="glyphicon glyphicon-earphone" aria-hidden="true" style="top: 2px; left: 8px; font-size: 16px;"></span></a>
+          <a href="index.html" class="navbar-brand">Uni Call</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="index.html">Home</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="usage.html">Usage</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="active"><a href="FAQ.html" class="active">FAQ</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="legacy.html">Legacy</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="assets/downloads/Uni-Call.alfredworkflow" class="piwik_download">Download</a></li>
+            <li><a href="https://github.com/guiguan/Uni-Call" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="wrapper" class="toggled">
+      <div id="sidebar-wrapper">
+      </div>
+
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+            
+<div class="page-header normal-page-header" style="text-align: right;">
+  <h1 class="page-title">FAQ</h1>
+  <h2 class="page-description"><small>Frequent Asked Questions</small></h2>
+  
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="bs-component">
+      
+<h2 id="when-i-use-iphone-call-yosemite-continuity-some-other-app-is-opened-instead-of-facetime-why">When I use iPhone Call (Yosemite Continuity), some other app is opened instead of FaceTime. Why?</h2>
+
+<p>iPhone Call is using FaceTime app to achieve the Yosemite continuity. The URL scheme <code class="highlight language-bash">tel:</code> is used by iPhone Call to communicate with FaceTime app. If this issue happens, it means the other app is taking over your FaceTime app as the default handler for the URL scheme <code class="highlight language-bash">tel:</code>. You can change it back using following steps:</p>
+
+<ol>
+  <li>download and install <a href="http://www.rubicode.com/Software/RCDefaultApp/" target="_blank">RCDefaultApps</a></li>
+  <li>open Default Apps in System Preferences</li>
+  <li>select <code class="highlight language-bash">URLs</code> tab, <code class="highlight language-bash">tel</code> and <code class="highlight language-bash">FaceTime</code> in turn as shown below:</li>
+</ol>
+
+<p><img src="assets/img/RCDefaultApps.png" alt="RCDefaultApps" width="500px" /></p>
+
+<h2 id="i-can-see-my-call-components-are-presented-in-alfred-preferences-but-why-cannot-i-use-them-in-uni-call">I can see my call components are presented in Alfred Preferences, but why cannot I use them in Uni Call?</h2>
+
+<p>All your Uni Call preferences, including call components enabled status, are kept in <code class="highlight language-bash">~/Library/Application<span class="se">\ </span>Support/Alfred<span class="se">\ </span>2/Workflow<span class="se">\ </span>Data/net.guiguan.Uni-Call/config.plist</code>. When you have upgraded or reinstalled Uni Call, you may need to invoke:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --updatealfredpreferences yes</code></pre></div>
+
+<p>to synchronise Uni Call’s preferences with Alfred’s. Then, wait for several seconds, and retype your queries, which should be okay by then.</p>
+
+<h2 id="i-have-enableddisabled-a-call-component-why-cannotcan-i-still-use-it-in-uni-call">I have enabled/disabled a call component, why cannot/can I still use it in Uni Call?</h2>
+
+<p>When you flip a call component’s enabled status, there is delay between Uni Call and Alfred’s preferences becoming perfectly synchronised. So wait for several seconds, and retype your queries.</p>
+
+<h2 id="why-the-results-for-my-first-few-queries-come-out-so-slow">Why the results for my first few queries come out so slow?</h2>
+
+<p>If you are still using traditional mechanical hard-drive on your Mac, this is unfortunately unavoidable. Because the OSX Address Book API needs hard-drive access on start. If you are using SSD but still experience the same issue, please contact me :P</p>
+
+<h2 id="why-does-my-contact-birthday-alerts-get-fired-when-i-try-to-use-apple-contact-utilities-that-come-with-uni-call">Why does my contact birthday alerts get fired when I try to use Apple Contact utilities that come with Uni Call?</h2>
+
+<p>This can happen if you have set the birthday field of a contact in your Apple Contact and have turned on birthday alert (<code class="highlight language-bash">Calendar &gt; Preferences... &gt; Alerts &gt; Birthdays</code>) and at the same time that contact is on birthday today. The OSX Address Book API that Uni Call uses will trigger such birthday alerts when saving changes made to contacts. Unfortunately, this cannot be avoided.</p>
+
+    </div>
+  </div>
+</div>
+
+        </div>
+
+        <hr>
+
+        <footer>
+          <p>Copyright © 2015 <a href="https://github.com/guiguan">Guan Gui</a></p>
+        </footer>
+      </div>
+    </div>
+
+    
+    <script type="text/javascript" src="assets/themes/bootswatch/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/themes/bootswatch/js/toc.js"></script>
+    <script type="text/javascript" src="assets/themes/bootswatch/js/jquery.resize.js"></script>
+    <script type="text/javascript" src="assets/themes/bootswatch/js/bowser.min.js"></script>
+    <script type="text/javascript">
+      $(window).load(function() {
+        var sWElem = $('#sidebar-wrapper');
+        var pCWElem = $('#page-content-wrapper');
+
+        $.fn.smoothScroller.defaults.scrollEl = bowser.gecko ? 'html' : 'body';
+
+        var tocResizeFunc = sWElem.toc({
+          'selectors': 'h2[id], h3[id], h4[id]',
+          'highlightOffset': 0,
+          'highlightOnStart': false,
+          'highlightOnWindowResize': false,
+          'autoScrollTocTopOffset': 9,
+          'autoScrollTocHeightFunc': function() {
+            return $(window).height() - $('#navheader').outerHeight();
+          }
+        }).toc.rehighlight;
+
+        pCWElem.resize(tocResizeFunc);
+
+        if (true) {
+          $('#wrapper').removeClass('toggled');
+        }
+      });
+    </script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//piwik.guiguan.net/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', 2]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="//piwik.guiguan.net/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+  </body>
+</html>
+

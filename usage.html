@@ -1,0 +1,659 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Usage - Uni Call</title>
+    
+    <meta name="author" content="Guan Gui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="assets/themes/bootswatch/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/themes/bootswatch/css/bootswatch.css" rel="stylesheet">
+    <link href="assets/themes/bootswatch/css/toc.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/themes/bootswatch/js/html5shiv.js"></script>
+      <script src="assets/themes/bootswatch/js/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="icon" href="assets/themes/bootswatch/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="assets/themes/bootswatch/img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" href="assets/themes/bootswatch/img/apple-touch-icon-57x57-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/themes/bootswatch/img/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/themes/bootswatch/img/apple-touch-icon-114x114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/themes/bootswatch/img/apple-touch-icon-144x144-precomposed.png" />
+
+    <link href="atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+    <script type="text/javascript" src="assets/themes/bootswatch/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        if (true && location.href.indexOf('#') != -1) {
+          $('#wrapper').removeClass('toggled');
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav id="navheader" class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand"><span class="glyphicon glyphicon-earphone" aria-hidden="true" style="top: 2px; left: 8px; font-size: 16px;"></span></a>
+          <a href="index.html" class="navbar-brand">Uni Call</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="index.html">Home</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li class="active"><a href="usage.html" class="active">Usage</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="FAQ.html">FAQ</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="legacy.html">Legacy</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="assets/downloads/Uni-Call.alfredworkflow" class="piwik_download">Download</a></li>
+            <li><a href="https://github.com/guiguan/Uni-Call" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="wrapper" class="toggled">
+      <div id="sidebar-wrapper">
+      </div>
+
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+            
+<div class="page-header normal-page-header" style="text-align: right;">
+  <h1 class="page-title">Usage</h1>
+  
+  
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="bs-component">
+      
+<h2 id="basics">Basics</h2>
+
+<h3 id="call-component">Call Component</h3>
+
+<p>Each call component represents a method to communicate with your contact. For example, <a href="#skype-call">Skype Call</a> component enables you to communicate with your contact through Skype. Each call component has three potential working modes: audio, video call or text.</p>
+
+<h3 id="syntax">Syntax</h3>
+
+<p>To call a <a href="#target">target</a>:</p>
+
+<div class="highlight"><pre><code class="language-bash">call TARGET</code></pre></div>
+
+<p>To call a <a href="#target">target</a> with <a href="#shortoptions-and-partialshortoptions">options</a>:</p>
+
+<div class="highlight"><pre><code class="language-bash">call SHORT_OPTIONS TARGET</code></pre></div>
+
+<p>You can also mix options with target information:</p>
+
+<div class="highlight"><pre><code class="language-bash">call PARTIAL_SHORT_OPTIONS PARTIAL_TARGET ... <span class="c"># ... means more PARTIAL_SHORT_OPTIONS or PARTIAL_TARGET. This helps you to progressively refine your search results as you type.</span></code></pre></div>
+
+<h4 id="target"><code class="highlight language-bash">TARGET</code></h4>
+
+<p>Any of the following could be a <code class="highlight language-bash">TARGET</code>:</p>
+
+<ol>
+  <li>a phone number (<a href="#skype-call">Skype Call</a>, <a href="#facetime-call">FaceTime Call</a>, <a href="#phone-amego-call">Phone Amego</a>, <a href="#sip-call">SIP</a>, <a href="#pushdialer-call">PushDialer</a>, <a href="#growlvoice-call">GrowlVoice</a>, <a href="#calltrunk-call">CallTrunk</a>, <a href="#fritzbox-call">Fritz!Box</a>, <a href="#dialogue-call">Dialogue</a>, <a href="#iphone-call">iPhone</a>, <a href="#messages-call">Messages</a>)</li>
+  <li>a Skype username (<a href="#skype-call">Skype</a>)</li>
+  <li>an email address (<a href="#facetime-call">FaceTime</a>, <a href="#messages-call">Messages</a>)</li>
+  <li>a SIP address (<a href="#sip-call">SIP</a>)</li>
+  <li>a WeChat username (<a href="#wechat-call">WeChat</a>)</li>
+  <li>same as <a href="#partialtarget"><code class="highlight language-bash">PARTIAL_TARGET</code></a> (All)</li>
+  <li>nicknames, organisations (All)</li>
+</ol>
+
+<h4 id="partialtarget"><code class="highlight language-bash">PARTIAL_TARGET</code></h4>
+
+<p><code class="highlight language-bash">PARTIAL_TARGET</code> is a combination of name initials, first and last name and first and last phonetic name. The name initials, if not separated, must be placed as the first <code class="highlight language-bash">PARTIAL_TARGET</code>. Spaces between <code class="highlight language-bash">PARTIAL_TARGET</code>s are treated as boolean logic <code class="highlight language-bash">AND</code>s. This applies to all call components. For example:</p>
+
+<div class="highlight"><pre><code class="language-bash">call guan gui
+call gui guan
+call gg
+call g g
+call 桂 冠
+call g 冠         
+call 桂冠                <span class="c"># they all search for Guan Gui&#39;s contact information</span>
+call 冠桂                       
+call gg 桂
+call gg guan 桂 gui
+call gg gua gu
+call gg guan gui guan gui 桂 冠</code></pre></div>
+
+<h4 id="shortoptions-and-partialshortoptions"><code class="highlight language-bash">SHORT_OPTIONS</code> and <code class="highlight language-bash">PARTIAL_SHORT_OPTIONS</code></h4>
+
+<p>They both start with <code class="highlight language-bash">-</code> and are followed with any combination of the followings:</p>
+
+<ol>
+  <li>
+    <p><a href="#call-component-code-componentcode"><code class="highlight language-bash">COMPONENT_CODE</code></a>. This is to show search result from specified call component. The result is additive. For example:</p>
+
+    <div class="highlight"><pre><code class="language-bash"> call -sf TARGET     <span class="c"># search Skype and FaceTime</span>
+ call -s TARGET -fp  <span class="c"># search Skype, FaceTime and Phone Amego</span>
+ call TARGET -h      <span class="c"># search iPhone</span></code></pre></div>
+  </li>
+  <li>
+    <p><code class="highlight language-bash">a</code>. This is the default option if none of the options presented in this section are provided. This means all call components are selected for searching. The result is additive. For example:</p>
+
+    <div class="highlight"><pre><code class="language-bash"> call -sa TARGET
+ call -a TARGET      <span class="c"># They are the same</span>
+ call TARGET</code></pre></div>
+  </li>
+  <li>
+    <p><code class="highlight language-bash">!</code>. This is to prohibit contact thumbnails caching. For example:</p>
+
+    <div class="highlight"><pre><code class="language-bash"> call -!a TARGET     <span class="c"># search for all without thumbnails</span>
+ call -s! TARGET     <span class="c"># search for Skype without thumbnails</span></code></pre></div>
+  </li>
+  <li>
+    <p>Any combination of call modifiers: audio (<code class="highlight language-bash">_</code>), video (<code class="highlight language-bash">+</code>) or text (<code class="highlight language-bash"><span class="o">=</span></code>). The result is additive. For example:</p>
+
+    <div class="highlight"><pre><code class="language-bash"> call -_f TARGET     <span class="c"># show FaceTime audio call results for TARGET</span>
+ call -_+f TARGET    <span class="c"># show both FaceTime audio and video call results for TARGET</span>
+ call -mswf<span class="o">=</span> TARGET  <span class="c"># only show text results from possible Messages, Skype, WeChat and FaceTime search results for TARGET</span>
+ call TARGET -+<span class="o">=</span>     <span class="c"># only show video call and text results from all possible search results for TARGET</span></code></pre></div>
+  </li>
+</ol>
+
+<p>You can type <code class="highlight language-bash">call -</code> to list all options.</p>
+
+<h4 id="componentcode"><code class="highlight language-bash">COMPONENT_CODE</code></h4>
+
+<p>A <code class="highlight language-bash">COMPONENT_CODE</code> is the short option letter for each call component. For example, Skype Call component has “s” as its <code class="highlight language-bash">COMPONENT_CODE</code>. Please refer to Call Component Code column of the table in <a href="index.html#supported-call-components">Supported Call Components</a> for which letter corresponds to which call component.</p>
+
+<h3 id="aliases">Aliases</h3>
+
+<p>For sake of convenience, Uni Call also provides following aliases:</p>
+
+<ol>
+  <li>
+    <p><code class="highlight language-bash">call</code> + <a href="#componentcode"><code class="highlight language-bash">COMPONENT_CODE_c</code></a> = <code class="highlight language-bash">call -COMPONENT_CODE_c</code>. For example, the followings are equivalent:</p>
+
+    <div class="highlight"><pre><code class="language-bash"> call -f TARGET      <span class="c"># search for FaceTime</span>
+ callf TARGET</code></pre></div>
+  </li>
+  <li>
+    <p><code class="highlight language-bash">audio</code> = <code class="highlight language-bash">call -_</code>. For example, the followings are equivalent:</p>
+
+    <div class="highlight"><pre><code class="language-bash"> audio TARGET        <span class="c"># only show audio call from all possible search results for TARGET</span>
+ call -_ TARGET</code></pre></div>
+  </li>
+  <li>
+    <p><code class="highlight language-bash">video</code> = <code class="highlight language-bash">call -+</code>. For example, the followings are equivalent:</p>
+
+    <div class="highlight"><pre><code class="language-bash"> video TARGET        <span class="c"># only show video call from all possible search results for TARGET</span>
+ call -+ TARGET</code></pre></div>
+  </li>
+  <li>
+    <p><code class="highlight language-bash">text</code> = <code class="highlight language-bash">call -<span class="o">=</span></code>. For example, the followings are equivalent:</p>
+
+    <div class="highlight"><pre><code class="language-bash"> text TARGET        <span class="c"># only show text from all possible search results for TARGET</span>
+ call -<span class="o">=</span> TARGET</code></pre></div>
+  </li>
+</ol>
+
+<h3 id="long-options">Long Options</h3>
+
+<p>Long options allow user to perform some utility functions as well as setting up their preferences towards Uni Call. They are prefixed with <code class="highlight language-bash">--</code> (double dashes).</p>
+
+<p>To list all long options:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --</code></pre></div>
+
+<p>To list long options for a call component with <code class="highlight language-bash">COMPONENT_CODE_c</code>:</p>
+
+<div class="highlight"><pre><code class="language-bash">call -COMPONENT_CODE_c-
+callCOMPONENT_CODE_c --</code></pre></div>
+
+<p>For example:</p>
+
+<div class="highlight"><pre><code class="language-bash">call -p-
+<span class="c"># and</span>
+callp --
+<span class="c"># both list options for Phone Amego Call component</span></code></pre></div>
+
+<h2 id="alfreds-contacts-feature">Alfred’s Contacts Feature</h2>
+
+<p>Alternatively, you can make calls using Alfred’s Contacts Feature. There will be contact actions available for you to choose from in Alfred’s Contacts Feature (under Alfred Preferences &gt; Features &gt; Contacts).</p>
+
+<p><img src="assets/img/Alfred-Contacts-Feature.png" alt="Integrate Uni-Call with Alfred's Contacts Feature" /></p>
+
+<h2 id="enabledisablereorder-call-components">Enable/disable/reorder Call Components</h2>
+
+<p>If you only make use of several call components in your daily life, you can completely disable others. Then your Uni Call will act as if it only has those call components working internally. In reality, this will also speedup your Uni Call.</p>
+
+<p>To disable call components:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --disable COMPONENT_CODES yes</code></pre></div>
+
+<p>To re-enable disabled call components:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --enable COMPONENT_CODES yes</code></pre></div>
+
+<p>When a call component is disabled, its corresponding <a href="#uni-call-preferences-vs-alfred-preferences">Alfred Preferences</a> will be automatically removed; later when it is enabled again, its <a href="#uni-call-preferences-vs-alfred-preferences">Alfred Preferences</a> will then be automatically restored.</p>
+
+<p>The default call component order is the order of call component candidates by default shown in search results. If you would like certain call component candidates to be always shown among top of other search results, you can type the following command to reorder call components:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --reorder COMPONENT_CODES yes</code></pre></div>
+
+<p>The COMPONENT_CODES is defined in <a href="#componentcode">COMPONENT_CODE</a> section.</p>
+
+<h2 id="uni-call-preferences-vs-alfred-preferences">Uni Call Preferences vs Alfred Preferences</h2>
+
+<p>All Uni Call related preferences are stored persistently in <code class="highlight language-bash">~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/config.plist</code>. The meaning of “persistently” is that they will be kept after you upgrade to future Uni Call versions.</p>
+
+<p>Alfred preferences store necessary information about how Uni Call is constructed internally in Alfred. They are kept in <code class="highlight language-bash">info.plist</code> file of Uni Call workflow folder. You can access the folder by right click Uni Call workflow in Workflows tab of Alfred Preferences window, then select Show in Finder.</p>
+
+<h2 id="utilities">Utilities</h2>
+
+<h3 id="thumbnail-cache">Thumbnail Cache</h3>
+
+<p>In order to present you your contact thumbnails in search results with speed, Uni Call caches them in <code class="highlight language-bash">~/Library/Application Support/Alfred 2/Workflow Data/net.guiguan.Uni-Call/thumbnails/</code>. Their lifespans are one week. Be default, when you install a fresh copy of Uni Call or upgrade to a new version, Uni Call uses the following command to build a full thumbnail cache for all your contacts from Apple Contacts:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --buildfullthumbnailcache yes</code></pre></div>
+
+<p>If you decided not to show contact thumbnails, you can completely remove the cache using:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --destroythumbnailcache yes</code></pre></div>
+
+<p>and then use <code class="highlight language-bash">-!</code> option along with other search options to prohibit the automatic thumbnail generation and caching. You can change script filters to adopt <code class="highlight language-bash">-!</code> option too.</p>
+
+<h3 id="view-uni-call-help-documentation">View Uni Call Help Documentation</h3>
+
+<p>Use the following option to open documentation on Uni Call official site:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --openhelpdocumentation</code></pre></div>
+
+<h3 id="contact-author">Contact Author</h3>
+
+<p>Use the following option to send user feedback directly to my email address:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --contactauthor</code></pre></div>
+
+<h3 id="format-phone-numbers-in-apple-contacts">Format Phone Numbers in Apple Contacts</h3>
+
+<p>Use the following option to format phone numbers in Apple Contacts to their corresponding locale format:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --formatcontactsphonenumbers</code></pre></div>
+
+<h3 id="add-pinyin-for-chinese-names">Add Pinyin for Chinese Names</h3>
+
+<p>Use the following option to add Pinyin (phonetic names) for 中文名 (Chinese names) in Apple Contacts:</p>
+
+<div class="highlight"><pre><code class="language-bash">call --addcontactsphoneticnames</code></pre></div>
+
+<h2 id="skype-call">Skype Call</h2>
+
+<hr />
+
+<p>Skype Call requires the newest version of <a href="http://www.skype.com/en/download-skype/skype-for-mac/" target="_blank">Skype</a>.</p>
+
+<p>Among the search results for Skype Call, contact thumbnails will be shown in color:#47baec border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-Skype.png" alt="Skype" /></p>
+
+<p><del>If the Skype user corresponding to a particular Skype username is detected online (Skype has to be opened for the detection to work), his or her thumbnail will be shown in color:#47baec border with color:#47baec inner shadow:</del></p>
+
+<p><img src="assets/img/defaultContactThumbnail-Skype-Online.png" alt="Skype Online" /></p>
+
+<p><del>If the Skype hasn’t been opened yet, Skype Call will open it and ensure it is online before starting the phone call. When making a phone call, Skype Call won’t change your Skype online status, and no annoying confirmation dialog box will be popped up.</del></p>
+
+<p><del>The alternative url scheme <em>skype:{query}?call</em> approach is not able make a phone call when Skype hasn’t been opened in some system environment, and it will also cause the annoying confirmation dialog to be popped up every time when you try to make a Skype call.</del> (Refer to <a href="#v531-151213">v5.31 changelog</a>)</p>
+
+<h3 id="the-correct-way-to-store-a-skype-username-for-your-contact">The Correct Way to Store a Skype Username for Your Contact</h3>
+<ol>
+  <li>Retrieve your contact’s Skype username from Skype App</li>
+</ol>
+
+<p><img src="assets/img/Skype-Username.png" alt="Skype Username" /></p>
+
+<ol>
+  <li>Store the Skype username in the IM (Instant Message) field, and select Skype as the IM type</li>
+</ol>
+
+<p><img src="assets/img/Apple-Contacts.png" alt="Apple-Contacts" /></p>
+
+<h2 id="facetime-call">FaceTime Call</h2>
+
+<hr />
+
+<p>FaceTime Call requires the newest version of <a href="https://www.apple.com/au/support/mac-apps/facetime/" target="_blank">FaceTime</a>.</p>
+
+<p>Among the search results for FaceTime Call, contact thumbnails will be shown in color:#f74598 border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-FaceTime.png" alt="FaceTime" /></p>
+
+<p>You can nominate a particular phone or email field of a person in Apple Contacts to be FaceTime Call targets of your choice, which will opt out other phone numbers and emails to be shown in the searching results. To do so, simply put a customized label, either <code class="highlight language-bash">iMessages</code>, <code class="highlight language-bash">FaceTime</code>, <code class="highlight language-bash">iPhone</code>, <code class="highlight language-bash">iPad</code>, <code class="highlight language-bash">Mac</code>, <code class="highlight language-bash">iDevice</code>, <code class="highlight language-bash">Apple</code> or <code class="highlight language-bash">iCloud</code> in front of phone or email nominees:</p>
+
+<p><img src="assets/img/FaceTime-Nomination.png" alt="FaceTime Nomination" /></p>
+
+<p>You can also use comma to separate multiple labels. For example, using label “iPhone, home” in front of a phone number will nominate that phone number as well as labelling that number as “home” in the Uni Call search results. Note that the label “iPhone” is only used for target nomination, but not used to label Uni Call search results.</p>
+
+<p>The thumbnail of a person who has nominated phone number or email will be shown in color:#f74598 border with color:#f74598 inner shadow:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-FaceTime-Nominated.png" alt="FaceTime Nominated" /></p>
+
+<p>FaceTime Call uses url scheme <em>facetime:{query}</em> to launch FaceTime and start a call.</p>
+
+<h3 id="set-default-working-mode">Set Default Working Mode</h3>
+
+<p>FaceTime’s default working mode is video call. If you would like to use audio as FaceTime’s default working mode, you can use the following command:</p>
+
+<div class="highlight"><pre><code class="language-bash">call -f-setdefaultworkingmode _ yes</code></pre></div>
+
+<p>To set it back to use video call by default:</p>
+
+<div class="highlight"><pre><code class="language-bash">call -f-setdefaultworkingmode + yes</code></pre></div>
+
+<h2 id="phone-amego-call">Phone Amego Call</h2>
+
+<hr />
+
+<p>With the help of <a href="http://www.sustworks.com/pa_guide/" target="_blank">Phone Amego</a>, you can turn your Mac into a bluetooth headset and remotely control your real mobile phone to start and receive real phone calls. Sweet?!</p>
+
+<p>Phone Amego Call requires the newest version of <a href="http://www.sustworks.com/pa_guide/" target="_blank">Phone Amego</a>.</p>
+
+<p>Among the search results for Phone Amego Call, contact thumbnails will be shown in color:#fcbd5a border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-PhoneAmego.png" alt="Phone Amego" /></p>
+
+<p>Phone Amego Call uses url scheme <em>phoneAmego:{query};alert=no</em> to launch Phone Amego and start a call.</p>
+
+<h3 id="manage-aliases-for-device-labels">Manage Aliases for Device Labels</h3>
+
+<p>You can assign an easy to remember alias to a complicated device label. For example:</p>
+
+<div class="highlight"><pre><code class="language-bash">callp --map ip to <span class="s2">&quot;Guan&#39;s iPhone&quot;</span> yes</code></pre></div>
+
+<p>Then in the future you can make a bluetooth phone call through device “Guan’s iPhone” using “/” extra parameter syntax as follows:</p>
+
+<div class="highlight"><pre><code class="language-bash">callp TARGET /ip</code></pre></div>
+
+<p>To remove the assigned alias:</p>
+
+<div class="highlight"><pre><code class="language-bash">callp --unmap ip yes</code></pre></div>
+
+<h3 id="phone-number-extension">Phone Number Extension</h3>
+
+<p>You can specify a phone number extension using either <code class="highlight language-bash">,</code> or <code class="highlight language-bash"><span class="p">;</span></code> plus the extension part. Phone Amego will then dial the main phone number part, and then wait for 2 seconds before dialling the extension part automatically. For example:</p>
+
+<div class="highlight"><pre><code class="language-bash">callp 1555<span class="p">;</span>1
+callp 1555,1   <span class="c"># they will both dial 1555, wait for 2 seconds and dial 1</span></code></pre></div>
+
+<h2 id="sip-call">SIP Call</h2>
+
+<hr />
+
+<p>SIP Call requires the newest version of <a href="http://voip.about.com/od/sipandh323/a/What-Is-Sip-And-What-Is-It-Good-For.htm" target="_blank">SIP</a> client <a href="http://www.tlphn.com/" target="_blank">Telephone</a>.</p>
+
+<p>Among the search results for SIP Call, contact thumbnails will be shown in color:#fcbd5a border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-SIP.png" alt="SIP" /></p>
+
+<p>If you store a SIP address in a contact’s Url field with custom label “sip”, such as follows:</p>
+
+<p><img src="assets/img/SIP-Record.png" alt="SIP Record" /></p>
+
+<p>then the corresponding thumbnail for that person will be shown in color:#fcbd5a border with color:#fcbd5a inner shadow:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-SIP-Recorded.png" alt="SIP Recorded" /></p>
+
+<p>SIP Call uses url scheme <em>tel:{query}</em> for phone numbers and url scheme <em>sip:{query}</em> for SIP addresses to launch Telephone and start a call.</p>
+
+<h3 id="turn-calling-phone-number-onoff">Turn Calling Phone Number On/Off</h3>
+
+<p>Be default, SIP Call will not show phone number results. You can turn on/off SIP call to phone numbers:</p>
+
+<div class="highlight"><pre><code class="language-bash">call -i-turncallingphonenumber on    <span class="c"># turn on</span>
+call -i-turncallingphonenumber off   <span class="c"># turn off</span></code></pre></div>
+
+<h2 id="pushdialer-call">PushDialer Call</h2>
+
+<hr />
+
+<p>PushDialer Call requires the newest version of <a href="http://pushdialer.com/" target="_blank">PushDialer</a>.</p>
+
+<p>Among the search results for PushDialer Call, contact thumbnails will be shown in color:#9e5132 border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-PushDialer.png" alt="PushDialer" /></p>
+
+<p>PushDialer Call uses url scheme <em>pushdialer://{query}</em> to launch PushDialer and start a call. By default, PushDialer will send out a Growl notification to confirm a dialling out.</p>
+
+<h2 id="growlvoice-call">GrowlVoice Call</h2>
+
+<hr />
+
+<p>GrowlVoice Call requires the newest version of <a href="http://www.growlvoice.com/" target="_blank">GrowlVoice</a>. Please note that as of version 2.0.3 (30), GrowlVoice is <a href="https://twitter.com/GrowlVoice/status/455931023868448768" target="_blank">dying</a>. A quick and dirty hack to fix the dying GrowlVoice can be found from <a href="https://gist.github.com/kroo/11205755" target="_blank">here</a> and <a href="https://github.com/szhu/fix-growlvoice" target="_blank">there</a>.</p>
+
+<p>Among the search results for GrowlVoice Call, contact thumbnails will be shown in color:#37a940 border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-GrowlVoice.png" alt="GrowlVoice" /></p>
+
+<p>GrowlVoice Call uses url scheme <em>growlvoice:{query}</em> to launch GrowlVoice and start a call.</p>
+
+<h2 id="calltrunk-call">CallTrunk Call</h2>
+
+<hr />
+
+<p>You can record your phone calls and have the conversations automatically recognised for fast searching and analysis with the help of <a href="https://www.calltrunk.com/au/en/" target="_blank">CallTrunk</a>.</p>
+
+<p>CallTrunk Call requires the newest version of a country specific Call Trunk app for Mac OS X, such as <a href="https://www.calltrunk.com/au/en/extras/mac-osx-apps.html" target="_blank">Call Trunk AU</a>.</p>
+
+<p>Among the search results for CallTrunk Call, contact thumbnails will be shown in color:#1f3a33 border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-CallTrunk.png" alt="CallTrunk" /></p>
+
+<h3 id="set-call-trunk-country">Set Call Trunk Country</h3>
+
+<p>When you have multiple country specific Call Trunk apps installed, you can use –setdefaultcountry long option of CallTrunk Call to set a default one to use. For example:</p>
+
+<div class="highlight"><pre><code class="language-bash">callk --setdefaultcountry au yes</code></pre></div>
+
+<p>will set Australia (AU) as the default country for Call Trunk. Therefore, when you dial out a CallTrunk call in Uni Call, the Call Trunk AU app will be used to serve the purpose.</p>
+
+<p>Apart from setting the default country, you can also temporarily overwrite the setting for a particular dialling out by providing an extra parameter using “/” syntax. For example:</p>
+
+<div class="highlight"><pre><code class="language-bash">callk TARGET /us</code></pre></div>
+
+<p>will set Unite States (US) as the country for Call Trunk. Therefore, the Call Trunk US app will be used to dial out the call.</p>
+
+<h2 id="fritzbox-call">Fritz!Box Call</h2>
+
+<hr />
+
+<p>Fritz!Box Call requires the newest version of <a href="http://mac.frizzix.de/en/" target="_blank">Frizzix</a>.</p>
+
+<p>Among the search results for Fritz!Box Call, contact thumbnails will be shown in color:#9b3130 border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-FritzBox.png" alt="Fritz!Box" /></p>
+
+<h2 id="dialogue-call">Dialogue Call</h2>
+
+<hr />
+
+<p>Dialogue Call requires the newest version of <a href="http://www.getdialogue.com" target="_blank">Dialogue</a>.</p>
+
+<p>Among the search results for Dialogue Call, contact thumbnails will be shown in color:#c600bd border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-Dialogue.png" alt="Dialogue" /></p>
+
+<h2 id="iphone-call">iPhone Call</h2>
+
+<p>iPhone Call requires Mac OS X 10.10 (Yosemite) and above. It makes use of Yosemite’s <a href="https://www.apple.com/au/osx/continuity/" target="_blank">continuity feature</a> to connect your iPhone via Bluetooth and WiFi for making phone calls directly from your Mac OS X. The newest version of <a href="https://www.apple.com/au/support/mac-apps/facetime/" target="_blank">FaceTime app</a> should be installed as well.</p>
+
+<p>Among the search results for iPhone Call, contact thumbnails will be shown in color:#fd7358 border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-IPhone.png" alt="iPhone" width="32px" /></p>
+
+<h2 id="messages-call">Messages Call</h2>
+
+<p>Messages Call requires the newest version of <a href="https://www.apple.com/au/support/mac-apps/messages/" target="_blank">Messages</a>.</p>
+
+<p>Among the search results for Messages Call, contact thumbnails will be shown in color:#2187F8 border:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-Messages.png" alt="Messages" width="32px" /></p>
+
+<p>You can nominate a particular phone or email field of a person in Apple Contacts to be Messages Call targets of your choice, which will opt out other phone numbers and emails to be shown in the searching results. To do so, simply put a customized label, either <code class="highlight language-bash">iMessages</code>, <code class="highlight language-bash">FaceTime</code>, <code class="highlight language-bash">iPhone</code>, <code class="highlight language-bash">iPad</code>, <code class="highlight language-bash">Mac</code>, <code class="highlight language-bash">iDevice</code>, <code class="highlight language-bash">Apple</code> or <code class="highlight language-bash">iCloud</code> in front of phone or email nominees:</p>
+
+<p><img src="assets/img/FaceTime-Nomination.png" alt="Messages Nomination" /></p>
+
+<p>You can also use comma to separate multiple labels. For example, using label “iPhone, home” in front of a phone number will nominate that phone number as well as labelling that number as “home” in the Uni Call search results. Note that the label “iPhone” is only used for target nomination, but not used to label Uni Call search results.</p>
+
+<p>The thumbnail of a person who has nominated phone number or email will be shown in following border colour with inner shadow:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-Messages-Nominated.png" alt="Messages Nominated" width="32px" /></p>
+
+<h3 id="google-talkhangout">Google Talk/Hangout</h3>
+
+<p>Messages Call component also supports for Google Talk/Hangout. By default, it is enabled. You can turn this feature off:</p>
+
+<div class="highlight"><pre><code class="language-bash">call -m-turntextinggtalk off</code></pre></div>
+
+<p>Later on, when you decide to turn this feature back on:</p>
+
+<div class="highlight"><pre><code class="language-bash">call -m-turntextinggtalk on</code></pre></div>
+
+<p>Messages Call will first pull Google Talk/Hangout addresses from Apple Contacts’ IM section with type Google Talk:</p>
+
+<p><img src="assets/img/Google-Talk-Address.png" alt="Google Talk Address" width="232px" /></p>
+
+<p>Then it will pull entries from email section if they are either email addresses suffixed with “gmail.com” or they are labelled as <code class="highlight language-bash">gmail</code> or <code class="highlight language-bash">gtalk</code>. Similar ideas regards nomination above apply here too.</p>
+
+<p>Messages Call’s Google Talk/Hangout feature has a unique functionality that can represent User’s Google Talk/Hangout real-time online status in user’s thumbnail with different colours. You must first log in your Google Talk/Hangout account in Messages to use this feature.</p>
+
+<h2 id="wechat-call">WeChat Call</h2>
+
+<p>WeChat Call requires the newest version of <a href="https://itunes.apple.com/app/wechat/id836500024?mt=12" target="_blank">Mac WeChat</a>.</p>
+
+<p>Among the search results for WeChat Call, contact thumbnails will be shown in following border colour with inner shadow:</p>
+
+<p><img src="assets/img/defaultContactThumbnail-WeChat-Recorded.png" alt="WeChat" width="32px" /></p>
+
+<h3 id="the-correct-way-to-store-a-wechat-username-for-your-contact">The Correct Way to Store a WeChat Username for Your Contact</h3>
+
+<p>Your contact’s WeChat usernames should be store in the URL section in Apple Contacts, and labelled as either <code class="highlight language-bash">wechat</code>, <code class="highlight language-bash">weixin</code> or <code class="highlight language-bash">微信</code>. Such as:</p>
+
+<p><img src="assets/img/WeChat-Username.png" alt="WeChat Username" /></p>
+
+<p>You may also want to prefix a WeChat username with <code class="highlight language-bash">weixinmac://chat/</code> so that when you click on the link, your WeChat app will be brought up just as what will happen using WeChat Call. Such as:</p>
+
+<p><img src="assets/img/WeChat-Username-Clickable.png" alt="WeChat Username Clickable" /></p>
+
+    </div>
+  </div>
+</div>
+
+        </div>
+
+        <hr>
+
+        <footer>
+          <p>Copyright © 2015 <a href="https://github.com/guiguan">Guan Gui</a></p>
+        </footer>
+      </div>
+    </div>
+
+    
+    <script type="text/javascript" src="assets/themes/bootswatch/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/themes/bootswatch/js/toc.js"></script>
+    <script type="text/javascript" src="assets/themes/bootswatch/js/jquery.resize.js"></script>
+    <script type="text/javascript" src="assets/themes/bootswatch/js/bowser.min.js"></script>
+    <script type="text/javascript">
+      $(window).load(function() {
+        var sWElem = $('#sidebar-wrapper');
+        var pCWElem = $('#page-content-wrapper');
+
+        $.fn.smoothScroller.defaults.scrollEl = bowser.gecko ? 'html' : 'body';
+
+        var tocResizeFunc = sWElem.toc({
+          'selectors': 'h2[id], h3[id], h4[id]',
+          'highlightOffset': 0,
+          'highlightOnStart': false,
+          'highlightOnWindowResize': false,
+          'autoScrollTocTopOffset': 9,
+          'autoScrollTocHeightFunc': function() {
+            return $(window).height() - $('#navheader').outerHeight();
+          }
+        }).toc.rehighlight;
+
+        pCWElem.resize(tocResizeFunc);
+
+        if (true) {
+          $('#wrapper').removeClass('toggled');
+        }
+      });
+    </script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//piwik.guiguan.net/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', 2]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="//piwik.guiguan.net/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+  </body>
+</html>
+
